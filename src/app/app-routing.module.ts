@@ -4,9 +4,14 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './components/errors/not-found/not-found.component';
 import { ServerErrorComponent } from './components/errors/server-error/server-error.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { ProfileChoiceComponent } from './components/profile-choice/profile-choice.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: RegisterComponent},
+  {path: '', component: ProfileChoiceComponent},
+  {path: '', component: LoginComponent},
   {path: '', 
     canActivate: [AuthGuard],
     children: [
