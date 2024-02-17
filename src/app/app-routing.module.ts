@@ -1,20 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
+
 import { AuthGuard } from './guards/auth.guard';
+
 import { NotFoundComponent } from './components/errors/not-found/not-found.component';
 import { ServerErrorComponent } from './components/errors/server-error/server-error.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
-import { ProfileChoiceComponent } from './components/profile-choice/profile-choice.component';
+import { HomeComponent } from './components/home/home.component';
+import { ParentComponent } from './components/Layout/parent/parent.component';
 
 const routes: Routes = [
-  {path: '', component: RegisterComponent},
-  {path: '', component: ProfileChoiceComponent},
-  {path: '', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+
   {path: '', 
+    component: ParentComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirect empty path to dashboard
+      {path: 'dashboard', component: HomeComponent},
+      {path: '**', component: NotFoundComponent, pathMatch: 'full'},
     ]
   },
   {path: 'not-found', component: NotFoundComponent},

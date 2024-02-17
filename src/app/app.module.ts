@@ -26,6 +26,10 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 
 
+import { BodyComponent } from './components/Layout/body/body.component';
+import { SidenavComponent } from './components/Layout/sidenav/sidenav.component';
+import { ParentComponent } from './components/Layout/parent/parent.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { RegisterComponent } from './components/auth/register/register.component
     HomeComponent,
     LoginComponent,
     ProfileChoiceComponent,
-    SideRightComponent
+    SideRightComponent,
+
+    BodyComponent,
+    SidenavComponent,
+    ParentComponent,
   ],
   imports: [
     BrowserAnimationsModule,
