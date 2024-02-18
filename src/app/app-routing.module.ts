@@ -9,6 +9,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ParentComponent } from './components/Layout/parent/parent.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirect empty path to dashboard
-      {path: 'dashboard', component: HomeComponent},
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'home', component: HomeComponent},
       {path: '**', component: NotFoundComponent, pathMatch: 'full'},
     ]
   },

@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BodyComponent{
 
-  @Input() collapsed = false;
+  @Input() collapsed = true;
   @Input() screenWidth = 0;
 
   getBodyClass(): string {

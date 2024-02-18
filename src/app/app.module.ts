@@ -5,6 +5,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './modules/shared.module';
 import { AppRoutingModule } from './app-routing.module';
+import { OverlayModule } from '@angular/cdk/overlay'
+import { CdkMenuModule } from '@angular/cdk/menu'
 
 //Directives
 import { HasRoleDirective } from './directives/has-role.directive';
@@ -29,6 +31,8 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { BodyComponent } from './components/Layout/body/body.component';
 import { SidenavComponent } from './components/Layout/sidenav/sidenav.component';
 import { ParentComponent } from './components/Layout/parent/parent.component';
+import { HeaderComponent } from './components/Layout/header/header.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -48,6 +52,8 @@ import { ParentComponent } from './components/Layout/parent/parent.component';
     BodyComponent,
     SidenavComponent,
     ParentComponent,
+    HeaderComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -56,7 +62,9 @@ import { ParentComponent } from './components/Layout/parent/parent.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    OverlayModule,
+    CdkMenuModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

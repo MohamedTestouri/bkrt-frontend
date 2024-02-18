@@ -25,7 +25,7 @@ export const navbarData = [
         label: 'الحزم'
     },
     {
-        routeLink: 'media',
+        routeLink: 'home',
         icon: 'fal fa-home',
         label: 'الرئيسية'
     },

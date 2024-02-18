@@ -10,7 +10,7 @@ export class ParentComponent{
 
   title = 'Bakourat.Client';
 
-  isSideNavCollapsed = false;
+  isSideNavCollapsed = true;
   screenWidth = 0;
 
   constructor(private router: Router) {}
