@@ -1,20 +1,8 @@
 <div class="container-fluid">
     <div class="row">
         <!-- Partie gauche avec l'image et le texte -->
-        <div class="col-md-6 bg-primary text-white d-flex align-items-center justify-content-center"
-            style="background-image: url('assets/images/Rectangle 200.png'); background-size: cover;">
-            <div class="text-center">
-                <a href="https://example.com">
-                    <img src="assets/images/accueil 1.png" alt="" class="img-fluid float-start">
-                </a>
-                <div class="row mb-3 float-end">
-                    <p style="font-weight: 980px; font-size: 35px;"><b>مرحبا بيك في أول منصة</b></p>
-                </div>
-                <div class="row mb-4 float-start">
-                    <p style="font-size: 20px; color: darkgreen; font-weight: 900px;">للمرافقة العلمية الفلاحية</p>
-                </div>
-                <img src="assets/images/mask image.png" alt="" class="img-fluid me-3">
-            </div>
+        <div class="col-md-5">
+            <app-formulaire (onSubmit)="traiterFormulaire($event)"></app-formulaire>
         </div>
 
         <!-- Partie droite avec le formulaire de connexion -->
@@ -44,24 +32,25 @@
 
                     </div>
                     <div class="col-md-8 text-center">
-                        <button class="btn btn-success rounded" type="submit">تسجيل الدخول</button>
+                        <button class="btn btn-success btn-lg" type="submit">تسجيل الدخول</button>
                     </div>
                 </div>
                 <div class="row mb-5 col-md-12">
                     <div class="col-md-3">
                     </div>
                     <div class="col-md-8">
-                        <a href=""><p class="text-end">ﻣﺎﻋﻨﺪﻛﺶ ﺣﺴﺎب؟ إﺿﻐﻂ ﻫﻮﻧﻲ ﺑﺎش ﺗﺴﺠﻞ ﻣﻌﺎﻧﺎ</p></a>
+                        <button class="btn btn-link float-end" type="submit" (click)="ProfileChoice()">ﻣﺎﻋﻨﺪﻛﺶ ﺣﺴﺎب؟ إﺿﻐﻂ ﻫﻮﻧﻲ ﺑﺎش ﺗﺴﺠﻞ ﻣﻌﺎﻧﺎ</button>
+                        <!-- <a href=""><p class="text-end">ﻣﺎﻋﻨﺪﻛﺶ ﺣﺴﺎب؟ إﺿﻐﻂ ﻫﻮﻧﻲ ﺑﺎش ﺗﺴﺠﻞ ﻣﻌﺎﻧﺎ</p></a> -->
                     </div>
                     <div class="col-md-11">
-                        <a href=""><p class="text-end">كلمة سر منسية ؟</p></a>
+                        <button class="btn btn-link float-end" type="submit" (click)="ResetPassword()">كلمة سر منسية ؟</button>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-10 mt-7">
                         <img src="assets/images/pana.png" alt="" class="img-fluid mb-4">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-1">
                     </div>
                 </div>
                 <!-- <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button> -->

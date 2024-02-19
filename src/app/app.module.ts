@@ -33,6 +33,7 @@ import { SidenavComponent } from './components/Layout/sidenav/sidenav.component'
 import { ParentComponent } from './components/Layout/parent/parent.component';
 import { HeaderComponent } from './components/Layout/header/header.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     ParentComponent,
     HeaderComponent,
     DashboardComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserAnimationsModule,

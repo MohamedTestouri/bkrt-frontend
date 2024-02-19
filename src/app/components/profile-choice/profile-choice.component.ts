@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-profile-choice',
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileChoiceComponent implements OnInit {
   afficherListeFlag: boolean = false;
   afficherButton: boolean = true;
-  constructor() { }
+  constructor(public accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,4 +22,9 @@ export class ProfileChoiceComponent implements OnInit {
     // Faites quelque chose avec les données du formulaire
     console.log('Données du formulaire:', data);
   }
+  Register()
+{
+  this.accountService.logout();
+  this.router.navigateByUrl('/register');
+}
 }

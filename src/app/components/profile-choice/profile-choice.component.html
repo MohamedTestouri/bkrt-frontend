@@ -1,8 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <!-- Partie gauche avec l'image et le texte -->
-        <div class="col-md-6 bg-primary text-white d-flex align-items-center justify-content-center"
-        style="background-image: url('assets/Rectangle 200.png'); background-size: cover;">
+        <div class="col-md-5">
             <app-formulaire (onSubmit)="traiterFormulaire($event)"></app-formulaire>
         </div>
 
@@ -11,7 +10,7 @@
             <form class="text-center">
                 <div class="row mb-4">
                     <div class="col-md-12 text-center">
-                        <img src="assets/logo sent-04 3 (1).png" alt="Logo" class="rounded float-end">
+                        <img src="assets/images/logo.png" alt="Logo" class="rounded float-end">
                     </div>
                 </div>
 
@@ -26,7 +25,7 @@
 
                     </div>
                     <div class="d-grid gap-2 col-9 mx-auto text-center">
-                        <button type="submit" class="btn btn-success btn-lg">صاحب مشروع فلاحي</button>
+                        <button type="submit" (click)="Register()" class="btn btn-success btn-lg">صاحب مشروع فلاحي</button>
                     </div>
                 </div>
 
@@ -35,7 +34,7 @@
 
                     </div>
                     <div class="d-grid gap-2 col-9 mx-auto text-center">
-                        <button type="submit" class="btn btn-success btn-lg">صاحب مكتب دراسات فلاحية</button>
+                        <button type="submit" (click)="Register()" class="btn btn-success btn-lg">صاحب مكتب دراسات فلاحية</button>
                     </div>
                 </div>
 
@@ -47,10 +46,9 @@
                         <button *ngIf="afficherButton" type="submit" class="btn btn-success btn-lg"
                             (click)="afficherListe()">غيرها</button>
                             <div class="list-group" *ngIf="afficherListeFlag">
-                                <a href="#" class="btn btn-success btn-lg mb-3">مخبر تحاليل</a>
-                                <a href="#" class="btn btn-success btn-lg mb-3">باكورات</a>
-                                <a href="#" class="btn btn-success btn-lg mb-3">داعم مالي
-                                </a>
+                                <button href="#" (click)="Register()" class="btn btn-success btn-lg mb-3">مخبر تحاليل</button>
+                                <button href="#" (click)="Register()" class="btn btn-success btn-lg mb-3">باكورات</button>
+                                <button href="#" (click)="Register()" class="btn btn-success btn-lg mb-3">داعم مالي</button>
                         </div>
                     </div>
                 </div>
@@ -58,7 +56,7 @@
                 <div class="row">
 
                     <div class="col-md-10">
-                        <img src="assets/pana.png" alt="" class="img-fluid mb-4">
+                        <img src="assets/images/pana.png" alt="" class="img-fluid mb-4">
                     </div>
                     <div class="col-md-3">
 

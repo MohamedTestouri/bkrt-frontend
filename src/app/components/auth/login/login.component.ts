@@ -29,5 +29,26 @@ export class LoginComponent implements OnInit {
   cancel() {
     this.cancelLogin.emit(false);
   }
+Register()
+{
+  this.accountService.logout();
+  this.router.navigateByUrl('/register');
+}
 
+ProfileChoice()
+{
+  this.accountService.logout();
+  this.router.navigateByUrl('/profilChoice');
+}
+
+ResetPassword()
+{
+  this.accountService.logout();
+  this.router.navigateByUrl('/resetPassword');
+}
+
+traiterFormulaire(data: any) {
+  // Faites quelque chose avec les données du formulaire
+  console.log('Données du formulaire:', data);
+}
 }

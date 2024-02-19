@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
   afficherContenuVerif: boolean = false;
   afficherContenuInfor: boolean = true;
+
+  model: any = {};
   constructor() { }
 
   ngOnInit(): void {
