@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
 
@@ -8,23 +8,23 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./profile-choice.component.css']
 })
 export class ProfileChoiceComponent implements OnInit {
+
+  @Output() register = new EventEmitter();
+
   afficherListeFlag: boolean = false;
   afficherButton: boolean = true;
   constructor(public accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
   }
+
   afficherListe() {
     this.afficherListeFlag = !this.afficherListeFlag;
     this.afficherButton = !this.afficherButton;
   }
-  traiterFormulaire(data: any) {
-    // Faites quelque chose avec les données du formulaire
-    console.log('Données du formulaire:', data);
-  }
+  
   Register()
-{
-  this.accountService.logout();
-  this.router.navigateByUrl('/register');
-}
+  {
+    this.register.emit(true);
+  }
 }

@@ -1,136 +1,132 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-5">
-            <app-formulaire (onSubmit)="traiterFormulaire($event)"></app-formulaire>
+<form class="text-center">
+    <div class="row mb-4">
+        <div class="col-md-12 text-center">
+            <img src="assets/images/logo.png" alt="Logo" class="rounded float-end" />
         </div>
-            
-        <div class="col-md-7 d-flex align-items-center justify-content-center">
-            <form class="text-center">
-                <div class="row mb-4">
-                    <div class="col-md-12 text-center">
-                        <img src="assets/images/logo.png" alt="Logo" class="rounded float-end">
+    </div>
+    <div class="col-md-11 mb-5">
+        <nav>
+            <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
+                <button (click)="clickVerification()" class="nav-link" id="nav-verification-tab"
+                    data-bs-toggle="tab" data-bs-target="#nav-verification" type="button" role="tab"
+                    aria-controls="nav-verification" aria-selected="true"
+                    style="color: darkgreen; font-weight: 700">
+                    التثبت.II
+                </button>
+                <button (click)="clickInformation()" class="nav-link" id="nav-information-tab" data-bs-toggle="tab"
+                    data-bs-target="#nav-information" type="button" role="tab" aria-controls="nav-information"
+                    aria-selected="false" style="color: olivedrab; font-weight: 700">
+                    معلومات عامة.I
+                </button>
+            </div>
+        </nav>
+    </div>
+    <div class="tab-content" id="nav-tabContent">
+        <div *ngIf="afficherContenuVerif" id="nav-verification" role="tabpanel"
+            aria-labelledby="nav-verification-tab">
+            <form>
+                <div class="col-md-11 text-end">
+                    <p style="font-weight: 600; color: green; font-size: large">
+                        التثبت من البريد الإلكتروني
+                    </p>
+                </div>
+                <div class="row col-md-12 mb-4 justify-content-end">
+                    <div class="col-md-6">
+                        <input type="email" placeholder="foolen@gmail.com" class="form-control text-center"
+                            id="email" name="email" required [(ngModel)]="model.email" />
+                    </div>
+                </div>
+                <div class="justify-content-end">
+                    <button type="submit" class="btn btn-success rounded text-center col-md-5">
+                        تأكيد
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div *ngIf="afficherContenuInfor" id="nav-information" role="tabpanel"
+            aria-labelledby="nav-information-tab">
+            <form>
+                <div class="col-md-11 text-end">
+                    <p style="font-weight: 600; color: green; font-size: large">
+                        جديد معانا؟ مرحبا بيك.. تفضل سجل بش تستنفع بخدماتنا
+                    </p>
+                </div>
+                <div class="row col-md-12 mb-4">
+                    <div class="col-md-6">
+                        <input type="text" [(ngModel)]="model.username" placeholder="إسم المستخدم"
+                            class="form-control text-center" id="username" name="username" required />
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type="text" placeholder="إسم هيكل مهني أو جهة مانحة" class="form-control text-center"
+                            id="username" name="username" required />
                     </div>
                 </div>
 
-                <div class="col-md-11 mb-5">
-                    <nav>
-                        <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
-                            <button (click)="clickVerification()" class="nav-link" id="nav-verification-tab"
-                                data-bs-toggle="tab" data-bs-target="#nav-verification" type="button" role="tab"
-                                aria-controls="nav-verification" aria-selected="true"
-                                style="color: darkgreen; font-weight: 700;">التثبت.II</button>
-                            <button (click)="clickInformation()" class="nav-link" id="nav-information-tab"
-                                data-bs-toggle="tab" data-bs-target="#nav-information" type="button" role="tab"
-                                aria-controls="nav-information" aria-selected="false"
-                                style="color: olivedrab; font-weight: 700;">معلومات عامة.I</button>
+                <div class="row col-md-12 mb-4">
+                    <div class="col-md-6">
+                        <input type="number" placeholder="الهاتف" class="form-control text-center"
+                            [(ngModel)]="model.phone" id="telephone" name="telephone" required />
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type="email" placeholder="البريد الإلكتروني" [(ngModel)]="model.email"
+                            class="form-control text-center border-radius-sm" id="email" name="email" required />
+                    </div>
+                </div>
+
+                <div class="row col-md-12 mb-4 justify-content-center">
+                    <div class="col-md-6">
+                        <textarea placeholder="العنوان" class="form-control text-center" id="adresse" name="adresse"
+                            required>
+            </textarea>
+                    </div>
+                </div>
+
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle col-md-12" type="button"
+                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                المعتمدية
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </li>
+                            </ul>
                         </div>
-                    </nav>
-                </div>
-                <div class="tab-content" id="nav-tabContent">
-                    <div *ngIf="afficherContenuVerif" id="nav-verification" role="tabpanel"
-                        aria-labelledby="nav-verification-tab">
-                        <form>
-                            <div class="col-md-11 text-end">
-                                <p style="font-weight: 600; color: green; font-size: large;">التثبت من البريد الإلكتروني
-                                </p>
-                            </div>
-                            <div class="row col-md-12 mb-4 justify-content-end">
-                                <div class="col-md-6">
-                                    <input type="email" placeholder="foolen@gmail.com" class="form-control text-center"
-                                        id="email" name="email" required [(ngModel)]="model.email">
-                                </div>
-                            </div>
-                            <div class="justify-content-end">
-                                <button type="submit" class="btn btn-success rounded text-center col-md-5">تأكيد</button>
-                            </div>
-                        </form>
                     </div>
-                    <div *ngIf="afficherContenuInfor" id="nav-information" role="tabpanel"
-                        aria-labelledby="nav-information-tab">
-                        <form>
-                            <div class="col-md-11 text-end">
-                                <p style="font-weight: 600; color: green; font-size: large;">جديد معانا؟ مرحبا بيك..
-                                    تفضل سجل بش تستنفع بخدماتنا</p>
-                            </div>
-                            <div class="row col-md-12 mb-4">
-                                <div class="col-md-6">
-                                    <input type="text" [(ngModel)]="model.username" placeholder="إسم المستخدم" class="form-control text-center"
-                                        id="username" name="username" required>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <input type="text" placeholder="إسم هيكل مهني أو جهة مانحة"
-                                        class="form-control text-center" id="username" name="username" required>
-                                </div>
-                            </div>
-
-                            <div class="row col-md-12 mb-4">
-                                <div class="col-md-6">
-                                    <input type="number" placeholder="الهاتف" class="form-control text-center" [(ngModel)]="model.phone"
-                                        id="telephone" name="telephone" required>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <input type="email" placeholder="البريد الإلكتروني" [(ngModel)]="model.email"
-                                        class="form-control text-center border-radius-sm" id="email" name="email"
-                                        required>
-                                </div>
-                            </div>
-
-                            <div class="row col-md-12 mb-4 justify-content-center">
-                                <div class="col-md-6">
-                                    <textarea placeholder="العنوان" class="form-control text-center" id="adresse"
-                                        name="adresse" required>
-                                    </textarea>
-                                </div>
-                            </div>
-
-                            <div class="row col-md-12">
-                                <div class="col-md-6">
-                                    <div class="dropdown">
-                                        <button class="btn btn-outline-secondary dropdown-toggle col-md-12"
-                                            type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            المعتمدية
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="dropdown">
-                                        <button class="btn btn-outline-secondary dropdown-toggle col-md-12"
-                                            type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            الولاية
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 justify-content-end">
-                                    <button type="submit" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="col-md-6 mb-4">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle col-md-12" type="button"
+                                id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                الولاية
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-
-                    <div class="col-md-10">
-                        <img src="assets/images/pana.png" alt="" class="img-fluid mb-4">
-                    </div>
-                    <div class="col-md-3">
-
+                    <div class="col-md-12 justify-content-end">
+                        <button type="submit" class="btn btn-success rounded text-center col-md-8">
+                            تأكيد
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-md-10">
+            <img src="assets/images/pana.png" alt="" class="img-fluid mb-4" />
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</form>
