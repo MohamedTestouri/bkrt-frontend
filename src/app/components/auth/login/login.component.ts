@@ -9,7 +9,10 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  @Output() cancelLogin = new EventEmitter();
+
+  @Output() profileChoice = new EventEmitter();
+  @Output() resetPassword = new EventEmitter();
+  
   model: any = {};
   
   constructor(public accountService: AccountService, private router: Router, private toastr: ToastrService) { }
@@ -25,30 +28,14 @@ export class LoginComponent implements OnInit {
       }
     })
   }
-  
-  cancel() {
-    this.cancelLogin.emit(false);
+
+  ProfileChoice()
+  {
+    this.profileChoice.emit(true);
   }
-Register()
-{
-  this.accountService.logout();
-  this.router.navigateByUrl('/register');
-}
 
-ProfileChoice()
-{
-  this.accountService.logout();
-  this.router.navigateByUrl('/profilChoice');
-}
-
-ResetPassword()
-{
-  this.accountService.logout();
-  this.router.navigateByUrl('/resetPassword');
-}
-
-traiterFormulaire(data: any) {
-  // Faites quelque chose avec les données du formulaire
-  console.log('Données du formulaire:', data);
-}
+  ResetPassword()
+  {
+    this.resetPassword.emit(true);
+  }
 }

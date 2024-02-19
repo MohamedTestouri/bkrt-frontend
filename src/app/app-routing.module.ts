@@ -10,16 +10,13 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { HomeComponent } from './components/home/home.component';
 import { ParentComponent } from './components/Layout/parent/parent.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ProfileChoiceComponent } from './components/profile-choice/profile-choice.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { DashboardHeaderComponent } from './components/dashboard/dashboard-header/dashboard-header.component';
+import { ParentAuthComponent } from './components/auth/parent-auth/parent-auth.component';
+import { ProfileChoiceComponent } from './components/auth/profile-choice/profile-choice.component';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'profilChoice', component: ProfileChoiceComponent},
-  {path: 'resetPassword', component: ResetPasswordComponent},
-
+  {path: 'login', component: ParentAuthComponent},
   {path: '', 
     component: ParentComponent,
     canActivate: [AuthGuard],

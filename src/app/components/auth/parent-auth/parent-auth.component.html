@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+
+    <!-- Left Side -->
+
+        <div class="col-md-6 d-flex justify-content-center auth-left-side">
+            <app-auth-left-carousel></app-auth-left-carousel>
+        </div>
+
+    <!-- Right Side -->
+
+        <div *ngIf="loginMode" class="col-md-6 d-flex align-items-center justify-content-center">
+            <app-login (profileChoice)="showProfileChoice($event)" (resetPassword)="showResetPassword($event)"></app-login>
+        </div>        
+
+        <div *ngIf="registerMode" class="col-md-6 d-flex align-items-center justify-content-center">
+            <app-register></app-register>
+        </div>
+        
+        <div *ngIf="profileChoiceMode" class="col-md-6 d-flex align-items-center justify-content-center">
+            <app-profile-choice (register)="showRegister($event)"></app-profile-choice>
+        </div>
+
+        <div *ngIf="resetPasswordMode" class="col-md-6 d-flex align-items-center justify-content-center">
+            <app-reset-password></app-reset-password>
+        </div>
+
+    </div>
+</div>
