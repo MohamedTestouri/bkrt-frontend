@@ -12,6 +12,7 @@ import { ParentComponent } from './components/Layout/parent/parent.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileChoiceComponent } from './components/profile-choice/profile-choice.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
+import { DashboardHeaderComponent } from './components/dashboard/dashboard-header/dashboard-header.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -25,6 +26,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirect empty path to dashboard
       {path: 'dashboard', component: DashboardComponent},
+      {path: 'dashboardHeader', component: DashboardHeaderComponent},
       {path: 'home', component: HomeComponent},
       {path: '**', component: NotFoundComponent, pathMatch: 'full'},
     ]

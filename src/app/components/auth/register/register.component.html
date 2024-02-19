@@ -15,11 +15,11 @@
                 <div class="col-md-11 mb-5">
                     <nav>
                         <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
-                            <button (click)="clickVerification()" class="nav-link" id="nav-verification-tab"
+                            <button [disabled]="isdisabledValidate" (click)="clickVerification()" class="nav-link" id="nav-verification-tab"
                                 data-bs-toggle="tab" data-bs-target="#nav-verification" type="button" role="tab"
-                                aria-controls="nav-verification" aria-selected="true"
+                                aria-controls="nav-verification" aria-selected="true" 
                                 style="color: darkgreen; font-weight: 700;">التثبت.II</button>
-                            <button (click)="clickInformation()" class="nav-link" id="nav-information-tab"
+                            <button [disabled]="isdisabledInformation" (click)="clickInformation()" class="nav-link" id="nav-information-tab"
                                 data-bs-toggle="tab" data-bs-target="#nav-information" type="button" role="tab"
                                 aria-controls="nav-information" aria-selected="false"
                                 style="color: olivedrab; font-weight: 700;">معلومات عامة.I</button>
@@ -115,14 +115,17 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 justify-content-end">
-                                    <button type="submit" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
+                                    <button (click)="validerInformation()" type="submit" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="row">
-
+                    <div class="bg-primary text-white d-flex align-items-center justify-content-center"
+                    style="background-image: url('assets/images/pana.png'); background-size: cover;">
+                    
+                </div>
                     <div class="col-md-10">
                         <img src="assets/images/pana.png" alt="" class="img-fluid mb-4">
                     </div>

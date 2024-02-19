@@ -34,6 +34,7 @@ import { ParentComponent } from './components/Layout/parent/parent.component';
 import { HeaderComponent } from './components/Layout/header/header.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
+import { DashboardHeaderComponent } from './components/dashboard/dashboard-header/dashboard-header.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { ResetPasswordComponent } from './components/auth/reset-password/reset-p
     HeaderComponent,
     DashboardComponent,
     ResetPasswordComponent,
+    DashboardHeaderComponent,
   ],
   imports: [
     BrowserAnimationsModule,
