@@ -1,18 +1,46 @@
-<div class="mb-3">
-    <input 
-        type={{type}}
-        [class.is-invalid]="control.touched && control.invalid"
-        class="form-control" 
-        [formControl]="control"
-        placeholder={{label}}
-    >
-    <div class="invalid-feedback" *ngIf="control.errors?.['required']">
-        Please enter a {{label}}
-    </div>
-    <div class="invalid-feedback" *ngIf="control.errors?.['minlength']">
-        {{label}} must be at least {{control.errors?.['minlength'].requiredLength}} characters
-    </div>
-    <div class="invalid-feedback" *ngIf="control.errors?.['notMatching']">
-        Passwords do not match
-    </div>
+<div class="container">
+    <ng-container *ngIf="type !== 'phone'">
+        <input 
+            type={{type}}
+            [class.is-invalid]="control.touched && control.invalid"
+            class="form-control" 
+            [formControl]="control"
+            placeholder={{label}}
+        >
+        <div class="invalid-feedback" *ngIf="control.errors?.['required']">
+            ينقصك {{label}}
+        </div>
+        <div class="invalid-feedback" *ngIf="control.errors?.['minlength']">
+            طول {{label}} يجب أن يكون  {{control.errors?.['minlength'].requiredLength}} أحرف أو أكثر
+        </div>
+        <div class="invalid-feedback" *ngIf="control.errors?.['notMatching']">
+            كلمات السر غير متطابقة
+        </div>
+        <div class="invalid-feedback" *ngIf="control.errors?.['email']">
+            الرجاء إدخال عنوان بريد إلكتروني صحيح
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="type === 'phone'">
+        <ngx-intl-tel-input
+            [onlyCountries]="onlyCountries"
+            [enableAutoCountrySelect]="false"
+            [enablePlaceholder]="true"
+            [selectFirstCountry]="false"
+            [selectedCountryISO]="CountryISO.Tunisia"
+            [maxLength]="15" 
+            [phoneValidation]="true"
+            [separateDialCode]="separateDialCode"
+            [numberFormat]="PhoneNumberFormat.National"
+            [class.is-invalid]="control.touched && control.invalid"
+            class="form-control" 
+            [formControl]="control"
+        ></ngx-intl-tel-input>
+        <div class="invalid-feedback" *ngIf="control.errors?.['required']">
+            ينقصك {{label}}
+        </div>
+        <div class="invalid-feedback" *ngIf="control.invalid && !control.errors?.['required']">
+            تثبت من رقم الهاتف
+        </div>
+    </ng-container>
 </div>

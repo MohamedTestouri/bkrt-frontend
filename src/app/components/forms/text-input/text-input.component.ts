@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Self } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
+import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-text-input',
@@ -9,6 +10,14 @@ import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 export class TextInputComponent implements ControlValueAccessor {
   @Input() label = '';
   @Input() type = 'text';
+
+  separateDialCode = true;
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+  preferredCountries: CountryISO[] = [CountryISO.Tunisia];
+  onlyCountries: CountryISO[] = [CountryISO.Tunisia];
+
 
   constructor(@Self() public ngControl: NgControl) { 
     this.ngControl.valueAccessor = this;

@@ -1,0 +1,11 @@
+.container {
+    width: 100%;
+    max-width: 400px; /* Adjust the maximum width as needed */
+    margin: 0 auto; /* Center the container horizontally */
+  }
+  
+  /* Adjust the input field width for responsiveness */
+  .iti {
+    width: 100%;
+  }
+  
