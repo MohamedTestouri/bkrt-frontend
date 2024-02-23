@@ -1,0 +1,16 @@
+h2 {
+    font-size: 35px; 
+    color: #FFFFFF; 
+    font-weight: 1500px;
+}
+
+h4 {
+    font-size: 30px;
+    color: darkgreen;
+    font-weight: 900px;
+}
+
+img {
+    display: block;
+    width: 100%;
+}

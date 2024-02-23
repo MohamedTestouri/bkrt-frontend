@@ -1,4 +1,4 @@
-<form *ngIf="!(accountService.currentUser$ | async)" #loginForm="ngForm" class="text-center" (ngSubmit)="login()" autocomplete="off">
+<form *ngIf="!(accountService.currentUser$ | async)" [formGroup]="loginForm" class="text-center" (ngSubmit)="loginForm.valid && login()" autocomplete="off">
     <div class="row mb-4">
         <div class="col-md-12 text-center">
             <img src="assets/images/logo.png" alt="Logo" class="rounded float-end">
@@ -8,38 +8,34 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-8 form-floating-input-padding-b">
-            <input name="username" [(ngModel)]="model.username" class="form-control me-2 text-center" type="text" placeholder="عنوان البريد الإلكتروني">
+            <app-text-input [formControl]="$any(loginForm.controls['email'])" [label]="'عنوان البريد الإلكتروني'" [type]="'email'"></app-text-input>
         </div>
     </div>
     <div class="row mb-4">
         <div class="col-md-3">
         </div>
         <div class="col-md-8">
-            <input name="password" [(ngModel)]="model.password" class="form-control me-2 text-center" type="password" placeholder="كلمة السر">
+            <app-text-input [formControl]="$any(loginForm.controls['password'])" [label]="'كلمة السر'" [type]="'password'"></app-text-input>
         </div>
     </div>
-    <div class="row mb-5 col-md-12">
+    <div class="row mb-5">
         <div class="col-md-3">
         </div>
         <div class="col-md-8 text-center">
-            <button class="btn btn-success btn-lg" type="submit">تسجيل الدخول</button>
-        </div>
-    </div>
-    <div class="row mb-5 col-md-12">
-        <div class="col-md-3">
-        </div>
-        <div class="col-md-8">
-            <button class="btn btn-link float-end" type="button" (click)="ProfileChoice()">ﻣﺎﻋﻨﺪﻛﺶ ﺣﺴﺎب؟ إﺿﻐﻂ ﻫﻮﻧﻲ ﺑﺎش ﺗﺴﺠﻞ ﻣﻌﺎﻧﺎ</button>
-        </div>
-        <div class="col-md-11">
-            <button class="btn btn-link float-end" type="button" (click)="ResetPassword()">كلمة سر منسية ؟</button>
+            <button [disabled]="!loginForm.valid" class="btn btn-success btn-lg" type="submit">تسجيل الدخول</button>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-10 mt-7">
-            <img src="assets/images/pana.png" alt="" class="img-fluid mb-4">
+        <div class="col-md-11">
+            <button class="btn btn-link float-end btn-link-color" type="button" (click)="ProfileChoice()">ﻣﺎﻋﻨﺪﻛﺶ ﺣﺴﺎب؟ إﺿﻐﻂ ﻫﻮﻧﻲ ﺑﺎش ﺗﺴﺠﻞ ﻣﻌﺎﻧﺎ</button>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-11">
+            <button class="btn btn-link float-end btn-link-color" type="button" (click)="ResetPassword()">كلمة سر منسية ؟</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 mt-2">
+            <img src="assets/images/pana.png" alt="" class="img-fluid mb-4">
         </div>
     </div>
 </form>

@@ -45,46 +45,37 @@
         </div>
         <div *ngIf="afficherContenuInfor" id="nav-information" role="tabpanel"
             aria-labelledby="nav-information-tab">
-            <form>
+            <form *ngIf="!(accountService.currentUser$ | async)" [formGroup]="registerForm" class="text-center" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
                 <div class="col-md-11 text-end">
-                    <p style="font-weight: 600; color: green; font-size: large">
+                    <h4 style="font-weight: 600; color: green; font-size: large">
                         جديد معانا؟ مرحبا بيك.. تفضل سجل بش تستنفع بخدماتنا
-                    </p>
+                    </h4>
                 </div>
-                <div class="row col-md-12 mb-4">
+                <div class="row mb-4">
                     <div class="col-md-6">
-                        <input type="text" [(ngModel)]="model.username" placeholder="إسم المستخدم"
-                            class="form-control text-center" id="username" name="username" required />
+                         <app-text-input [formControl]="$any(registerForm.controls['userName'])" [label]="'إسم المستخدم'"></app-text-input>
                     </div>
 
                     <div class="col-md-6">
-                        <input type="text" placeholder="إسم هيكل مهني أو جهة مانحة" class="form-control text-center"
-                            id="username" name="username" required />
+                        <app-text-input [formControl]="$any(registerForm.controls['organisationName'])" [label]="'إسم هيكل مهني أو جهة مانحة'"></app-text-input>
                     </div>
                 </div>
-
-                <div class="row col-md-12 mb-4">
+                <div class="row mb-4">
                     <div class="col-md-6">
-                        <input type="number" placeholder="الهاتف" class="form-control text-center"
-                            [(ngModel)]="model.phone" id="telephone" name="telephone" required />
+                        <app-text-input [formControl]="$any(registerForm.controls['phoneNumber'])" [label]="'الهاتف'" [type]="'phone'"></app-text-input>
                     </div>
 
                     <div class="col-md-6">
-                        <input type="email" placeholder="البريد الإلكتروني" [(ngModel)]="model.email"
-                            class="form-control text-center border-radius-sm" id="email" name="email" required />
+                        <app-text-input [formControl]="$any(registerForm.controls['email'])" [label]="'عنوان البريد الإلكتروني'" [type]="'email'"></app-text-input>
                     </div>
                 </div>
-
-                <div class="row col-md-12 mb-4 justify-content-center">
+                <div class="row mb-4 justify-content-center">
                     <div class="col-md-6">
-                        <textarea placeholder="العنوان" class="form-control text-center" id="adresse" name="adresse"
-                            required>
-            </textarea>
+                        <app-text-input [formControl]="$any(registerForm.controls['address'])" [label]="'العنوان'"></app-text-input>
                     </div>
                 </div>
-
-                <div class="row col-md-12">
-                    <div class="col-md-6">
+                <div class="row">
+                    <!-- <div class="col-md-6">
                         <div class="dropdown">
                             <button class="btn btn-outline-secondary dropdown-toggle col-md-12" type="button"
                                 id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -113,13 +104,22 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="col-md-12 justify-content-end">
-                        <button type="submit" class="btn btn-success rounded text-center col-md-8">
-                            تأكيد
-                        </button>
-                    </div>
+                    </div> -->
                 </div>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'تاكيد كلمة السر'" [type]="'password'"></app-text-input>
+                   </div>
+                   <div class="col-md-6">
+                        <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'كلمة السر'" [type]="'password'"></app-text-input>
+                   </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 justify-content-end">
+                        <button [disabled]="!registerForm.valid" type="submit" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
+                    </div>                    
+                </div>
+
             </form>
         </div>
     </div>
