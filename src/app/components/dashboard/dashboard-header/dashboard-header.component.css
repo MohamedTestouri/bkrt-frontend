@@ -1,0 +1,77 @@
+.card-container {
+    display: flex;
+    height: 200vh; /* Ajustez la hauteur selon vos besoins */
+    width: 2500px;
+  }
+  
+  .card {
+    position: relative;
+    width: 1970px; /* Ajustez la largeur selon vos besoins */
+    height: 250px; /* Ajustez la hauteur selon vos besoins */
+    overflow: hidden;
+  }
+  
+  .card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1975px;
+    height: 250px;
+    background-size: cover;
+  }
+  
+  .card-body {
+    position: relative;
+    z-index: 1;
+    top: 12%;
+  }
+  
+  .img-fluid {
+    max-width: 400px;
+    height: 200px;
+    left: 74.5%;
+
+  }
+  .outer-img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .inner-image {
+    position: absolute;
+    top: 38%;
+    left: 94.5%;
+    transform: translate(-50%, -50%);
+  }
+  .text-card
+  {
+    color: antiquewhite;
+    text-align: right;
+    font-size: xx-large;
+    right: 94.5%;
+  }
+  .btn-sett
+  {
+    position: absolute;
+    top: 58%;
+    left: 84%;
+  }
+  .logo
+  {
+    position: absolute;
+    top: -53%;
+    left: -1.4%;
+    height: 450px;
+    opacity: 50%;
+  }
+  .text-logo
+  {
+    position: absolute;
+    top: -4%;
+    left: -17.4%;
+    height: 50px;
+    color: antiquewhite;
+    font-size: 25px;
+  }
+  

@@ -34,6 +34,7 @@ import { DashboardHeaderComponent } from './components/dashboard/dashboard-heade
 import { AuthLeftCarouselComponent } from './components/auth/auth-left-carousel/auth-left-carousel.component';
 import { ParentAuthComponent } from './components/auth/parent-auth/parent-auth.component';
 import { ProfileChoiceComponent } from './components/auth/profile-choice/profile-choice.component';
+import { AccountSettingsComponent } from './components/dashboard/account-settings/account-settings.component';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { ProfileChoiceComponent } from './components/auth/profile-choice/profile
     DashboardHeaderComponent,
     AuthLeftCarouselComponent,
     ParentAuthComponent,
+    AccountSettingsComponent,
   ],
   imports: [
     BrowserAnimationsModule,

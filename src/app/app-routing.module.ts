@@ -14,6 +14,7 @@ import { ResetPasswordComponent } from './components/auth/reset-password/reset-p
 import { DashboardHeaderComponent } from './components/dashboard/dashboard-header/dashboard-header.component';
 import { ParentAuthComponent } from './components/auth/parent-auth/parent-auth.component';
 import { ProfileChoiceComponent } from './components/auth/profile-choice/profile-choice.component';
+import { AccountSettingsComponent } from './components/dashboard/account-settings/account-settings.component';
 
 const routes: Routes = [
   {path: 'login', component: ParentAuthComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirect empty path to dashboard
       {path: 'dashboard', component: DashboardComponent},
+      {path: 'accountSettings', component: AccountSettingsComponent},
       {path: 'dashboardHeader', component: DashboardHeaderComponent},
       {path: 'home', component: HomeComponent},
       {path: '**', component: NotFoundComponent, pathMatch: 'full'},
