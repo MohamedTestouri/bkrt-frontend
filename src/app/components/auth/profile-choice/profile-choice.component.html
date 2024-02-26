@@ -16,7 +16,7 @@
 
         </div>
         <div class="d-grid gap-2 col-9 mx-auto text-center">
-            <button type="button" (click)="Register()" class="btn btn-success btn-lg">صاحب مشروع فلاحي</button>
+            <button type="button" (click)="Register(chosenProfile.Agriculteur)" class="btn btn-success btn-lg">صاحب مشروع فلاحي</button>
         </div>
     </div>
 
@@ -25,7 +25,7 @@
 
         </div>
         <div class="d-grid gap-2 col-9 mx-auto text-center">
-            <button type="button" (click)="Register()" class="btn btn-success btn-lg">صاحب مكتب دراسات فلاحية</button>
+            <button type="button" (click)="Register(chosenProfile.Ingenieur)" class="btn btn-success btn-lg">صاحب مكتب دراسات فلاحية</button>
         </div>
     </div>
 
@@ -34,12 +34,11 @@
 
         </div>
         <div class="d-grid gap-2 col-9 mx-auto text-center">
-            <button *ngIf="afficherButton" type="button" class="btn btn-success btn-lg"
-                (click)="afficherListe()">غيرها</button>
-                <div class="list-group" *ngIf="afficherListeFlag">
-                    <button href="#" (click)="Register()" class="btn btn-success btn-lg mb-3">مخبر تحاليل</button>
-                    <button href="#" (click)="Register()" class="btn btn-success btn-lg mb-3">باكورات</button>
-                    <button href="#" (click)="Register()" class="btn btn-success btn-lg mb-3">داعم مالي</button>
+            <button *ngIf="afficherButton" type="button" class="btn btn-success btn-lg" (click)="afficherListe()">غيرها</button>
+            <div class="list-group" *ngIf="afficherListeFlag">
+                <button type="button" (click)="Register(chosenProfile.Laboratoire)" class="btn btn-success btn-lg mb-3">مخبر تحاليل</button>
+                <button type="button" (click)="Register(chosenProfile.Bakourat)" class="btn btn-success btn-lg mb-3">باكورات</button>
+                <button type="button" (click)="Register(chosenProfile.BailleurFonds)" class="btn btn-success btn-lg mb-3">داعم مالي</button>
             </div>
         </div>
     </div>

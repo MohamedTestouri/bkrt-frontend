@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { RolesEnum } from 'src/app/enums/rolesEnum';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -9,10 +10,13 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class ProfileChoiceComponent implements OnInit {
 
-  @Output() register = new EventEmitter();
+  @Output() register: EventEmitter<any> = new EventEmitter<any>();
 
   afficherListeFlag: boolean = false;
   afficherButton: boolean = true;
+  chosenProfile = RolesEnum;
+  
+
   constructor(public accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
@@ -23,8 +27,12 @@ export class ProfileChoiceComponent implements OnInit {
     this.afficherButton = !this.afficherButton;
   }
   
-  Register()
+  Register(profile: RolesEnum)
   {
-    this.register.emit(true);
+    const profileChoice = {
+      moveToRegister: true,
+      chosenProfile: profile.toString()
+    };
+    this.register.emit(profileChoice);
   }
 }

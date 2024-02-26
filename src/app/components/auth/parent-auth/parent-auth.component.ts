@@ -12,6 +12,8 @@ export class ParentAuthComponent implements OnInit {
   profileChoiceMode = false;
   resetPasswordMode = false;
 
+  profilechosen;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -31,9 +33,10 @@ export class ParentAuthComponent implements OnInit {
     this.resetPasswordMode = event;
   } 
   
-  showRegister(event: boolean) {
+  showRegister(event: any) {
     this.loginMode = false;
-    this.registerMode = event;
+    this.registerMode = event.moveToRegister;
+    this.profilechosen = event.chosenProfile;
     this.profileChoiceMode = false;
     this.resetPasswordMode = false;
   } 
