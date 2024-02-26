@@ -1,4 +1,30 @@
-.auth-left-side {
-    background-image: url('src/assets/images/rectangle.png');
-    background-size: cover;
+#nav-verification-tab{
+    color: darkgreen;
+    font-weight: 700;
+}
+
+#nav-information-tab{
+    color: olivedrab;
+    font-weight: 700;
+}
+
+.theList{
+    list-style-position: inside; /* Set the position of the bullets inside the list items */
+    direction: rtl; /* Set the text direction to right-to-left */
+    text-align: left; /* Align the text to the left */
+}
+
+.theList li {
+    color: #949492; /* Change the color of the text next to the bullet point */
+}
+
+.theList li::marker {
+    color: #09504A; /* Change the color of the bullet point */
+    font-size: 20px;
+}
+
+.phoneNumber {
+    direction: ltr; /* Set the text direction to left-to-right for the phone number */
+    color: #949492; /* Change the color of the phone number */
+    unicode-bidi: embed;
 }

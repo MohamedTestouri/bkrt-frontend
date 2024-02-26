@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
+import { ResetPassword } from '../models/resetPassword';
+import { ConfirmEmail } from '../models/confirmEmail';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +50,22 @@ export class AccountService {
   logout() {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
+  }
+
+  confirmEmail(model: ConfirmEmail) {
+    return this.http.put(`${this.baseUrl}account/confirm-email`, model);
+  }
+
+  resendEmailConfirmationLink(email: string) {
+    return this.http.post(`${this.baseUrl}account/resend-email-confirmation-link/${email}`, {});
+  }
+
+  forgotUsernameOrPassword(email: string) {
+    return this.http.post(`${this.baseUrl}account/forgot-username-or-password/${email}`, {});
+  }
+
+  resetPassword(model: ResetPassword) {
+    return this.http.put(`${this.baseUrl}account/reset-password`, model);
   }
 
   getDecodedToken(token: string) {

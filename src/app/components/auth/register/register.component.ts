@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Register } from 'src/app/models/register';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -11,15 +12,15 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class RegisterComponent implements OnInit {
 
-  afficherContenuVerif: boolean = false;
-  afficherContenuInfor: boolean = true;
-  isValidate : boolean = false;
-  isdisabledValidate : boolean = true;
-  isdisabledInformation : boolean = false;
-
+  @Input() chosenProfile :string;
 
   registerForm: FormGroup = new FormGroup({});
   validationErrors: string[] | undefined;
+
+  tempRegisterForm : Register;
+
+  afficherContenuVerif: boolean = false;
+  afficherContenuInfor: boolean = true;
   
   constructor(public accountService: AccountService, private router: Router, private fb: FormBuilder) { }
 
@@ -49,7 +50,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    const registerForm = {
+    this.tempRegisterForm = {
       organisationName: this.registerForm.value.organisationName,
       userName: this.registerForm.value.userName,
       email: this.registerForm.value.email,
@@ -57,10 +58,36 @@ export class RegisterComponent implements OnInit {
       address: this.registerForm.value.address,
       password: this.registerForm.value.password,
       confirmPassword: this.registerForm.value.confirmPassword,
+      chosenProfile: this.chosenProfile
     }
-    this.accountService.register(registerForm).subscribe({
+    console.log(this.tempRegisterForm)
+
+    this.afficherContenuInfor = false;
+    this.afficherContenuVerif = true;
+  }
+
+  clickBackToRegisterForm()
+  {
+    this.afficherContenuInfor = true;
+    this.afficherContenuVerif = false;
+  }
+
+  clickConfirmRegisterForm()
+  {
+    this.accountService.register(this.tempRegisterForm).subscribe({
       next: () => {
         this.router.navigateByUrl('/')
+        this.tempRegisterForm = {
+          organisationName: '',
+          userName: '',
+          email: '',
+          phoneNumber: '',
+          address: '',
+          password: '',
+          confirmPassword: '',
+          chosenProfile: ''
+        };
+        console.log(this.tempRegisterForm)
       },
       error: error => {
         this.validationErrors = error
@@ -68,35 +95,4 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  clickInformation()
-  {
-    this.afficherContenuInfor = true;
-    this.afficherContenuVerif = false;
-  }
-
-  validerInformation()
-  {
-    this.isValidate = true;
-    this.isdisabledValidate = false;
-    this.isdisabledInformation = true;
-    this.accountService.register(this.registerForm.value).subscribe({
-      next: _ => {
-        this.router.navigateByUrl('/');
-      }
-    })
-  }
-
-  clickVerification()
-  {
-    if(this.isValidate == false)
-    {
-    this.afficherContenuVerif = false;
-    this.afficherContenuInfor = false;
-  }
-  else
-  {
-    this.afficherContenuVerif = true;
-    this.afficherContenuInfor = false;
-  }
-  }
 }
