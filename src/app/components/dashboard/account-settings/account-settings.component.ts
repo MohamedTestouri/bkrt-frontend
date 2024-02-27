@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/services/account.service';
+import { UpdateInfo } from 'src/app/models/update-info';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-account-settings',
@@ -10,41 +12,46 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class AccountSettingsComponent implements OnInit {
   model : any = {};
-  currentUser : any = {};
+  currentUser : User;
   form: FormGroup = new FormGroup({});
+  updateForm : UpdateInfo;
   constructor(private fb: FormBuilder, public accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
+    this.initializeForm();
+  }
+
+  initializeForm() {
+
     this.accountService.getCurrentUser().subscribe(
       (user) => {
         this.currentUser = user;
-        this.form.patchValue({
-          userName: this.currentUser.username,
-          password : this.currentUser.password,
-          email : this.currentUser.email
-        });;
-        console.log("user", this.currentUser)
       }, 
       (error) => {
         console.error('Error fetching current user', error);
       }
     );
-  }
-  updateInfo() {
 
     this.form = this.fb.group({
-      email: ['', [Validators.email]],
+      username: [this.currentUser.username],
+      organisationName: [this.currentUser.organisationName],
+      email: [{ value: this.currentUser.email, disabled: true }],
+      password: ['', [Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],
+      newPassword: ['', [Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],
+      terrain: [''],
     });
-    
-    const registerForm = {
-      organisationName: this.currentUser.organisationName,
-      userName: this.currentUser.username,
-      email: this.currentUser.email,
-      password: this.currentUser.password,
+    console.log("form", this.form)
+  }
+
+  updateInfo() {
+    const updateForm = {
+      organisationName: this.form.value.organisationName? undefined : this.currentUser.organisationName,
+      username: this.form.value.username? undefined : this.currentUser.username,
+      email: this.form.value.email? undefined : this.currentUser.email,
+      password: this.form.value.password? undefined : '',
     }
-    console.log("register", registerForm)
-    console.log("currentUser", this.currentUser)
-    this.accountService.updateInfo(registerForm).subscribe({
+    console.log("register", updateForm)
+    this.accountService.updateInfo(updateForm).subscribe({
       next: _ => {
         this.router.navigateByUrl('/');
       },

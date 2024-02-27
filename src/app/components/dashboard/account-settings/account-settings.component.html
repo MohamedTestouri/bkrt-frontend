@@ -18,15 +18,15 @@
                 <div class="row float-end">
                     <ul class="list-unstyled ">
                         <li class="inp input-group-lg col-md-12 mb-3">
-                            <input type="text" class="form-control text-center" [(ngModel)]="currentUser.username" id="username" name="username"
-                                placeholder="إسم المستخدم">
+                            <input type="text" class="form-control text-center" id="username" name="username"
+                                placeholder="إسم المستخدم" [formControl]="$any(form.controls['username'])" >
                         </li>
                         <li class="inp input-group-lg col-md-14 mb-3">
-                            <input type="text" class="form-control text-center" [(ngModel)]="currentUser.organisationName" id="organisationName" name="organisationName"
+                            <input type="text" class="form-control text-center" [formControl]="$any(form.controls['organisationName'])" id="organisationName" name="organisationName"
                                 placeholder="إسم المستخدم">
                         </li>
                         <li class="inp input-group-lg col-md-12 mb-3">
-                            <input type="email" class="form-control text-center" [(ngModel)]="currentUser.email" id="email" name="email"
+                            <input type="email" class="form-control text-center" [formControl]="$any(form.controls['email'])" id="email" name="email"
                                 placeholder="عنوان البريد الإلكتروني" >
                         </li>
                         <li class="float-end col-md-5">
@@ -67,7 +67,7 @@
                     </div>
                     <div class="input-group-lg col-md-7 float-end">
                         <input type="text" class="form-control text-center" placeholder="الأرض المسجلة الحالية"
-                            [(ngModel)]="currentUser.terrain" id="terrain" name="terrain">
+                        [formControl]="$any(form.controls['terrain'])" id="terrain" name="terrain">
                     </div>
                 </div>
             </div>

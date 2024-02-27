@@ -9,6 +9,12 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class DashboardHeaderComponent implements OnInit {
   currentUser : any = {};
+  progressValue : number = 10;
+  resteVisite : number = 0;
+  resteParticipation : number = 0;
+  resteRendezVous : number = 0;
+  resteAnalyses : number = 0;
+
   constructor(public accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {

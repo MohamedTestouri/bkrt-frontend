@@ -10,10 +10,10 @@
                 </div>
             </div>
             <div>
-                <p class="text-card"><b>مرحبا بك</b></p>
+                <p class="text-card1"><b>مرحبا بك</b></p>
             </div>
             <div>
-                <label class="text-card float-end" for="name"><b>{{ currentUser.username }}</b></label>
+                <label class="text-card2 float-end" for="name"><b>{{ currentUser.username }}</b></label>
             </div>
             <div class="btn-sett">
                 <button class="btn-lg btn btn-light" type="button" (click)="AccountSettings()">إعدادت الحساب </button>
@@ -23,17 +23,27 @@
             </div>
             <ul class="row text-logo list-unstyled text-end">
                 <li>
-                    <p><b>الإشتراك الذهبي</b></p>
+                    <p>الإشتراك الذهبي {{ resteParticipation }}</p>
                 </li>
                 <li>
-                    <p> مقابلات عن بعد متبقية
+                    <p> مقابلات عن بعد متبقية {{ resteRendezVous }}
                     </p>
                 </li>
                 <li>
-                    <p>زيارة مختص متبقية</p>
+                    <p>زيارة مختص متبقية {{ resteVisite }}</p>
                 </li>
-                <li><p>تحاليل متبقية</p></li>
+                <li>
+                    <p>تحاليل متبقية {{ resteAnalyses }}</p>
+                </li>
+                <li>
+                    <div class="prog progress">
+                        <div class="progress-bar" role="progressbar" [style.width.%]="progressValue">
+                            {{ progressValue }}%
+                        </div>
+                    </div>
+                </li>
             </ul>
+            
         </div>
     </div>
 </div>

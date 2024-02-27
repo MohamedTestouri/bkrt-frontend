@@ -1,13 +1,13 @@
 .card-container {
     display: flex;
     height: 200vh; /* Ajustez la hauteur selon vos besoins */
-    width: 2500px;
+    width: 2700px;
   }
   
   .card {
     position: relative;
-    width: 1970px; /* Ajustez la largeur selon vos besoins */
-    height: 250px; /* Ajustez la hauteur selon vos besoins */
+    width: 2070px; /* Ajustez la largeur selon vos besoins */
+    height: 270px; /* Ajustez la hauteur selon vos besoins */
     overflow: hidden;
   }
   
@@ -15,8 +15,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 1975px;
-    height: 250px;
+    width: 2075px;
+    height: 270px;
     background-size: cover;
   }
   
@@ -35,47 +35,64 @@
   .outer-img {
     display: block;
     max-width: 100%;
-    height: auto;
+    height: 120;
   }
   
   .inner-image {
     position: absolute;
-    top: 38%;
-    left: 94.5%;
-    transform: translate(-50%, -50%);
+    top: 40%;
+    left: 94.2%;
+    height: 100px;
+    transform: translate(-70%, -40%);
   }
-  .text-card
+  .text-card1
   {
+    position: absolute;
     color: antiquewhite;
-    text-align: right;
+    top: 8%;
+    left: 80%;
+    font-size: 50px;
+  }
+  .text-card2
+  {
+    position: absolute;
+    color: antiquewhite;
+    top: 30%;
+    left: 80%;
     font-size: xx-large;
-    right: 94.5%;
   }
   .btn-sett
   {
     position: absolute;
-    top: 58%;
-    left: 84%;
+    top: 48%;
+    left: 80%;
   }
   .logo
   {
     position: absolute;
-    top: -53%;
+    top: -56%;
     left: -1.4%;
-    height: 450px;
+    height: 500px;
     opacity: 50%;
   }
   .text-logo
   {
     position: absolute;
     top: -4%;
-    left: -17.4%;
+    left: -37.4%;
     height: 50px;
     color: antiquewhite;
     font-size: 25px;
   }
-  .label
+  .prog
   {
-    
+   width: 350px;
+   height: 10px;
+    transform: translate(250%);
+  }
+  .btn-lg
+  {
+    font-weight: 700;
+    color: darkslateblue;
   }
   
