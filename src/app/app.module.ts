@@ -35,6 +35,8 @@ import { AuthLeftCarouselComponent } from './components/auth/auth-left-carousel/
 import { ParentAuthComponent } from './components/auth/parent-auth/parent-auth.component';
 import { ProfileChoiceComponent } from './components/auth/profile-choice/profile-choice.component';
 import { AccountSettingsComponent } from './components/dashboard/account-settings/account-settings.component';
+import { SendEmailComponent } from './components/auth/send-email/send-email.component';
+import { ConfirmEmailComponent } from './components/auth/confirm-email/confirm-email.component';
 
 
 @NgModule({
@@ -60,6 +62,8 @@ import { AccountSettingsComponent } from './components/dashboard/account-setting
     AuthLeftCarouselComponent,
     ParentAuthComponent,
     AccountSettingsComponent,
+    SendEmailComponent,
+    ConfirmEmailComponent,
   ],
   imports: [
     BrowserAnimationsModule,

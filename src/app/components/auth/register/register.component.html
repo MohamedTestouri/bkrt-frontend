@@ -4,47 +4,45 @@
             <img src="assets/images/logo.png" alt="Logo" class="rounded float-end" />
         </div>
     </div>
+
     <div class="col-md-11 mb-5">
         <nav>
             <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
-                <button (click)="clickVerification()" class="nav-link" id="nav-verification-tab"
-                    data-bs-toggle="tab" data-bs-target="#nav-verification" type="button" role="tab"
-                    aria-controls="nav-verification" aria-selected="true"
-                    style="color: darkgreen; font-weight: 700">
+                <button [disabled]="true" class="nav-link" id="nav-verification-tab" data-bs-toggle="tab" data-bs-target="#nav-verification" 
+                    type="button" role="tab" aria-controls="nav-verification" aria-selected="true">
                     التثبت.II
                 </button>
-                <button (click)="clickInformation()" class="nav-link" id="nav-information-tab" data-bs-toggle="tab"
-                    data-bs-target="#nav-information" type="button" role="tab" aria-controls="nav-information"
-                    aria-selected="false" style="color: olivedrab; font-weight: 700">
+                <button [disabled]="true" class="nav-link" id="nav-information-tab" data-bs-toggle="tab" data-bs-target="#nav-information" 
+                    type="button" role="tab" aria-controls="nav-information" aria-selected="false">
                     معلومات عامة.I
                 </button>
             </div>
         </nav>
     </div>
+
     <div class="tab-content" id="nav-tabContent">
-        <div *ngIf="afficherContenuVerif" id="nav-verification" role="tabpanel"
-            aria-labelledby="nav-verification-tab">
-            <form>
-                <div class="col-md-11 text-end">
-                    <p style="font-weight: 600; color: green; font-size: large">
-                        التثبت من البريد الإلكتروني
-                    </p>
-                </div>
-                <div class="row col-md-12 mb-4 justify-content-end">
-                    <div class="col-md-6">
-                        <input type="email" placeholder="foolen@gmail.com" class="form-control text-center"
-                            id="email" name="email" required [(ngModel)]="model.email" />
-                    </div>
-                </div>
-                <div class="justify-content-end">
-                    <button type="submit" class="btn btn-success rounded text-center col-md-5">
-                        تأكيد
-                    </button>
-                </div>
-            </form>
+
+        <div *ngIf="afficherContenuVerif" id="nav-verification" role="tabpanel" aria-labelledby="nav-verification-tab">
+            <ul class="col-md-11 text-end theList">
+                <li><strong>إسم هيكل مهني أو جهة مانحة :</strong> {{ tempRegisterForm.organisationName }}</li>
+                <li><strong>إسم المستخدم :</strong> {{ tempRegisterForm.userName }}</li>
+                <li><strong>عنوان البريد الإلكتروني :</strong> {{ tempRegisterForm.email }}</li>
+                <li><strong>الهاتف :</strong> <span class="phoneNumber">{{ tempRegisterForm.phoneNumber }}</span></li>
+                <li><strong>العنوان :</strong> {{ tempRegisterForm.address }}</li>
+            </ul>       
+            <div class="row">
+                <div class="col-md-12 mt-4 justify-content-end">
+                    <button (click)="clickConfirmRegisterForm()" type="button" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
+                </div>                    
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-4 justify-content-end">
+                    <button (click)="clickBackToRegisterForm()" type="button" class="btn btn-success rounded text-center col-md-8">تعديل</button>
+                </div>                    
+            </div>       
         </div>
-        <div *ngIf="afficherContenuInfor" id="nav-information" role="tabpanel"
-            aria-labelledby="nav-information-tab">
+
+        <div *ngIf="afficherContenuInfor" id="nav-information" role="tabpanel" aria-labelledby="nav-information-tab">
             <form *ngIf="!(accountService.currentUser$ | async)" [formGroup]="registerForm" class="text-center" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
                 <div class="col-md-11 text-end">
                     <h4 style="font-weight: 600; color: green; font-size: large">
@@ -123,6 +121,7 @@
             </form>
         </div>
     </div>
+
     <div class="row">
         <div class="col-md-10">
             <img src="assets/images/pana.png" alt="" class="img-fluid mb-4" />

@@ -13,12 +13,12 @@
             <app-login (profileChoice)="showProfileChoice($event)" (resetPassword)="showResetPassword($event)"></app-login>
         </div>        
 
-        <div *ngIf="registerMode" class="col-lg-6 d-flex align-items-center justify-content-center">
-            <app-register></app-register>
-        </div>
-        
         <div *ngIf="profileChoiceMode" class="col-lg-6 d-flex align-items-center justify-content-center">
             <app-profile-choice (register)="showRegister($event)"></app-profile-choice>
+        </div>
+
+        <div *ngIf="registerMode" class="col-lg-6 d-flex align-items-center justify-content-center">
+            <app-register [chosenProfile]="this.profilechosen"></app-register>
         </div>
 
         <div *ngIf="resetPasswordMode" class="col-lg-6 d-flex align-items-center justify-content-center">
