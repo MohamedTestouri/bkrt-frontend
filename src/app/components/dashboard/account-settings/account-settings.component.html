@@ -18,43 +18,43 @@
                 <div class="row float-end">
                     <ul class="list-unstyled ">
                         <li class="inp input-group-lg col-md-12 mb-3">
-                            <input type="text" class="form-control text-center" [(ngModel)]="model.username"
-                                id="username" name="username">
+                            <input type="text" class="form-control text-center" id="username" name="username"
+                                placeholder="إسم المستخدم" [formControl]="$any(form.controls['username'])" >
                         </li>
                         <li class="inp input-group-lg col-md-14 mb-3">
-                            <input type="text" class="form-control text-center" [(ngModel)]="model.username"
-                                id="username" name="username">
+                            <input type="text" class="form-control text-center" [formControl]="$any(form.controls['organisationName'])" id="organisationName" name="organisationName"
+                                placeholder="إسم المستخدم">
                         </li>
                         <li class="inp input-group-lg col-md-12 mb-3">
-                            <input type="email" class="form-control text-center" [(ngModel)]="model.email" id="email"
-                                name="email">
+                            <input type="email" class="form-control text-center" [formControl]="$any(form.controls['email'])" id="email" name="email"
+                                placeholder="عنوان البريد الإلكتروني" >
                         </li>
                         <li class="float-end col-md-5">
-                            <button type="button" class="btn-lg btn btn-success col-md-12">تحديث</button>
+                            <button type="button" class="btn-lg btn btn-success col-md-12 txt" (click)="updateInfo()">تحديث</button>
                         </li>
                     </ul>
                 </div>
                 <div class="row col-md-12 m">
                     <h5 class="h5 text-end">كلمة السر</h5>
                 </div>
-                <div class="row p1 float-end mb-3">
-                    <input class="input col-md-5 float-end" type="text" [(ngModel)]="model.email" id="email"
-                        name="email">
-                    <label class="col-md-7 text-end">:عنوان بريدك الإلكتروني هو</label>
+                <div class="row float-end col-md-4 mb-3">
+                    <div class="col-md-12">
+                        <label class="p1 text-end">{{ currentUser.email }} :عنوان بريدك الإلكتروني هو </label>
+                    </div>
                 </div>
                 <div class="row col-md-12"></div>
                 <div class="float-end col-md-4">
                     <ul class="list-unstyled ">
                         <li class="inp input-group-lg col-md-4 mb-3 float-end">
-                            <input type="password" class="form-control text-center" placeholder="كلمة السر الحالية"
-                                [(ngModel)]="model.password" id="username" name="username">
+                            <input class="form-control text-center" [formControl]="$any(form.controls['password'])"
+                                placeholder="كلمة السر الحالية" [type]="'password'">
                         </li>
                         <li class="inp input-group-lg col-md-1 mb-3 float-end">
-                            <input type="password" class="form-control text-center" placeholder="كلمة مرور جديدة"
-                                [(ngModel)]="model.password" id="username" name="username">
+                            <input class="form-control text-center" [formControl]="$any(form.controls['newPassword'])"
+                                placeholder="كلمة مرور جديدة" [type]="'password'">
                         </li>
                         <li class="float-end mb-3 col-md-5">
-                            <button type="button" class="btn-lg btn btn-success col-md-12">تطوير كلمة السر</button>
+                            <button type="button" class="btn-lg btn btn-success col-md-12 txt">تطوير كلمة السر</button>
                         </li>
                     </ul>
                 </div>
@@ -63,11 +63,11 @@
                 </div>
                 <div class="float-end row col-md-5 mb-3">
                     <div class="col-md-5 float-end">
-                        <button type="button" class="btn-lg btn btn-success">تطوير المعلومات الخاصة بالارض</button>
+                        <button type="button" class="btn-lg btn btn-success txt">تطوير المعلومات الخاصة بالارض</button>
                     </div>
-                    <div class="col-md-7 float-end">
+                    <div class="input-group-lg col-md-7 float-end">
                         <input type="text" class="form-control text-center" placeholder="الأرض المسجلة الحالية"
-                            [(ngModel)]="model.username" id="username" name="username">
+                        [formControl]="$any(form.controls['terrain'])" id="terrain" name="terrain">
                     </div>
                 </div>
             </div>
