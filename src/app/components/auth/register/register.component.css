@@ -1,3 +1,9 @@
+h4 {
+    font-weight: 600; 
+    color: green; 
+    font-size: large;
+}
+
 #nav-verification-tab{
     color: darkgreen;
     font-weight: 700;

@@ -28,6 +28,8 @@
                 <li><strong>إسم المستخدم :</strong> {{ tempRegisterForm.userName }}</li>
                 <li><strong>عنوان البريد الإلكتروني :</strong> {{ tempRegisterForm.email }}</li>
                 <li><strong>الهاتف :</strong> <span class="phoneNumber">{{ tempRegisterForm.phoneNumber }}</span></li>
+                <li><strong>الولاية :</strong> {{ tempRegisterForm.governorate }}</li>
+                <li><strong>المعتمدية :</strong> {{ tempRegisterForm.delegation }}</li>
                 <li><strong>العنوان :</strong> {{ tempRegisterForm.address }}</li>
             </ul>       
             <div class="row">
@@ -44,8 +46,8 @@
 
         <div *ngIf="afficherContenuInfor" id="nav-information" role="tabpanel" aria-labelledby="nav-information-tab">
             <form *ngIf="!(accountService.currentUser$ | async)" [formGroup]="registerForm" class="text-center" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
-                <div class="col-md-11 text-end">
-                    <h4 style="font-weight: 600; color: green; font-size: large">
+                <div class="row col-md-11 text-end">
+                    <h4>
                         جديد معانا؟ مرحبا بيك.. تفضل سجل بش تستنفع بخدماتنا
                     </h4>
                 </div>
@@ -67,42 +69,30 @@
                         <app-text-input [formControl]="$any(registerForm.controls['email'])" [label]="'عنوان البريد الإلكتروني'" [type]="'email'"></app-text-input>
                     </div>
                 </div>
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <select formControlName="delegation" class="form-select" aria-label="Delegation">
+                            <option value="" disabled selected>اختر المعتمدية</option>
+                            <option *ngFor="let delegation of delegations" [value]="delegation">{{ delegation }}</option>
+                        </select>
+                        <div *ngIf="registerForm.get('delegation').invalid && (registerForm.get('delegation').dirty || registerForm.get('delegation').touched)" style="color: red;">
+                            ينقصك المعتمدية 
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <select formControlName="governorate" (change)="onGovernorateChange()" class="form-select" aria-label="Governorate">
+                            <option value="" disabled selected>اختر الولاية</option>
+                            <option *ngFor="let governorate of governorates" [value]="governorate">{{ governorate }}</option>
+                        </select>
+                        <div *ngIf="registerForm.get('governorate').invalid && (registerForm.get('governorate').dirty || registerForm.get('governorate').touched)" style="color: red;">
+                            ينقصك الولاية 
+                        </div>
+                    </div>
+                </div>
                 <div class="row mb-4 justify-content-center">
                     <div class="col-md-6">
                         <app-text-input [formControl]="$any(registerForm.controls['address'])" [label]="'العنوان'"></app-text-input>
                     </div>
-                </div>
-                <div class="row">
-                    <!-- <div class="col-md-6">
-                        <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle col-md-12" type="button"
-                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                المعتمدية
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="dropdown">
-                            <button class="btn btn-outline-secondary dropdown-toggle col-md-12" type="button"
-                                id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                                الولاية
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> -->
                 </div>
                 <div class="row mb-4">
                     <div class="col-md-6">
