@@ -1,0 +1,60 @@
+.cardCont1
+{
+    display: flex;
+    position: relative;
+}
+.card1 {
+    position: absolute;
+    overflow: hidden;
+    width: 2080px;
+    transform: translate(0%, -2920%);
+  }
+  .txt
+  {
+    font-size: x-large;
+    font-weight: 1000;
+  }
+  .cardCont2
+  {
+    display: flex;
+  }
+  .card2
+  {
+    position: absolute;
+    height: 500px;
+    width: 500px;
+    transform: translate(0%, -385%);
+  }
+  .imgPack
+  {
+    text-align: center;
+    transform: translate(40%, 30%);
+
+  }
+  .lgPack
+  {
+    text-align: center;
+    transform: translate(80%, 30%);
+    width: 1700px;
+  }
+  .lgPack2
+  {
+    text-align: center;
+    transform: translate(30%, 30%);
+    width: 1200px;
+  }
+  .btn3
+  {
+   background-color: #6B8E23; 
+   transform: translate(80%, 180%);
+  }
+  .btn2
+  {
+   background-color: #870A24   ; 
+   transform: translate(80%, 180%);
+  }
+  .btn1
+  {
+   background-color: #DCB253   ; 
+   transform: translate(80%, 180%);
+  }

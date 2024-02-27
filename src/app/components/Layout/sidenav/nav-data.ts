@@ -20,7 +20,7 @@ export const navbarData = [
         label: ' المواعيد و الزيارات'
     },
     {
-        routeLink: 'pages',
+        routeLink: 'subscriptions-packages',
         icon: 'fal fa-files-o',
         label: 'الحزم'
     },

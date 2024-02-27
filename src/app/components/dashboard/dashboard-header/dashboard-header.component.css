@@ -9,6 +9,7 @@
     width: 2070px; /* Ajustez la largeur selon vos besoins */
     height: 270px; /* Ajustez la hauteur selon vos besoins */
     overflow: hidden;
+    top: -3%;
   }
   
   .card-bg {

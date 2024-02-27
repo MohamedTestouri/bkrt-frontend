@@ -37,6 +37,7 @@ import { ProfileChoiceComponent } from './components/auth/profile-choice/profile
 import { AccountSettingsComponent } from './components/dashboard/account-settings/account-settings.component';
 import { SendEmailComponent } from './components/auth/send-email/send-email.component';
 import { ConfirmEmailComponent } from './components/auth/confirm-email/confirm-email.component';
+import { SubscriptionsPackagesComponent } from './components/subscriptions-packages/subscriptions-packages.component';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { ConfirmEmailComponent } from './components/auth/confirm-email/confirm-e
     AccountSettingsComponent,
     SendEmailComponent,
     ConfirmEmailComponent,
+    SubscriptionsPackagesComponent,
   ],
   imports: [
     BrowserAnimationsModule,
