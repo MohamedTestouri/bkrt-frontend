@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 
@@ -35,6 +35,16 @@ export class AccountService {
     )
   } 
 
+  updateInfo(model: any) {
+    return this.http.post<User>(this.baseUrl + 'users/editInfo', model).pipe(
+      map(user => {
+        if (user) {
+          this.setCurrentUser(user);
+        }
+      })
+    )
+  } 
+
   setCurrentUser(user: User) {
     if(user){
       user.roles = [];
@@ -52,5 +62,8 @@ export class AccountService {
 
   getDecodedToken(token: string) {
     return JSON.parse(atob(token.split('.')[1]))
+  }
+  getCurrentUser(): Observable<User | null> {
+    return this.currentUser$;
   }
 }
