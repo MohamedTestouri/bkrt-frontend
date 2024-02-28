@@ -16,6 +16,7 @@ import { ParentAuthComponent } from './components/auth/parent-auth/parent-auth.c
 import { ProfileChoiceComponent } from './components/auth/profile-choice/profile-choice.component';
 import { AlreadyAuthGuard } from './guards/already-auth.guard';
 import { AccountSettingsComponent } from './components/dashboard/account-settings/account-settings.component';
+import { SubscriptionsPackagesComponent } from './components/subscriptions-packages/subscriptions-packages.component';
 
 const routes: Routes = [
   {path: 'login', component: ParentAuthComponent, canActivate: [AlreadyAuthGuard]},
@@ -25,6 +26,7 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Redirect empty path to dashboard
       {path: 'dashboard', component: DashboardComponent},
+      {path: 'subscriptions-packages', component: SubscriptionsPackagesComponent},
       {path: 'accountSettings', component: AccountSettingsComponent},
       {path: 'dashboardHeader', component: DashboardHeaderComponent},
       {path: 'home', component: HomeComponent},
