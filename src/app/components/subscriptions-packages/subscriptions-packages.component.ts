@@ -24,12 +24,12 @@ oleaPrice : number = 89;
 
   clickRubiraPack()
   {
-    
+
   }
 
   clickSaphranPack()
   {
-    
+
   }
   toggleOlea() {
     this.OleaPack = !this.OleaPack;
@@ -40,4 +40,5 @@ oleaPrice : number = 89;
   toggleSaphran() {
     this.SaphranPack = !this.SaphranPack;
   }
+
 }
