@@ -6,7 +6,7 @@
 .card1 {
     position: absolute;
     overflow: hidden;
-    width: 2080px;
+    width: 2070px;
     transform: translate(0%, -2920%);
   }
   .txt
@@ -16,15 +16,17 @@
   }
   .cardCont2
   {
+    position: relative;
     display: flex;
   }
   .card2
   {
-    position: absolute;
+    position: relative;
     height: 500px;
     width: 500px;
     transform: translate(0%, -385%);
   }
+  
   .imgPack
   {
     text-align: center;
@@ -42,6 +44,7 @@
     text-align: center;
     transform: translate(30%, 30%);
     width: 1200px;
+    height: 40px;
   }
   .btn3
   {
@@ -58,3 +61,127 @@
    background-color: #DCB253   ; 
    transform: translate(80%, 180%);
   }
+  .btn32
+  {
+   background-color: #6B8E23; 
+   transform: translate(80%, 100%);
+  }
+  .imgPack2
+  {
+    text-align: center;
+    transform: translate(200%, 10%);
+    height: 150px;
+    width: 150px;
+
+  }
+  .lgPack32
+  {
+    text-align: center;
+    transform: translate(150%, 30%);
+    width: 1200px;
+    height: 40px;
+  }
+  .priceOlea
+  {
+    transform: translate(-40%, 30%);
+    font-size: xx-large;
+  }
+  .card32
+  {
+    position: relative;
+    height: 600px;
+    width: 500px;
+    transform: translate(0%, -320.8%);
+  }
+  .namePart
+  {
+    transform: translate(-75%, 70%);
+    font-size: xx-large;
+  }
+  .check
+  {
+    transform: translate(-1705%, 1080%);
+  }
+  .text
+  {
+    transform: translate(-5%, 200%);
+    font-size: x-large;
+    font-weight: 400;
+  }
+  .check2
+  {
+    transform: translate(-1705%, 780%);
+  }
+  .text2
+  {
+    transform: translate(-23%, 110%);
+    font-size: x-large;
+    font-weight: 400;
+  }
+  .lgPack23
+  {
+    text-align: center;
+    transform: translate(80%, 30%);
+    width: 2000px;
+    height: 30px;
+  }
+  .month
+{
+  font-weight: 200;
+}
+.label
+{
+  transform: translate(30%, 30%);
+}
+.check1
+{
+  transform: translate(-1705%, 700%);
+}
+.text1
+{
+  transform: translate(-12%, 100%);
+  font-size: x-large;
+  font-weight: 400;
+}
+.check3
+{
+  transform: translate(-1705%, 320%);
+}
+.text3
+{
+  transform: translate(-27.3%, -5%);
+  font-size: x-large;
+  font-weight: 400;
+}
+.btn23{
+  background-color: #870A24; 
+   transform: translate(80%, 25%);
+}
+.card22
+  {
+    position: relative;
+    height: 650px;
+    width: 500px;
+    transform: translate(0%, -296%);
+  }
+  .btn23{
+    background-color: #DCB253; 
+     transform: translate(80%, 60%);
+  }
+  .card23
+    {
+      position: relative;
+      height: 750px;
+      width: 500px;
+      transform: translate(0%, -256.7%);
+    }
+    .check4
+{
+  transform: translate(-1705%, -80%);
+}
+.text4
+{
+  transform: translate(-17.3%, -120%);
+  font-size: x-large;
+  font-weight: 400;
+}

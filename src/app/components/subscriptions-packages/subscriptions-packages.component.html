@@ -19,16 +19,59 @@
 <div class="row col-md-12">
     <div class="col-md-4">
         <div class="cardCont2 card-container">
-            <div class="card2 card">
-                <div class="txt card-body text-center">
-                    <div class="row col-md-5">
-                        <img class="lgPack float-end" src="assets/images/saphran pack.png">
+            <div *ngIf="!SaphranPack">
+                <div class="card2 card">
+                    <div class="txt card-body text-center">
+                        <div class="row col-md-5">
+                            <img class="lgPack float-end" src="assets/images/saphran pack.png">
+                        </div>
+                        <div (click)="toggleSaphran()" class="row col-md-7">
+                            <img class="imgPack" src="assets/images/Saphran-Pack-- 1.png">
+                        </div>
+                        <div class="row col-md-5">
+                            <button class="btn1 btn btn-lg" type="button" (click)="clickSaphranPack()">إشترك
+                                الان</button>
+                        </div>
                     </div>
-                    <div class="row col-md-7">
-                        <img class="imgPack" src="assets/images/Saphran-Pack-- 1.png">
-                    </div>
-                    <div class="row col-md-5">
-                        <button class="btn1 btn btn-lg" type="button">إشترك الان</button>
+                </div>
+            </div>
+
+            <div *ngIf="SaphranPack">
+                <div class="card23 card">
+                    <div class="txt card-body text-center">
+                        <div class="row col-md-5">
+                            <img class="lgPack float-end" src="assets/images/saphran pack.png">
+                        </div>
+                        <div (click)="toggleSaphran()" class="row col-md-7">
+                            <img class="imgPack2" src="assets/images/Saphran-Pack-- 1.png">
+                        </div>
+                        <div class="priceOlea">
+                            <label for="oleaPrice" class="label"> {{ oleaPrice }}$ <span
+                                class="month">/month</span></label>
+                        </div>
+                        <div cl>
+                            <label class="namePart" for="namePart">الإشتراك الذهبي</label>
+                        </div>
+                        <div>
+                            <img src="assets/images/Path.png" class="check">
+                            <p class="text">4 accompagnements en ligne</p>
+                        </div>
+                        <div>
+                            <img src="assets/images/Path.png" class="check1">
+                            <p class="text1">4 consultations en ligne</p>
+                        </div>
+                        <div>
+                            <img src="assets/images/Path.png" class="check3">
+                            <p class=" text3">1 analyses</p>
+                        </div>
+                        <div>
+                            <img src="assets/images/Path.png" class="check4">
+                            <p class=" text4">les images satellite</p>
+                        </div>
+                        <div class="row col-md-5">
+                            <button class="btn23 btn btn-lg" type="button" (click)="clickSaphranPack()">إشترك
+                                الان</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -37,16 +80,56 @@
 
     <div class="col-md-4">
         <div class="cardCont2 card-container">
-            <div class="card2 card">
-                <div class="txt card-body text-center">
-                    <div class="row col-md-8">
-                        <img class="lgPack2 float-end" src="assets/images/rubira pack.png">
+            <div *ngIf="RubiraPack">
+                <div class="card2 card">
+                    <div class="txt card-body text-center">
+                        <div class="row col-md-8">
+                            <img class="lgPack2 float-end" src="assets/images/rubira pack.png">
+                        </div>
+                        <div (click)="toggleRubira()" class="row col-md-7">
+                            <img class="imgPack" src="assets/images/Rubira-Pack 1.png">
+                        </div>
+                        <div>
+
+                        </div>
+                        <div class="row col-md-5">
+                            <button class="btn2 btn btn-lg" type="button" (click)="clickOleaPack()">إشترك الان</button>
+                        </div>
                     </div>
-                    <div class="row col-md-7">
-                        <img class="imgPack" src="assets/images/Rubira-Pack 1.png">
-                    </div>
-                    <div class="row col-md-5">
-                        <button class="btn2 btn btn-lg" type="button">إشترك الان</button>
+                </div>
+            </div>
+            <div *ngIf="!RubiraPack">
+                <div class="card22 card">
+                    <div class="txt card-body text-center">
+                        <div class="row col-md-7">
+                            <img class="lgPack23 float-end" src="assets/images/rubira pack.png">
+                        </div>
+                        <div (click)="toggleRubira()" class="row col-md-7">
+                            <img class="imgPack2" src="assets/images/Rubira-Pack 1.png">
+                        </div>
+                        <div class="priceOlea">
+                            <label for="oleaPrice" class="label"> {{ oleaPrice }}$ <span
+                                    class="month">/month</span></label>
+                        </div>
+                        <div>
+                            <label class="namePart" for="namePart">الإشتراك الفضي</label>
+                        </div>
+                        <div>
+                            <img src="assets/images/Path.png" class="check">
+                            <p class="text">4 accompagnements en ligne</p>
+                        </div>
+                        <div>
+                            <img src="assets/images/Path.png" class="check1">
+                            <p class="text1">4 consultations en ligne</p>
+                        </div>
+                        <div>
+                            <img src="assets/images/Path.png" class="check3">
+                            <p class=" text3">1 analyses</p>
+                        </div>
+                        <div class="row col-md-5">
+                            <button class="btn23 btn btn-lg" type="button" (click)="clickOleaPack()">إشترك
+                                الان</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,16 +138,48 @@
 
     <div class="col-md-4">
         <div class="cardCont2 card-container">
-            <div class="card2 card">
-                <div class="txt card-body text-center">
-                    <div class="row col-md-5">
-                        <img class="lgPack float-end" src="assets/images/Most Popular.png">
+            <div *ngIf="OleaPack">
+                <div class="card2 card">
+                    <div class="txt card-body text-center">
+                        <div class="row col-md-5">
+                            <img class="lgPack float-end" src="assets/images/Most Popular.png">
+                        </div>
+                        <div (click)="toggleOlea()" class="row col-md-7">
+                            <img class="imgPack" src="assets/images/Olea-Pack 1.png">
+                        </div>
+                        <div class="row col-md-5">
+                            <button class="btn3 btn btn-lg" type="button" (click)="clickOleaPack()">إشترك الان</button>
+                        </div>
                     </div>
-                    <div class="row col-md-7">
-                        <img class="imgPack" src="assets/images/Olea-Pack 1.png">
-                    </div>
-                    <div class="row col-md-5">
-                        <button class="btn3 btn btn-lg" type="button">إشترك الان</button>
+                </div>
+            </div>
+            <div *ngIf="!OleaPack">
+                <div class="card32 card">
+                    <div class="txt card-body text-center">
+                        <div class="row col-md-5">
+                            <img class="lgPack32 float-end" src="assets/images/Most Popular.png">
+                        </div>
+                        <div (click)="toggleOlea()" class="row col-md-7">
+                            <img class="imgPack2" src="assets/images/Olea-Pack 1.png">
+                        </div>
+                        <div class="priceOlea">
+                            <label for="oleaPrice"> {{ oleaPrice }}$</label>
+                        </div>
+                        <div cl>
+                            <label class="namePart" for="namePart">الإشتراك الفضي</label>
+                        </div>
+                        <div>
+                            <img src="assets/images/Path.png" class="check">
+                            <p class=" text">4 accompagnements en ligne</p>
+                        </div>
+                        <div>
+                            <img src="assets/images/Path.png" class="check2">
+                            <p class=" text2">1 visite terrain</p>
+                        </div>
+                        <div class="row col-md-5">
+                            <button class="btn32 btn btn-lg" type="button" (click)="clickOleaPack()">إشترك
+                                الان</button>
+                        </div>
                     </div>
                 </div>
             </div>

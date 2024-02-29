@@ -7,9 +7,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubscriptionsPackagesComponent implements OnInit {
 
+OleaPack : boolean = true;
+RubiraPack : boolean = true;
+SaphranPack : boolean = true;
+oleaPrice : number = 89;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  clickOleaPack()
+  {
+
+  }
+
+  clickRubiraPack()
+  {
+    
+  }
+
+  clickSaphranPack()
+  {
+    
+  }
+  toggleOlea() {
+    this.OleaPack = !this.OleaPack;
+  }
+  toggleRubira() {
+    this.RubiraPack = !this.RubiraPack;
+  }
+  toggleSaphran() {
+    this.SaphranPack = !this.SaphranPack;
+  }
 }
