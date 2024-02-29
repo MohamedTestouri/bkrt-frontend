@@ -38,6 +38,8 @@ import { AccountSettingsComponent } from './components/dashboard/account-setting
 import { SendEmailComponent } from './components/auth/send-email/send-email.component';
 import { ConfirmEmailComponent } from './components/auth/confirm-email/confirm-email.component';
 import { SubscriptionsPackagesComponent } from './components/subscriptions-packages/subscriptions-packages.component';
+import { NewTerrainComponent } from './components/dashboard/new-terrain/new-terrain.component';
+import { FormPackComponent } from './components/dashboard/form-pack/form-pack.component';
 
 
 @NgModule({
@@ -66,6 +68,8 @@ import { SubscriptionsPackagesComponent } from './components/subscriptions-packa
     SendEmailComponent,
     ConfirmEmailComponent,
     SubscriptionsPackagesComponent,
+    NewTerrainComponent,
+    FormPackComponent,
   ],
   imports: [
     BrowserAnimationsModule,

@@ -17,6 +17,8 @@ import { ProfileChoiceComponent } from './components/auth/profile-choice/profile
 import { AlreadyAuthGuard } from './guards/already-auth.guard';
 import { AccountSettingsComponent } from './components/dashboard/account-settings/account-settings.component';
 import { SubscriptionsPackagesComponent } from './components/subscriptions-packages/subscriptions-packages.component';
+import { NewTerrainComponent } from './components/dashboard/new-terrain/new-terrain.component';
+import { FormPackComponent } from './components/dashboard/form-pack/form-pack.component';
 
 const routes: Routes = [
   {path: 'login', component: ParentAuthComponent, canActivate: [AlreadyAuthGuard]},
@@ -29,6 +31,8 @@ const routes: Routes = [
       {path: 'subscriptions-packages', component: SubscriptionsPackagesComponent},
       {path: 'accountSettings', component: AccountSettingsComponent},
       {path: 'dashboardHeader', component: DashboardHeaderComponent},
+      {path: 'newTerrain', component: NewTerrainComponent},
+      {path: 'formPack', component: FormPackComponent},
       {path: 'home', component: HomeComponent},
       {path: '**', component: NotFoundComponent, pathMatch: 'full'},
     ]

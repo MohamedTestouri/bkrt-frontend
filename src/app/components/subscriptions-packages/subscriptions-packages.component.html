@@ -19,7 +19,7 @@
 <div class="row col-md-12">
     <div class="col-md-4">
         <div class="cardCont2 card-container">
-            <div *ngIf="!SaphranPack">
+            <div *ngIf="SaphranPack">
                 <div class="card2 card">
                     <div class="txt card-body text-center">
                         <div class="row col-md-5">
@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <div *ngIf="SaphranPack">
+            <div *ngIf="!SaphranPack">
                 <div class="card23 card">
                     <div class="txt card-body text-center">
                         <div class="row col-md-5">
@@ -165,7 +165,7 @@
                         <div class="priceOlea">
                             <label for="oleaPrice"> {{ oleaPrice }}$</label>
                         </div>
-                        <div cl>
+                        <div>
                             <label class="namePart" for="namePart">الإشتراك الفضي</label>
                         </div>
                         <div>
