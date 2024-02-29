@@ -26,7 +26,7 @@
     width: 500px;
     transform: translate(0%, -385%);
   }
-  
+
   .imgPack
   {
     text-align: center;
@@ -48,22 +48,22 @@
   }
   .btn3
   {
-   background-color: #6B8E23; 
+   background-color: #6B8E23;
    transform: translate(80%, 180%);
   }
   .btn2
   {
-   background-color: #870A24   ; 
+   background-color: #870A24   ;
    transform: translate(80%, 180%);
   }
   .btn1
   {
-   background-color: #DCB253   ; 
+   background-color: #DCB253   ;
    transform: translate(80%, 180%);
   }
   .btn32
   {
-   background-color: #6B8E23; 
+   background-color: #6B8E23;
    transform: translate(80%, 100%);
   }
   .imgPack2
@@ -154,7 +154,7 @@
   font-weight: 400;
 }
 .btn23{
-  background-color: #870A24; 
+  background-color: #870A24;
    transform: translate(80%, 25%);
 }
 .card22
@@ -165,7 +165,7 @@
     transform: translate(0%, -296%);
   }
   .btn23{
-    background-color: #DCB253; 
+    background-color: #DCB253;
      transform: translate(80%, 60%);
   }
   .card23
@@ -184,4 +184,61 @@
   transform: translate(-17.3%, -120%);
   font-size: x-large;
   font-weight: 400;
+}
+/*CSS button*/
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.27);
+  padding: 20px;
+  width: 1000px;
+  height: 150px;
+}
+
+.container-text {
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: auto;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.button-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 100px; /* Ajoute un espace à droite pour chaque élément */
+}
+
+.button-item:last-child {
+  margin-right: 0; /* Supprime l'espace à droite pour le dernier élément */
+}
+.btn-custom {
+  background-color: #00bfa5;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.plus-icon {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.button-text {
+  text-align: center;
 }
