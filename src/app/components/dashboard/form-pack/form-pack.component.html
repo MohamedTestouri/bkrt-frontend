@@ -1,0 +1,48 @@
+<form>
+    <div class="col-md-12 text-end">
+        <h2 class="h2"> معلومات عن مشروع الفلاحي</h2>
+    </div>
+
+    <div class="row col-md-12">
+        <div class="col-md-6 text-end">
+            <label class="label">المعتمدية</label>
+        </div>
+        <div class="col-md-6 text-end">
+            <label class="label">الولاية</label>
+        </div>
+
+    </div>
+    <div class="row col-md-12 ">
+        <div class="col-md-6 text-end">
+            <select formControlName="delegation" class="form-select" aria-label="Delegation">
+                <option value="" disabled selected>اختر المعتمدية</option>
+                <option *ngFor="let delegation of delegations" [value]="delegation">{{ delegation }}</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <select formControlName="governorate" (change)="onGovernorateChange()" class="form-select" aria-label="Governorate">
+                <option value="" disabled selected>اختر الولاية</option>
+                <option *ngFor="let governorate of governorates" [value]="governorate">{{ governorate }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row col-md-12">
+        <div class="col-md-6 text-end">
+            <label class="label">الموقع</label>
+        </div>
+        <div class="col-md-6 text-end">
+            <label class="label">مساحة الأرض</label>
+        </div>
+    </div>
+    <div class="row col-md-12">
+        <div class="col-md-6 float-end">
+            <span class="input-group" id="gps-search-addon"> <input type="search" class="form-control" aria-label="Search" aria-describedby="gps-search-addon">🌐 
+               </span>
+        </div>
+
+        <div class="col-md-6 float-end">
+            <input type="text" class="form-control text-end"
+            [formControl]="$any(form.controls['surface'])" id="surface" name="surface">
+        </div>
+    </div>
+</form>
