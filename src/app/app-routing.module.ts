@@ -19,9 +19,15 @@ import { AccountSettingsComponent } from './components/dashboard/account-setting
 import { SubscriptionsPackagesComponent } from './components/subscriptions-packages/subscriptions-packages.component';
 import { NewTerrainComponent } from './components/dashboard/new-terrain/new-terrain.component';
 import { FormPackComponent } from './components/dashboard/form-pack/form-pack.component';
+import { ConfirmEmailComponent } from './components/auth/confirm-email/confirm-email.component';
+import { SendEmailComponent } from './components/auth/send-email/send-email.component';
+import { TypeNewPasswordComponent } from './components/auth/type-new-password/type-new-password.component';
 
 const routes: Routes = [
   {path: 'login', component: ParentAuthComponent, canActivate: [AlreadyAuthGuard]},
+  {path: 'confirm-email', component: ConfirmEmailComponent},
+  {path: 'reset-password', component: TypeNewPasswordComponent},
+  {path: 'send-email/:mode', component: SendEmailComponent },
   {path: '', 
     component: ParentComponent,
     canActivate: [AuthGuard],

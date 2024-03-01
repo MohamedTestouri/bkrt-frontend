@@ -40,6 +40,7 @@ import { ConfirmEmailComponent } from './components/auth/confirm-email/confirm-e
 import { SubscriptionsPackagesComponent } from './components/subscriptions-packages/subscriptions-packages.component';
 import { NewTerrainComponent } from './components/dashboard/new-terrain/new-terrain.component';
 import { FormPackComponent } from './components/dashboard/form-pack/form-pack.component';
+import { TypeNewPasswordComponent } from './components/auth/type-new-password/type-new-password.component';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { FormPackComponent } from './components/dashboard/form-pack/form-pack.co
     SubscriptionsPackagesComponent,
     NewTerrainComponent,
     FormPackComponent,
+    TypeNewPasswordComponent,
   ],
   imports: [
     BrowserAnimationsModule,

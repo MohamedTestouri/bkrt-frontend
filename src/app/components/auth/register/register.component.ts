@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EMAIL_REGEX, PASSWORD_REGEX } from 'src/app/models/constants';
 import { Register } from 'src/app/models/register';
 import { AccountService } from 'src/app/services/account.service';
 
@@ -11,6 +12,8 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class RegisterComponent implements OnInit {
 
+  emailRegex = EMAIL_REGEX;
+  passwordRegex = PASSWORD_REGEX;
   @Input() chosenProfile :string;
 
   registerForm: FormGroup = new FormGroup({});
@@ -18,8 +21,9 @@ export class RegisterComponent implements OnInit {
 
   tempRegisterForm : Register;
 
-  afficherContenuVerif: boolean = false;
   afficherContenuInfor: boolean = true;
+  afficherContenuVerif: boolean = false;
+  afficherContenuConfirm: boolean = false;
 
   governoratesWithDelegations = [
     { governorate: 'تونس', delegations: ['تونس', 'المرسى', 'الباردو', 'الكرم', 'القلعة الكبرى', 'قرطاج', 'سيدي حسين'] },
@@ -48,12 +52,9 @@ export class RegisterComponent implements OnInit {
     { governorate: 'مدنين', delegations: ['مدنين الشمالية', 'مدنين الجنوبية', 'بن قردان', 'جربة أجيم', 'جربة حومة السوق', 'جربة ميدون'] },
     { governorate: 'قابس', delegations: ['قابس المدينة', 'قابس الغربية', 'قابس الجنوبية', 'الحامة', 'المطوية', 'قابس المدينة', 'الغنوش', 'مطماطة'] },
   ];
-
-  
   governorates: string[] = ['تونس', 'أريانة', 'بن عروس', 'منوبة', 'نابل', 'زغوان', 'بنزرت', 'باجة', 'جندوبة', 'الكاف', 'سليانة', 'سوسة', 'المنستير',
     'المهدية', 'صفاقس', 'القيروان','القصرين', 'سيدي بوزيد','قفصة', 'توزر', 'قابس', 'قبلي', 'تطاوين', 'مدنين', 'قابس',
   ];
-
   delegations: string[] = [];
 
   
@@ -67,12 +68,12 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group({
       userName: ['', Validators.required],
       organisationName: [''],
-      email: ['', [Validators.required, Validators.pattern('^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$')]],
+      email: ['', [Validators.required, Validators.pattern(this.emailRegex)]],
       phoneNumber: ['', Validators.required],
       governorate: ['', Validators.required],
       delegation: ['', Validators.required],
       address: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z]).{8,}$')]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(this.passwordRegex)]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]],
     });
     this.registerForm.controls['password'].valueChanges.subscribe({
@@ -99,23 +100,25 @@ export class RegisterComponent implements OnInit {
       confirmPassword: this.registerForm.value.confirmPassword,
       chosenProfile: this.chosenProfile
     }
-    console.log(this.tempRegisterForm)
-
     this.afficherContenuInfor = false;
     this.afficherContenuVerif = true;
+    this.afficherContenuConfirm = false;
   }
 
   clickBackToRegisterForm()
   {
     this.afficherContenuInfor = true;
     this.afficherContenuVerif = false;
+    this.afficherContenuConfirm = false;
   }
 
   clickConfirmRegisterForm()
   {
+    this.afficherContenuInfor = false;
+    this.afficherContenuVerif = false;
+    this.afficherContenuConfirm = true;
     this.accountService.register(this.tempRegisterForm).subscribe({
       next: () => {
-        this.router.navigateByUrl('/')
         this.tempRegisterForm = {
           organisationName: '',
           userName: '',

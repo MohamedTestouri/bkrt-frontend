@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EMAIL_REGEX } from 'src/app/models/constants';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  emailRegex = EMAIL_REGEX;
   @Output() profileChoice = new EventEmitter();
   @Output() resetPassword = new EventEmitter();
   
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
   
   initializeForm() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern('^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$')]],
+      email: ['', [Validators.required, Validators.pattern(this.emailRegex)]],
       password: ['', Validators.required]
     })
   }
