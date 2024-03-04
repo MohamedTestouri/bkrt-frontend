@@ -23,92 +23,241 @@
     <div class="tab-content" id="nav-tabContent">
 
         <div *ngIf="afficherContenuInfor" id="nav-information" role="tabpanel" aria-labelledby="nav-information-tab">
-            <form *ngIf="!(accountService.currentUser$ | async)" [formGroup]="registerForm" class="text-center" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
-                <div class="row col-md-11 text-end">
-                    <h4>
-                        جديد معانا؟ مرحبا بيك.. تفضل سجل بش تستنفع بخدماتنا
-                    </h4>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                         <app-text-input [formControl]="$any(registerForm.controls['userName'])" [label]="'إسم المستخدم'"></app-text-input>
-                    </div>
 
-                    <div class="col-md-6">
-                        <app-text-input [formControl]="$any(registerForm.controls['organisationName'])" [label]="'إسم هيكل مهني أو جهة مانحة'"></app-text-input>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <app-text-input [formControl]="$any(registerForm.controls['phoneNumber'])" [label]="'الهاتف'" [type]="'phone'"></app-text-input>
-                    </div>
+            <div class="row col-md-11 text-end">
+                <h4>
+                    جديد معانا؟ مرحبا بيك.. تفضل سجل بش تستنفع بخدماتنا
+                </h4>
+            </div>
 
-                    <div class="col-md-6">
-                        <app-text-input [formControl]="$any(registerForm.controls['email'])" [label]="'عنوان البريد الإلكتروني'" [type]="'email'"></app-text-input>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <select formControlName="delegation" class="form-select" aria-label="Delegation">
-                            <option value="" disabled selected>اختر المعتمدية</option>
-                            <option *ngFor="let delegation of delegations" [value]="delegation">{{ delegation }}</option>
-                        </select>
-                        <div *ngIf="registerForm.get('delegation').invalid && (registerForm.get('delegation').dirty || registerForm.get('delegation').touched)" style="color: red;">
-                            ينقصك المعتمدية 
+            <div *ngIf="chosenProfile.toString() === 'Ingenieur'">                
+                <form *ngIf="!(accountService.currentUser$ | async)" [formGroup]="registerForm" class="text-center" (ngSubmit)="registerForm.valid && registerEngineer()" autocomplete="off">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                             <app-text-input [formControl]="$any(registerForm.controls['userName'])" [label]="'إسم المستخدم'"></app-text-input>
+                        </div>
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerForm.controls['organisationName'])" [label]="'إسم هيكل مهني أو جهة مانحة'"></app-text-input>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <select formControlName="governorate" (change)="onGovernorateChange()" class="form-select" aria-label="Governorate">
-                            <option value="" disabled selected>اختر الولاية</option>
-                            <option *ngFor="let governorate of governorates" [value]="governorate">{{ governorate }}</option>
-                        </select>
-                        <div *ngIf="registerForm.get('governorate').invalid && (registerForm.get('governorate').dirty || registerForm.get('governorate').touched)" style="color: red;">
-                            ينقصك الولاية 
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerForm.controls['phoneNumber'])" [label]="'الهاتف'" [type]="'phone'"></app-text-input>
+                        </div>
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerForm.controls['email'])" [label]="'عنوان البريد الإلكتروني'" [type]="'email'"></app-text-input>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-4 justify-content-center">
-                    <div class="col-md-6">
-                        <app-text-input [formControl]="$any(registerForm.controls['address'])" [label]="'العنوان'"></app-text-input>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <select formControlName="delegation" class="form-select" aria-label="Delegation">
+                                <option value="" disabled selected>اختر المعتمدية</option>
+                                <option *ngFor="let delegation of delegations" [value]="delegation">{{ delegation }}</option>
+                            </select>
+                            <div *ngIf="registerForm.get('delegation').invalid && (registerForm.get('delegation').dirty || registerForm.get('delegation').touched)" style="color: red;">
+                                ينقصك المعتمدية 
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <select formControlName="governorate" (change)="onGovernorateChange()" class="form-select" aria-label="Governorate">
+                                <option value="" disabled selected>اختر الولاية</option>
+                                <option *ngFor="let governorate of governorates" [value]="governorate">{{ governorate }}</option>
+                            </select>
+                            <div *ngIf="registerForm.get('governorate').invalid && (registerForm.get('governorate').dirty || registerForm.get('governorate').touched)" style="color: red;">
+                                ينقصك الولاية 
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'تاكيد كلمة السر'" [type]="'password'"></app-text-input>
-                   </div>
-                   <div class="col-md-6">
-                        <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'كلمة السر'" [type]="'password'"></app-text-input>
-                   </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 justify-content-end">
-                        <button [disabled]="!registerForm.valid" type="submit" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
-                    </div>                    
-                </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerForm.controls['address'])" [label]="'العنوان'"></app-text-input>
+                        </div>
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerForm.controls['officeName'])" [label]="'إسم المكتب'"></app-text-input>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'تاكيد كلمة السر'" [type]="'password'"></app-text-input>
+                        </div>
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'كلمة السر'" [type]="'password'"></app-text-input>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <!-- <input formControlName="inputWithPattern" class="form-control" type="text" pattern="" placeholder="Enter a 4-digit number (1900 - {{ currentYear }})"> -->
+                        </div>
+                        <div class="col-md-6">
+                            <select formControlName="university" class="form-select" aria-label="university">
+                                <option value="" disabled selected>اختر الجامعة إلي تخرجت منها</option>
+                                <option *ngFor="let university of universities" [value]="university">{{ university }}</option>
+                            </select>
+                            <div *ngIf="registerForm.get('university').invalid && (registerForm.get('university').dirty || registerForm.get('university').touched)" style="color: red;">
+                                ينقصك الجامعة 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerForm.controls['yearInUniversity'])" [label]="'سنة التخرج'"></app-text-input>
+                        </div>
+                        <div class="col-md-6">
+                            <select formControlName="specialty" class="form-select" aria-label="specialty">
+                                <option value="" disabled selected>إختر تخصص الشهادة متاعك</option>
+                                <option *ngFor="let specialty of specialties" [value]="specialty">{{ specialty }}</option>
+                            </select>
+                            <div *ngIf="registerForm.get('specialty').invalid && (registerForm.get('specialty').dirty || registerForm.get('specialty').touched)" style="color: red;">
+                                ينقصك الشهادة 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <h4 class="text-end">إختار المجال إلي تفهم فيه أكثر</h4>
+                            <div class="btn-group-toggle" data-toggle="buttons">
+                                <button type="button" class="btn btn-checkbox mb-3" 
+                                        *ngFor="let option of ['علوم التربة', 'خضروات', 'زراعات محمية', 'بستنة', 'بقوليات', 'زراعات علفية', 'زراعات كبرى', 'أشجار مثمرة']" 
+                                        [class.active]="fieldsArray.value.includes(option)"
+                                        (click)="toggleFieldsCheckbox(option)">
+                                  {{ option }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <h4 class="text-end">إختار المجال إلي تفهم فيه أكثر</h4>
+                            <div class="btn-group-toggle" data-toggle="buttons">
+                                <button type="button" class="btn btn-checkbox mb-3" 
+                                        *ngFor="let option of ['ولا واحد منهم' ,'مسائل إدارية و اجرائية تخص بعث مشروع فلاحي' ,'الزراعات المائية' ,'الفلاحة المستدامة' ,'الفلاحة البيولوجية']" 
+                                        [class.active]="helperFieldsArray.value.includes(option)"
+                                        (click)="toggleHelperFieldsCheckbox(option)">
+                                  {{ option }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 justify-content-end">
+                            <button [disabled]="!registerForm.valid" type="submit" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
+                        </div>                    
+                    </div>
+                </form>
+            </div>
 
-            </form>
+            <div *ngIf="chosenProfile.toString() !== 'Ingenieur'">
+                <form *ngIf="!(accountService.currentUser$ | async)" [formGroup]="registerForm" class="text-center" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                             <app-text-input [formControl]="$any(registerForm.controls['userName'])" [label]="'إسم المستخدم'"></app-text-input>
+                        </div>
+    
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerForm.controls['organisationName'])" [label]="'إسم هيكل مهني أو جهة مانحة'"></app-text-input>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerForm.controls['phoneNumber'])" [label]="'الهاتف'" [type]="'phone'"></app-text-input>
+                        </div>
+    
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerForm.controls['email'])" [label]="'عنوان البريد الإلكتروني'" [type]="'email'"></app-text-input>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <select formControlName="delegation" class="form-select" aria-label="Delegation">
+                                <option value="" disabled selected>اختر المعتمدية</option>
+                                <option *ngFor="let delegation of delegations" [value]="delegation">{{ delegation }}</option>
+                            </select>
+                            <div *ngIf="registerForm.get('delegation').invalid && (registerForm.get('delegation').dirty || registerForm.get('delegation').touched)" style="color: red;">
+                                ينقصك المعتمدية 
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <select formControlName="governorate" (change)="onGovernorateChange()" class="form-select" aria-label="Governorate">
+                                <option value="" disabled selected>اختر الولاية</option>
+                                <option *ngFor="let governorate of governorates" [value]="governorate">{{ governorate }}</option>
+                            </select>
+                            <div *ngIf="registerForm.get('governorate').invalid && (registerForm.get('governorate').dirty || registerForm.get('governorate').touched)" style="color: red;">
+                                ينقصك الولاية 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4 justify-content-center">
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerForm.controls['address'])" [label]="'العنوان'"></app-text-input>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" [label]="'تاكيد كلمة السر'" [type]="'password'"></app-text-input>
+                       </div>
+                       <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerForm.controls['password'])" [label]="'كلمة السر'" [type]="'password'"></app-text-input>
+                       </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 justify-content-end">
+                            <button [disabled]="!registerForm.valid" type="submit" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
+                        </div>                    
+                    </div>
+                </form>
+            </div>
+
         </div>
 
         <div *ngIf="afficherContenuVerif" id="nav-verification" role="tabpanel" aria-labelledby="nav-verification-tab">
-            <ul class="col-md-11 text-end theList">
-                <li><strong>إسم هيكل مهني أو جهة مانحة :</strong> {{ tempRegisterForm.organisationName }}</li>
-                <li><strong>إسم المستخدم :</strong> {{ tempRegisterForm.userName }}</li>
-                <li><strong>عنوان البريد الإلكتروني :</strong> {{ tempRegisterForm.email }}</li>
-                <li><strong>الهاتف :</strong> <span class="phoneNumber">{{ tempRegisterForm.phoneNumber }}</span></li>
-                <li><strong>الولاية :</strong> {{ tempRegisterForm.governorate }}</li>
-                <li><strong>المعتمدية :</strong> {{ tempRegisterForm.delegation }}</li>
-                <li><strong>العنوان :</strong> {{ tempRegisterForm.address }}</li>
-            </ul>       
-            <div class="row">
-                <div class="col-md-12 mt-4 justify-content-end">
-                    <button (click)="clickConfirmRegisterForm()" type="button" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
-                </div>                    
+            <div *ngIf="chosenProfile.toString() === 'Ingenieur'">
+                <ul class="col-md-11 text-end theList">
+                    <li><strong>إسم هيكل مهني أو جهة مانحة :</strong> {{ tempRegisterEngineerForm.organisationName }}</li>
+                    <li><strong>إسم المستخدم :</strong> {{ tempRegisterEngineerForm.userName }}</li>
+                    <li><strong>عنوان البريد الإلكتروني :</strong> {{ tempRegisterEngineerForm.email }}</li>
+                    <li><strong>الهاتف :</strong> <span class="phoneNumber">{{ tempRegisterEngineerForm.phoneNumber }}</span></li>
+                    <li><strong>إسم المكتب :</strong> {{ tempRegisterEngineerForm.officeName }}</li>
+                    <li><strong>الولاية :</strong> {{ tempRegisterEngineerForm.governorate }}</li>
+                    <li><strong>المعتمدية :</strong> {{ tempRegisterEngineerForm.delegation }}</li>
+                    <li><strong>العنوان :</strong> {{ tempRegisterEngineerForm.address }}</li>
+                    <li><strong>الجامعة :</strong> {{ tempRegisterEngineerForm.university }}</li>
+                    <li><strong>التخصص :</strong> {{ tempRegisterEngineerForm.specialty }}</li>
+                    <li><strong>سنة التخرج :</strong> {{ tempRegisterEngineerForm.yearInUniversity }}</li>
+                    <li><strong>المجال إلي تفهم فيه أكثر :</strong> {{ tempRegisterEngineerForm.field }}</li>
+                    <li><strong>المجال إلي تفهم فيه أكثر :</strong> {{ tempRegisterEngineerForm.helperFields }}</li>
+                </ul>       
+                <div class="row">
+                    <div class="col-md-12 mt-4 justify-content-end">
+                        <button (click)="clickConfirmRegisterForm()" type="button" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mt-4 justify-content-end">
+                        <button (click)="clickBackToRegisterForm()" type="button" class="btn btn-success rounded text-center col-md-8">تعديل</button>
+                    </div>                    
+                </div>   
             </div>
-            <div class="row">
-                <div class="col-md-12 mt-4 justify-content-end">
-                    <button (click)="clickBackToRegisterForm()" type="button" class="btn btn-success rounded text-center col-md-8">تعديل</button>
-                </div>                    
-            </div>       
+            <div *ngIf="chosenProfile.toString() !== 'Ingenieur'">
+                <ul class="col-md-11 text-end theList">
+                    <li><strong>إسم هيكل مهني أو جهة مانحة :</strong> {{ tempRegisterForm.organisationName }}</li>
+                    <li><strong>إسم المستخدم :</strong> {{ tempRegisterForm.userName }}</li>
+                    <li><strong>عنوان البريد الإلكتروني :</strong> {{ tempRegisterForm.email }}</li>
+                    <li><strong>الهاتف :</strong> <span class="phoneNumber">{{ tempRegisterForm.phoneNumber }}</span></li>
+                    <li><strong>الولاية :</strong> {{ tempRegisterForm.governorate }}</li>
+                    <li><strong>المعتمدية :</strong> {{ tempRegisterForm.delegation }}</li>
+                    <li><strong>العنوان :</strong> {{ tempRegisterForm.address }}</li>
+                </ul>       
+                <div class="row">
+                    <div class="col-md-12 mt-4 justify-content-end">
+                        <button (click)="clickConfirmRegisterForm()" type="button" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mt-4 justify-content-end">
+                        <button (click)="clickBackToRegisterForm()" type="button" class="btn btn-success rounded text-center col-md-8">تعديل</button>
+                    </div>                    
+                </div>   
+            </div>    
         </div>
 
         <div *ngIf="afficherContenuConfirm" id="nav-information" role="tabpanel" aria-labelledby="nav-information-tab">

@@ -34,3 +34,20 @@ h4 {
     color: #949492; /* Change the color of the phone number */
     unicode-bidi: embed;
 }
+
+
+.btn-checkbox {
+    border: 1px solid #ced4da; /* Add border */
+    background-color: #E3E1D6;
+    margin-right: 5px; /* Add some margin between buttons */
+}
+  
+.btn-checkbox.active {
+    background-color: #84BC26; /* Change background color when active */
+    color: #fff; /* Change text color when active */
+}
+  
+.btn-checkbox:focus {
+    box-shadow: none; /* Remove focus box */
+    outline: none; /* Remove outline */
+}

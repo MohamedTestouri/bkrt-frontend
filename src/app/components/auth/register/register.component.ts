@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EMAIL_REGEX, PASSWORD_REGEX } from 'src/app/models/constants';
+import { EMAIL_REGEX, PASSWORD_REGEX, YEAROFGRADUATION_REGEX } from 'src/app/models/constants';
 import { Register } from 'src/app/models/register';
+import { RegisterEngineer } from 'src/app/models/registerEngineer';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -14,12 +15,15 @@ export class RegisterComponent implements OnInit {
 
   emailRegex = EMAIL_REGEX;
   passwordRegex = PASSWORD_REGEX;
+  yearOfGraduationRegex = YEAROFGRADUATION_REGEX;
+
   @Input() chosenProfile :string;
 
   registerForm: FormGroup = new FormGroup({});
   validationErrors: string[] | undefined;
 
   tempRegisterForm : Register;
+  tempRegisterEngineerForm : RegisterEngineer;
 
   afficherContenuInfor: boolean = true;
   afficherContenuVerif: boolean = false;
@@ -46,22 +50,30 @@ export class RegisterComponent implements OnInit {
     { governorate: 'سيدي بوزيد', delegations: ['سيدي بوزيد', 'بئر الحفي', 'سبالة', 'جلمة', 'مكناسي', 'مازونة', 'أولاد حفوز', 'رقاد', 'سوق الجديد'] },
     { governorate: 'قفصة', delegations: ['قفصة الشمالية', 'قفصة الجنوبية', 'بلخير', 'القطار', 'المظيلة', 'متلوي', 'رديف', 'سند'] },
     { governorate: 'توزر', delegations: ['توزر', 'دقاش', 'حامة الجريد', 'نفطة'] },
-    { governorate: 'قابس', delegations: ['قابس المدينة', 'قابس الغربية', 'قابس الجنوبية', 'الحامة', 'المطوية', 'قابس المدينة', 'الغنوش', 'مطماطة'] },
     { governorate: 'قبلي', delegations: ['قبلي الشمالية', 'قبلي الجنوبية', 'دوز الشمالية', 'دوز الجنوبية'] },
     { governorate: 'تطاوين', delegations: ['تطاوين الشمالية', 'تطاوين الجنوبية', 'بئر لحلف', 'الدهايبة', 'غمراسن', 'رمادة'] },
     { governorate: 'مدنين', delegations: ['مدنين الشمالية', 'مدنين الجنوبية', 'بن قردان', 'جربة أجيم', 'جربة حومة السوق', 'جربة ميدون'] },
     { governorate: 'قابس', delegations: ['قابس المدينة', 'قابس الغربية', 'قابس الجنوبية', 'الحامة', 'المطوية', 'قابس المدينة', 'الغنوش', 'مطماطة'] },
   ];
   governorates: string[] = ['تونس', 'أريانة', 'بن عروس', 'منوبة', 'نابل', 'زغوان', 'بنزرت', 'باجة', 'جندوبة', 'الكاف', 'سليانة', 'سوسة', 'المنستير',
-    'المهدية', 'صفاقس', 'القيروان','القصرين', 'سيدي بوزيد','قفصة', 'توزر', 'قابس', 'قبلي', 'تطاوين', 'مدنين', 'قابس',
+    'المهدية', 'صفاقس', 'القيروان','القصرين', 'سيدي بوزيد','قفصة', 'توزر', 'قبلي', 'تطاوين', 'مدنين', 'قابس',
   ];
   delegations: string[] = [];
+  
+  universities: string[] = ['univ1', 'univ2'];
+
+  specialties: string[] = ['spec1', 'spec2'];
+
 
   
   constructor(public accountService: AccountService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.initializeForm();
+    if(this.chosenProfile.toString() === "Ingenieur"){
+      this.initializeEngineerForm();
+    } else{
+      this.initializeForm();
+    }
   }
 
   initializeForm() {
@@ -81,6 +93,58 @@ export class RegisterComponent implements OnInit {
     })
   }
 
+  initializeEngineerForm() {
+    this.registerForm = this.fb.group({
+      userName: ['', Validators.required],
+      organisationName: [''],
+      email: ['', [Validators.required, Validators.pattern(this.emailRegex)]],
+      phoneNumber: ['', Validators.required],
+      officeName: ['', Validators.required],
+      governorate: ['', Validators.required],
+      delegation: ['', Validators.required],
+      address: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(this.passwordRegex)]],
+      confirmPassword: ['', [Validators.required, this.matchValues('password')]],
+      university: ['', Validators.required],
+      specialty: ['', Validators.required],
+      yearInUniversity: ['', [Validators.required, Validators.pattern(this.yearOfGraduationRegex)]],
+      fields: this.fb.array([]),
+      helperFields: this.fb.array([]),
+    });
+    this.registerForm.controls['password'].valueChanges.subscribe({
+      next: () => this.registerForm.controls['confirmPassword'].updateValueAndValidity()
+    })
+    this.registerForm.controls['fields'].valueChanges.subscribe(value => {
+      console.log('Checkbox options changed:', value);
+    });
+  }
+
+  toggleFieldsCheckbox(value: string) {
+    const index = this.fieldsArray.value.indexOf(value);
+    if (index !== -1) {
+      this.fieldsArray.removeAt(index);
+    } else {
+      this.fieldsArray.push(this.fb.control(value));
+    }
+  }
+
+  get fieldsArray() {
+    return this.registerForm.get('fields') as FormArray;
+  }
+
+  toggleHelperFieldsCheckbox(value: string) {
+    const index = this.helperFieldsArray.value.indexOf(value);
+    if (index !== -1) {
+      this.helperFieldsArray.removeAt(index);
+    } else {
+      this.helperFieldsArray.push(this.fb.control(value));
+    }
+  }
+
+  get helperFieldsArray() {
+    return this.registerForm.get('helperFields') as FormArray;
+  }
+  
   matchValues(matchTo: string): ValidatorFn {
     return (control: AbstractControl) => {
       return control.value === control.parent?.get(matchTo)?.value ? null : {notMatching: true}
@@ -100,6 +164,33 @@ export class RegisterComponent implements OnInit {
       confirmPassword: this.registerForm.value.confirmPassword,
       chosenProfile: this.chosenProfile
     }
+    this.afficherContenuInfor = false;
+    this.afficherContenuVerif = true;
+    this.afficherContenuConfirm = false;
+  }
+
+  registerEngineer() {
+    console.log("aaaaa");
+
+    this.tempRegisterEngineerForm = {
+      organisationName: this.registerForm.value.organisationName,
+      userName: this.registerForm.value.userName,
+      email: this.registerForm.value.email,
+      phoneNumber: this.registerForm.value.phoneNumber.internationalNumber,
+      officeName: this.registerForm.value.officeName,
+      governorate: this.registerForm.value.governorate,
+      delegation: this.registerForm.value.delegation,
+      address: this.registerForm.value.address,
+      password: this.registerForm.value.password,
+      confirmPassword: this.registerForm.value.confirmPassword,
+      chosenProfile: this.chosenProfile,
+      university: this.registerForm.value.university,
+      specialty: this.registerForm.value.specialty,
+      yearInUniversity: this.registerForm.value.yearInUniversity,
+      field: [...this.registerForm.value.fields].join(', '),
+      helperFields: [...this.registerForm.value.helperFields].join(', '),
+    }
+    console.log(this.tempRegisterEngineerForm);
     this.afficherContenuInfor = false;
     this.afficherContenuVerif = true;
     this.afficherContenuConfirm = false;
