@@ -3,46 +3,294 @@
         <h2 class="h2"> معلومات عن مشروع الفلاحي</h2>
     </div>
 
-    <div class="row col-md-12">
-        <div class="col-md-6 text-end">
-            <label class="label">المعتمدية</label>
-        </div>
-        <div class="col-md-6 text-end">
-            <label class="label">الولاية</label>
-        </div>
-
-    </div>
-    <div class="row col-md-12 ">
-        <div class="col-md-6 text-end">
-            <select formControlName="delegation" class="form-select" aria-label="Delegation">
-                <option value="" disabled selected>اختر المعتمدية</option>
-                <option *ngFor="let delegation of delegations" [value]="delegation">{{ delegation }}</option>
-            </select>
-        </div>
-        <div class="col-md-6">
-            <select formControlName="governorate" (change)="onGovernorateChange()" class="form-select" aria-label="Governorate">
-                <option value="" disabled selected>اختر الولاية</option>
-                <option *ngFor="let governorate of governorates" [value]="governorate">{{ governorate }}</option>
-            </select>
-        </div>
-    </div>
-    <div class="row col-md-12">
-        <div class="col-md-6 text-end">
-            <label class="label">الموقع</label>
-        </div>
-        <div class="col-md-6 text-end">
-            <label class="label">مساحة الأرض</label>
-        </div>
-    </div>
-    <div class="row col-md-12">
-        <div class="col-md-6 float-end">
-            <span class="input-group" id="gps-search-addon"> <input type="search" class="form-control" aria-label="Search" aria-describedby="gps-search-addon">🌐 
-               </span>
+    <div class="row">
+        <div class="col-md-6 text-end mb-3">
+            <div class="row">
+                <div class="col-md-10">
+                    <select formControlName="delegation" class="form-select" aria-label="Delegation">
+                        <option value="" disabled selected>اختر المعتمدية</option>
+                        <option *ngFor="let delegation of delegations" [value]="delegation">{{ delegation }}</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="label text-end">المعتمدية</label>
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-6 float-end">
-            <input type="text" class="form-control text-end"
-            [formControl]="$any(form.controls['surface'])" id="surface" name="surface">
+        <div class="col-md-6 text-end">
+            <div class="row">
+                <div class="col-md-10">
+                    <select formControlName="governorate" (change)="onGovernorateChange()" class="form-select"
+                        aria-label="Governorate">
+                        <option value="" disabled selected>اختر الولاية</option>
+                        <option *ngFor="let governorate of governorates" [value]="governorate">{{ governorate }}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="label">الولاية</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 text-end mb-3">
+            <div class="row">
+                <div class="col-md-10">
+                    <span class="input-group" id="gps-search-addon"> <input type="search" class="form-control"
+                            placeholder="Coordonnées GPS" aria-label="Search" aria-describedby="gps-search-addon">🌐
+                    </span>
+                </div>
+                <div class="col-md-2">
+                    <label class="label text-end">الموقع</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 text-end">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="text" placeholder="Surface" class="form-control text-end"
+                        [formControl]="$any(form.controls['surface'])" id="surface" name="surface">
+                </div>
+                <div class="col-md-2">
+                    <label class="label">مساحة الأرض</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 text-end mb-3">
+            <div class="row">
+                <div class="col-md-10">
+                    <select formControlName="typeCulture" class="form-select text-end" aria-label="typeCulture"
+                        multiple="multiple">
+                        <option class="form-check" value="" disabled selected>اختر نوع الزراعات</option>
+                        <option *ngFor="let typeCulture of typeCultures" [value]="governorate">{{ typeCulture }}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="label text-end">نوع الزراعات</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 text-end">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="text" class="form-control text-end"
+                        [formControl]="$any(form.controls['moreSpecificity'])" id="moreSpecificity"
+                        name="moreSpecificity">
+                </div>
+                <div class="col-md-2">
+                    <label class="label">مزيد التحديد</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 text-end mb-3">
+            <div class="row">
+            </div>
+        </div>
+
+        <div class="col-md-6 text-end">
+            <div class="row">
+                <div class="col-md-10">
+                    <label class="label2">هل زراعة الأشجار المثمرة ؟ </label>
+                </div>
+                <div class="col-md-1">
+                    <input type="checkbox" class="form-check-input" [formControl]="$any(form.controls['fruitiere'])"
+                        id="fruitiere" name="fruitiere" (change)="toggleFieldsFruitiere()">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 text-end mb-3">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="text" class="form-control text-end" placeholder="Age des arbres"
+                        [formControl]="$any(form.controls['ageArbres'])" id="ageArbres"
+                        [attr.disabled]="isDisabled('ageArbres')" name="ageArbres">
+                </div>
+                <div class="col-md-2">
+                    <label class="label">عمر الأشجار</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 text-end">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="text" class="form-control text-end" placeholder="Densité de plantation"
+                        [formControl]="$any(form.controls['densitePlantation'])" id="densitePlantation"
+                        [attr.disabled]="isDisabled('densitePlantation')" name="densitePlantation">
+                </div>
+                <div class="col-md-2">
+                    <label class="label">كثافة الزراعة</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 text-end mb-3">
+            <div class="row">
+            </div>
+        </div>
+
+        <div class="col-md-6 text-end">
+            <div class="row">
+                <div class="col-md-10">
+                    <label class="label2">هل زراعة الخضراوات ؟ </label>
+                </div>
+                <div class="col-md-1">
+                    <input type="checkbox" class="form-check-input" [formControl]="$any(form.controls['maraicheres'])"
+                        id="maraicheres" name="maraicheres" (change)="toggleFieldsMaraicheres()">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 text-end mb-3">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="text" class="form-control text-end" placeholder="Aspersion"
+                        [formControl]="$any(form.controls['aspersion'])" id="aspersion"
+                        [attr.disabled]="isDisabled('aspersion')" name="aspersion">
+                </div>
+                <div class="col-md-2">
+                    <label class="label">رش</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 text-end">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="text" class="form-control text-end" placeholder="Sous serre"
+                        [formControl]="$any(form.controls['sousSerre'])" id="sousSerre"
+                        [attr.disabled]="isDisabled('sousSerre')" name="sousSerre">
+                </div>
+                <div class="col-md-2">
+                    <label class="label">تحت الدفيئة</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 text-end mb-3">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="text" class="form-control text-end" placeholder="Autre"
+                        [formControl]="$any(form.controls['autre'])" id="autre" [attr.disabled]="isDisabled('autre')"
+                        name="autre">
+                </div>
+                <div class="col-md-2">
+                    <label class="label">غيرها؟</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 text-end">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="text" class="form-control text-end" placeholder="Hydroponie"
+                        [formControl]="$any(form.controls['hydroponie'])" id="hydroponie"
+                        [attr.disabled]="isDisabled('hydroponie')" name="hydroponie">
+                </div>
+                <div class="col-md-2">
+                    <label class="label">الزراعة المائية</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 text-end mb-3">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="text" class="form-control text-end" placeholder="Variété de plantation fruits/légumes"
+                        [formControl]="$any(form.controls['varietePlantation'])" id="varietePlantation"
+                        [attr.disabled]="isDisabled('varietePlantation')" name="varietePlantation">
+                </div>
+                <div class="col-md-2">
+                    <label class="label">أصناف الزراعة</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 text-end">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="text" class="form-control text-end" placeholder="Densité de plantation"
+                        [formControl]="$any(form.controls['densitePlantation2'])" id="densitePlantation2"
+                        [attr.disabled]="isDisabled('densitePlantation2')" name="densitePlantation2">
+                </div>
+                <div class="col-md-2">
+                    <label class="label">كثافة الزراعة</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 text-end mb-3">
+            <div class="row">
+            </div>
+        </div>
+
+        <div class="col-md-6 text-end">
+            <div class="row">
+                <div class="col-md-10">
+                    <label class="label2"> تربية الماشية ؟ </label>
+                </div>
+                <div class="col-md-1">
+                    <input type="checkbox" class="form-check-input" [formControl]="$any(form.controls['betail'])"
+                        id="betail" name="betail" (change)="toggleFieldsBetail()">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 text-end mb-5">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="number" class="form-control text-end" placeholder="Nombres"
+                        [formControl]="$any(form.controls['nombreBetail'])" id="nombreBetail"
+                        [attr.disabled]="isDisabled('nombreBetail')" name="nombreBetail">
+                </div>
+                <div class="col-md-2">
+                    <label class="label">عدد الرؤوس</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 text-end">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="text" class="form-control text-end" placeholder="Type de bétail"
+                        [formControl]="$any(form.controls['typeBetail'])" id="typeBetail"
+                        [attr.disabled]="isDisabled('typeBetail')" name="typeBetail">
+                </div>
+                <div class="col-md-2">
+                    <label class="label">ما نوعها </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <button type="button" class="bt btn btn-success btn-lg rounded text-center col-md-2" (click)="Create()">
+                تأكيد
+            </button>
         </div>
     </div>
 </form>

@@ -7,3 +7,19 @@
 {
     font-weight: 800;
 }
+.label2
+{
+    font-size: x-large;
+    font-weight: 600;
+    transform: translate(20%, 0%);
+    color: darkgreen;
+}
+.form-check-input
+{
+    height: 20px;
+    width: 20px;
+}
+.bt
+{
+    transform: translate(250%, 0%); 
+}

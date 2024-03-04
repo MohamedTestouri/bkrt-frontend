@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TerrainService } from 'src/app/services/terrain.service';
 
 @Component({
   selector: 'app-form-pack',
@@ -8,8 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FormPackComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
-  form: FormGroup = new FormGroup({});
+  constructor(private fb: FormBuilder, private _terrainService : TerrainService, private router: Router ) { }
+  form: FormGroup;
   
   governoratesWithDelegations = [
     { governorate: 'تونس', delegations: ['تونس', 'المرسى', 'الباردو', 'الكرم', 'القلعة الكبرى', 'قرطاج', 'سيدي حسين'] },
@@ -43,9 +45,22 @@ export class FormPackComponent implements OnInit {
     'المهدية', 'صفاقس', 'القيروان','القصرين', 'سيدي بوزيد','قفصة', 'توزر', 'قابس', 'قبلي', 'تطاوين', 'مدنين', 'قابس',
   ];
 
+  typeCultures : string[] = [
+  'Agriculture Conventionnelle  ----------------------------------------------------------------------------------------------------------------------------زراعة تقليدية ',
+  'Agriculture Biologique----------------------------------------------------------------------------------------------------------------------------------- زراعة عضوية',
+  'Agriculture Urbaine --------------------------------------------------------------------------------------------------------------------------------------زراعة حضرية',
+  'Agriculture de Conservation -------------------------------------------------------------------------------------------------------------------زراعة الحفاظ على التربة',
+  'Agroforesterie ------------------------------------------------------------------------------------------------------------------------------------------- زراعة الأشجار المختلطة',
+  'Agriculture de Précision------------------------------------------------------------------------------------------------------------------------------------زراعة دقيقة', 
+  'Périurbain et Rural ---------------------------------------------------------------------------------------------------------------- زراعة في المناطق الحضرية والريفية',
+  'Agriculture Agroécologique---------------------------------------------------------------------------------------------------------------------زراعة الزراعة البيئية',
+  'Hydroponie -------------------------------------------------------------------------------------------------------------------------------------------------الزراعة المائية',
+   'Aquaculture --------------------------------------------------------------------------------------------------------------------------الزراعة المائية (تربية الأحياء المائية)' ];
+
   delegations: string[] = [];
   lat = 37.7749;
   lng = -122.4194;
+  validationErrors: string[] | undefined;
 
   // Handle marker dragend event
   markerDragEnd($event: any) {
@@ -53,6 +68,7 @@ export class FormPackComponent implements OnInit {
     this.lng = $event.coords.lng;
   }
   ngOnInit(): void {
+    this.initializeForm();
   }
 
   initializeForm() {
@@ -60,15 +76,100 @@ export class FormPackComponent implements OnInit {
       surface: ['', Validators.required],
       site: [''],
       adresse: ['', [Validators.required]],
-      typeCultures: ['', Validators.required],
       governorate: ['', Validators.required],
       delegation: ['', Validators.required],
       address: ['', Validators.required],
+      typeCulture: this.fb.array([]),
+      moreSpecificity: ['', Validators.required],
+      fruitiere: [false, ],
+      natureAgriculture: ['', ],
+      ageArbres: [{ value: '', disabled: true }],
+      densitePlantation: [{ value: '', disabled: true }],
+      densitePlantation2: [{ value: '', disabled: true }],
+      aspersion: [{ value: '', disabled: true }],
+      hydroponie: [{ value: '', disabled: true }],  
+      sousSerre: [{ value: '', disabled: true }],
+      autre: [{ value: '', disabled: true }],
+      maraicheres: [false, ],
+      varietePlantation: [{ value: '', disabled: true }],
+      betail: [false, ],
+      typeBetail: [{ value: '', disabled: true }],
+      nombreBetail: [{ value: '', disabled: true }],
+
     });
   }
   onGovernorateChange() {
     const governorate = this.form.get('governorate').value;
     const governorateObj = this.governoratesWithDelegations.find(item => item.governorate === governorate);
     this.delegations = governorateObj ? governorateObj.delegations : [];
+  }
+  toggleFieldsMaraicheres() {
+    const maraicheresControl = this.form.get('maraicheres');
+    const varietePlantationControl = this.form.get('varietePlantation');
+    const densitePlantation2Control = this.form.get('densitePlantation2');
+    const hydroponieControl = this.form.get('hydroponie');
+    const autreControl = this.form.get('autre');
+    const sousSerreControl = this.form.get('sousSerre');
+    const aspersionControl = this.form.get('aspersion');
+
+    if (maraicheresControl?.value) {
+      varietePlantationControl?.enable();
+      densitePlantation2Control?.enable();
+      hydroponieControl?.enable();
+      autreControl?.enable();
+      sousSerreControl?.enable();
+      aspersionControl?.enable();
+    } else {
+      varietePlantationControl?.disable();
+      densitePlantation2Control?.disable();
+      hydroponieControl?.disable();
+      autreControl?.disable();
+      sousSerreControl?.disable();
+      aspersionControl?.disable();
+    }
+  }
+  toggleFieldsFruitiere() {
+    const fruitiereControl = this.form.get('fruitiere');
+    const ageArbresControl = this.form.get('ageArbres');
+    const densitePlantationControl = this.form.get('densitePlantation');
+
+    if (fruitiereControl?.value) {
+      ageArbresControl?.enable();
+      densitePlantationControl?.enable();
+    } else {
+      ageArbresControl?.disable();
+      densitePlantationControl?.disable();
+    }
+  }
+
+  toggleFieldsBetail() {
+    const betailControl = this.form.get('betail');
+    const typeBetailControl = this.form.get('typeBetail');
+    const nombreBetailControl = this.form.get('nombreBetail');
+
+    if (betailControl?.value) {
+      typeBetailControl?.enable();
+      nombreBetailControl?.enable();
+    } else {
+      typeBetailControl?.disable();
+      nombreBetailControl?.disable();
+    }
+  }
+
+  isDisabled(controlName: string): string {
+    const control = this.form.get(controlName);
+    return control?.disabled ? 'true' : null;
+  }
+  Create()
+  {
+    console.log(this.form.value)
+    this._terrainService.create(this.form.value).subscribe({
+      next: _ => {
+        this.router.navigateByUrl('/');
+      },
+      error: e => {
+        this.validationErrors = e;
+      } 
+    })
   }
 }
