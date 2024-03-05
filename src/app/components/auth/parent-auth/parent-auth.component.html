@@ -9,21 +9,40 @@
 
     <!-- Right Side -->
 
-        <div *ngIf="loginMode" class="col-lg-6 d-flex align-items-center justify-content-center">
-            <app-login (profileChoice)="showProfileChoice($event)" (resetPassword)="showResetPassword($event)"></app-login>
-        </div>        
+        <div class="col-lg-6 d-flex align-items-center justify-content-center">
+            
+            <div class="text-center">
+                
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <img src="assets/images/logo.png" alt="Logo" class="rounded float-end">
+                    </div>
+                </div>
 
-        <div *ngIf="profileChoiceMode" class="col-lg-6 d-flex align-items-center justify-content-center">
-            <app-profile-choice (register)="showRegister($event)"></app-profile-choice>
+                <ng-container *ngIf="loginMode">
+                    <app-login (profileChoice)="showProfileChoice($event)" (resetPassword)="showResetPassword($event)"></app-login>
+                </ng-container>    
+        
+                <ng-container *ngIf="profileChoiceMode">
+                    <app-profile-choice (register)="showRegister($event)" (returnLogin)="showLogin($event)"></app-profile-choice>
+                </ng-container>
+
+                <ng-container *ngIf="registerMode">
+                    <app-register [chosenProfile]="this.profilechosen"></app-register>
+                </ng-container>
+
+                <ng-container *ngIf="resetPasswordMode">
+                    <app-reset-password (returnLogin)="showLogin($event)"></app-reset-password>
+                </ng-container>
+
+                <div class="row">
+                    <div class="col-md-10 mt-2">
+                        <img src="assets/images/pana.png" alt="" class="img-fluid mb-4">
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-
-        <div *ngIf="registerMode" class="col-lg-6 d-flex align-items-center justify-content-center">
-            <app-register [chosenProfile]="this.profilechosen"></app-register>
-        </div>
-
-        <div *ngIf="resetPasswordMode" class="col-lg-6 d-flex align-items-center justify-content-center">
-            <app-reset-password></app-reset-password>
-        </div>
-
     </div>
 </div>

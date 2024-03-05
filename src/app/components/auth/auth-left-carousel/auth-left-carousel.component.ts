@@ -6,7 +6,7 @@ import { CarouselConfig } from 'ngx-bootstrap/carousel';
   templateUrl: './auth-left-carousel.component.html',
   styleUrls: ['./auth-left-carousel.component.css'],
   providers: [
-    { provide: CarouselConfig, useValue: { interval: 3000, noPause: true, showIndicators: true } }
+    { provide: CarouselConfig, useValue: { interval: 5000, noPause: true, showIndicators: false } }
   ]
 })
 export class AuthLeftCarouselComponent implements OnInit {

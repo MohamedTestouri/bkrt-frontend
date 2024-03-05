@@ -2,3 +2,9 @@
     background-image: url('src/assets/images/rectangle.png');
     background-size: cover;
 }
+
+.btn:hover {
+    /* Add your hover effect styles here */
+    background-color: #28a745; /* Example: Change background color on hover */
+    color: white; /* Example: Change text color on hover */
+}

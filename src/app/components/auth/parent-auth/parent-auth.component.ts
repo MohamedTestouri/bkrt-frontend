@@ -19,6 +19,13 @@ export class ParentAuthComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showLogin(event: boolean){
+    this.loginMode = event;
+    this.registerMode = false;
+    this.profileChoiceMode = false;
+    this.resetPasswordMode = false;
+  }
+
   showProfileChoice(event: boolean) {
     this.loginMode = false;
     this.registerMode = false;

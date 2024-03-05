@@ -1,54 +1,38 @@
-<form class="text-center">
-    <div class="row mb-4">
-        <div class="col-md-12 text-center">
-            <img src="assets/images/logo.png" alt="Logo" class="rounded float-end">
+<div class="row col-md-12">
+    <h4 class="text-end">
+        ?هل أنت
+    </h4>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-1"></div>
+    <div class="d-grid gap-2 col-9 mx-auto text-center">
+        <button type="button" (click)="Register(chosenProfile.Agriculteur)" class="btn btn-success btn-lg">صاحب مشروع فلاحي</button>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-1"></div>
+    <div class="d-grid gap-2 col-9 mx-auto text-center">
+        <button type="button" (click)="Register(chosenProfile.Ingenieur)" class="btn btn-success btn-lg">صاحب مكتب دراسات فلاحية</button>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-1"></div>
+    <div class="d-grid gap-2 col-9 mx-auto text-center">
+        <button *ngIf="afficherButton" type="button" class="btn btn-success btn-lg" (click)="afficherListe()">غيرها</button>
+        <div class="list-group" *ngIf="afficherListeFlag">
+            <button type="button" (click)="Register(chosenProfile.Laboratoire)" class="btn btn-success btn-lg mb-3">مخبر تحاليل</button>
+            <button type="button" (click)="Register(chosenProfile.Bakourat)" class="btn btn-success btn-lg mb-3">باكورات</button>
+            <button type="button" (click)="Register(chosenProfile.BailleurFonds)" class="btn btn-success btn-lg mb-3">داعم مالي</button>
         </div>
     </div>
+</div>
 
-    <div class="col-md-11">
-        <a href="">
-            <p class="text-end txt">?هل أنت</p>
-        </a>
+<div class="row mb-3">
+    <div class="col-md-1"></div>
+    <div class="d-grid gap-2 col-9 mx-auto text-center">
+        <button type="button" (click)="ReturnToLogin()" class="btn btn-success btn-lg" >العودة إلى تسجيل الدخول</button>
     </div>
-
-    <div class="row mb-3">
-        <div class="col-md-1">
-
-        </div>
-        <div class="d-grid gap-2 col-9 mx-auto text-center">
-            <button type="button" (click)="Register(chosenProfile.Agriculteur)" class="btn btn-success btn-lg">صاحب مشروع فلاحي</button>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-1">
-
-        </div>
-        <div class="d-grid gap-2 col-9 mx-auto text-center">
-            <button type="button" (click)="Register(chosenProfile.Ingenieur)" class="btn btn-success btn-lg">صاحب مكتب دراسات فلاحية</button>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-1">
-
-        </div>
-        <div class="d-grid gap-2 col-9 mx-auto text-center">
-            <button *ngIf="afficherButton" type="button" class="btn btn-success btn-lg" (click)="afficherListe()">غيرها</button>
-            <div class="list-group" *ngIf="afficherListeFlag">
-                <button type="button" (click)="Register(chosenProfile.Laboratoire)" class="btn btn-success btn-lg mb-3">مخبر تحاليل</button>
-                <button type="button" (click)="Register(chosenProfile.Bakourat)" class="btn btn-success btn-lg mb-3">باكورات</button>
-                <button type="button" (click)="Register(chosenProfile.BailleurFonds)" class="btn btn-success btn-lg mb-3">داعم مالي</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-
-        <div class="col-md-10">
-            <img src="assets/images/pana.png" alt="" class="img-fluid mb-4">
-        </div>
-        <div class="col-md-3">
-        </div>
-    </div>
-</form>
+</div>
