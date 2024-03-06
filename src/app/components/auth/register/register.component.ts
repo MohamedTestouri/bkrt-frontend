@@ -3,6 +3,7 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Valida
 import { Router } from '@angular/router';
 import { EMAIL_REGEX, PASSWORD_REGEX, YEAROFGRADUATION_REGEX } from 'src/app/models/constants';
 import { Register } from 'src/app/models/register';
+import { RegisterBakourat } from 'src/app/models/registerBakourat';
 import { RegisterEngineer } from 'src/app/models/registerEngineer';
 import { AccountService } from 'src/app/services/account.service';
 
@@ -24,6 +25,7 @@ export class RegisterComponent implements OnInit {
 
   tempRegisterForm : Register;
   tempRegisterEngineerForm : RegisterEngineer;
+  tempRegisterBakouratForm : RegisterBakourat;
 
   afficherContenuInfor: boolean = true;
   afficherContenuVerif: boolean = false;
@@ -59,19 +61,19 @@ export class RegisterComponent implements OnInit {
     'المهدية', 'صفاقس', 'القيروان','القصرين', 'سيدي بوزيد','قفصة', 'توزر', 'قبلي', 'تطاوين', 'مدنين', 'قابس',
   ];
   delegations: string[] = [];
-  
   universities: string[] = ['univ1', 'univ2'];
-
-  specialties: string[] = ['spec1', 'spec2'];
-
-
+  specialties: string[] = ['spec1', 'spec2']; 
   
   constructor(public accountService: AccountService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     if(this.chosenProfile.toString() === "Ingenieur"){
       this.initializeEngineerForm();
-    } else{
+    } 
+    else if(this.chosenProfile.toString() === "Bakourat"){
+      this.initializeBakouratForm();
+    }
+    else{
       this.initializeForm();
     }
   }
@@ -87,6 +89,26 @@ export class RegisterComponent implements OnInit {
       address: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(this.passwordRegex)]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]],
+    });
+    this.registerForm.controls['password'].valueChanges.subscribe({
+      next: () => this.registerForm.controls['confirmPassword'].updateValueAndValidity()
+    })
+  }
+
+  initializeBakouratForm() {
+    this.registerForm = this.fb.group({
+      userName: ['', Validators.required],
+      organisationName: [''],
+      email: ['', [Validators.required, Validators.pattern(this.emailRegex)]],
+      phoneNumber: ['', Validators.required],
+      governorate: ['', Validators.required],
+      delegation: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(this.passwordRegex)]],
+      confirmPassword: ['', [Validators.required, this.matchValues('password')]],
+      university: ['', Validators.required],
+      specialty: ['', Validators.required],
+      yearInUniversity: ['', [Validators.required, Validators.pattern(this.yearOfGraduationRegex)]],
+      yearOfGraduation: ['', [Validators.required]],
     });
     this.registerForm.controls['password'].valueChanges.subscribe({
       next: () => this.registerForm.controls['confirmPassword'].updateValueAndValidity()
@@ -169,9 +191,28 @@ export class RegisterComponent implements OnInit {
     this.afficherContenuConfirm = false;
   }
 
-  registerEngineer() {
-    console.log("aaaaa");
+  registerBakourat() {
+    this.tempRegisterBakouratForm = {
+      organisationName: this.registerForm.value.organisationName,
+      userName: this.registerForm.value.userName,
+      email: this.registerForm.value.email,
+      phoneNumber: this.registerForm.value.phoneNumber.internationalNumber,
+      governorate: this.registerForm.value.governorate,
+      delegation: this.registerForm.value.delegation,
+      password: this.registerForm.value.password,
+      confirmPassword: this.registerForm.value.confirmPassword,
+      chosenProfile: this.chosenProfile,
+      university: this.registerForm.value.university,
+      specialty: this.registerForm.value.specialty,
+      yearInUniversity: this.registerForm.value.yearInUniversity,
+      yearOfGraduation: this.registerForm.value.yearOfGraduation,
+    }
+    this.afficherContenuInfor = false;
+    this.afficherContenuVerif = true;
+    this.afficherContenuConfirm = false;
+  }
 
+  registerEngineer() {
     this.tempRegisterEngineerForm = {
       organisationName: this.registerForm.value.organisationName,
       userName: this.registerForm.value.userName,

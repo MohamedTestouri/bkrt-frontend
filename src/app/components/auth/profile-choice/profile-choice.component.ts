@@ -11,6 +11,8 @@ import { AccountService } from 'src/app/services/account.service';
 export class ProfileChoiceComponent implements OnInit {
 
   @Output() register: EventEmitter<any> = new EventEmitter<any>();
+  @Output() returnLogin: EventEmitter<any> = new EventEmitter<any>();
+
 
   afficherListeFlag: boolean = false;
   afficherButton: boolean = true;
@@ -34,5 +36,9 @@ export class ProfileChoiceComponent implements OnInit {
       chosenProfile: profile.toString()
     };
     this.register.emit(profileChoice);
+  }
+
+  ReturnToLogin(){
+    this.returnLogin.emit(true);
   }
 }

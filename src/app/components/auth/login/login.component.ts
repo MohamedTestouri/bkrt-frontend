@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EMAIL_REGEX } from 'src/app/models/constants';
 import { AccountService } from 'src/app/services/account.service';
 
@@ -10,14 +11,18 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  emailRegex = EMAIL_REGEX;
+
   @Output() profileChoice = new EventEmitter();
   @Output() resetPassword = new EventEmitter();
   
+  emailRegex = EMAIL_REGEX;
+  
   loginForm: FormGroup = new FormGroup({});
-  validationErrors: string[] | undefined;
 
-  constructor(public accountService: AccountService, private router: Router, private fb: FormBuilder) { }
+  validationError: string | undefined;
+  showError: boolean = false;
+
+  constructor(public accountService: AccountService, private router: Router, private fb: FormBuilder, private toaster: ToastrService) { }
   
   ngOnInit(): void {
     this.initializeForm();
@@ -35,9 +40,11 @@ export class LoginComponent implements OnInit {
     this.accountService.login(this.loginForm.value).subscribe({
       next: _ => {
         this.router.navigateByUrl('/');
+        this.showError = false;
       },
       error: e => {
-        this.validationErrors = e;
+        this.showError = true;
+        this.validationError = e.error;
       } 
     })
   }
