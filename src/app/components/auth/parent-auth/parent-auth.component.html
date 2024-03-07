@@ -28,7 +28,7 @@
                 </ng-container>
 
                 <ng-container *ngIf="registerMode">
-                    <app-register [chosenProfile]="this.profilechosen"></app-register>
+                    <app-register (returnLogin)="showLogin($event)" [chosenProfile]="this.profilechosen"></app-register>
                 </ng-container>
 
                 <ng-container *ngIf="resetPasswordMode">

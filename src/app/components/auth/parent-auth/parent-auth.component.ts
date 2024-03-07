@@ -11,8 +11,8 @@ export class ParentAuthComponent implements OnInit {
   registerMode = false;
   profileChoiceMode = false;
   resetPasswordMode = false;
-
-  profilechosen;
+  
+  profilechosen : string;
 
   constructor() { }
 

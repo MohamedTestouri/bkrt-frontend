@@ -13,12 +13,10 @@ export class ProfileChoiceComponent implements OnInit {
   @Output() register: EventEmitter<any> = new EventEmitter<any>();
   @Output() returnLogin: EventEmitter<any> = new EventEmitter<any>();
 
-
   afficherListeFlag: boolean = false;
   afficherButton: boolean = true;
   chosenProfile = RolesEnum;
   
-
   constructor(public accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {

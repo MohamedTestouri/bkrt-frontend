@@ -5,6 +5,7 @@ export interface RegisterBakourat {
     phoneNumber: string;
     governorate: string;
     delegation: string;
+    address: string;
     password: string;
     confirmPassword: string;
     chosenProfile: string;

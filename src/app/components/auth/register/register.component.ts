@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EMAIL_REGEX, PASSWORD_REGEX, YEAROFGRADUATION_REGEX } from 'src/app/models/constants';
-import { Register } from 'src/app/models/register';
+import { Register } from 'src/app/models/registerAgriculteur';
 import { RegisterBakourat } from 'src/app/models/registerBakourat';
 import { RegisterEngineer } from 'src/app/models/registerEngineer';
 import { AccountService } from 'src/app/services/account.service';
@@ -18,12 +18,17 @@ export class RegisterComponent implements OnInit {
   passwordRegex = PASSWORD_REGEX;
   yearOfGraduationRegex = YEAROFGRADUATION_REGEX;
 
+  @Output() returnLogin: EventEmitter<any> = new EventEmitter<any>();
+
   @Input() chosenProfile :string;
 
-  registerForm: FormGroup = new FormGroup({});
+  registerAgriculteurForm: FormGroup = new FormGroup({});
+  registerEngineerForm: FormGroup = new FormGroup({});
+  registerBakouratForm: FormGroup = new FormGroup({});
+  
   validationErrors: string[] | undefined;
 
-  tempRegisterForm : Register;
+  tempRegisterAgriculteurForm: Register;
   tempRegisterEngineerForm : RegisterEngineer;
   tempRegisterBakouratForm : RegisterBakourat;
 
@@ -67,21 +72,22 @@ export class RegisterComponent implements OnInit {
   constructor(public accountService: AccountService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    if(this.chosenProfile.toString() === "Ingenieur"){
-      this.initializeEngineerForm();
+    if(this.chosenProfile.toString() === "Agriculteur"){
+      this.initializeAgriculteurForm();
     } 
+    else if(this.chosenProfile.toString() === "Ingenieur"){
+      this.initializeEngineerForm();
+    }
     else if(this.chosenProfile.toString() === "Bakourat"){
       this.initializeBakouratForm();
     }
-    else{
-      this.initializeForm();
-    }
   }
 
-  initializeForm() {
-    this.registerForm = this.fb.group({
+  initializeAgriculteurForm() {
+    this.registerAgriculteurForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       userName: ['', Validators.required],
-      organisationName: [''],
       email: ['', [Validators.required, Validators.pattern(this.emailRegex)]],
       phoneNumber: ['', Validators.required],
       governorate: ['', Validators.required],
@@ -90,13 +96,13 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(this.passwordRegex)]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]],
     });
-    this.registerForm.controls['password'].valueChanges.subscribe({
-      next: () => this.registerForm.controls['confirmPassword'].updateValueAndValidity()
+    this.registerAgriculteurForm.controls['password'].valueChanges.subscribe({
+      next: () => this.registerAgriculteurForm.controls['confirmPassword'].updateValueAndValidity()
     })
   }
 
   initializeBakouratForm() {
-    this.registerForm = this.fb.group({
+    this.registerBakouratForm = this.fb.group({
       userName: ['', Validators.required],
       organisationName: [''],
       email: ['', [Validators.required, Validators.pattern(this.emailRegex)]],
@@ -110,13 +116,13 @@ export class RegisterComponent implements OnInit {
       yearInUniversity: ['', [Validators.required, Validators.pattern(this.yearOfGraduationRegex)]],
       yearOfGraduation: ['', [Validators.required]],
     });
-    this.registerForm.controls['password'].valueChanges.subscribe({
-      next: () => this.registerForm.controls['confirmPassword'].updateValueAndValidity()
+    this.registerBakouratForm.controls['password'].valueChanges.subscribe({
+      next: () => this.registerBakouratForm.controls['confirmPassword'].updateValueAndValidity()
     })
   }
 
   initializeEngineerForm() {
-    this.registerForm = this.fb.group({
+    this.registerEngineerForm = this.fb.group({
       userName: ['', Validators.required],
       organisationName: [''],
       email: ['', [Validators.required, Validators.pattern(this.emailRegex)]],
@@ -133,10 +139,10 @@ export class RegisterComponent implements OnInit {
       fields: this.fb.array([]),
       helperFields: this.fb.array([]),
     });
-    this.registerForm.controls['password'].valueChanges.subscribe({
-      next: () => this.registerForm.controls['confirmPassword'].updateValueAndValidity()
+    this.registerEngineerForm.controls['password'].valueChanges.subscribe({
+      next: () => this.registerEngineerForm.controls['confirmPassword'].updateValueAndValidity()
     })
-    this.registerForm.controls['fields'].valueChanges.subscribe(value => {
+    this.registerEngineerForm.controls['fields'].valueChanges.subscribe(value => {
       console.log('Checkbox options changed:', value);
     });
   }
@@ -151,7 +157,7 @@ export class RegisterComponent implements OnInit {
   }
 
   get fieldsArray() {
-    return this.registerForm.get('fields') as FormArray;
+    return this.registerEngineerForm.get('fields') as FormArray;
   }
 
   toggleHelperFieldsCheckbox(value: string) {
@@ -164,7 +170,7 @@ export class RegisterComponent implements OnInit {
   }
 
   get helperFieldsArray() {
-    return this.registerForm.get('helperFields') as FormArray;
+    return this.registerEngineerForm.get('helperFields') as FormArray;
   }
   
   matchValues(matchTo: string): ValidatorFn {
@@ -173,39 +179,19 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  register() {
-    this.tempRegisterForm = {
-      organisationName: this.registerForm.value.organisationName,
-      userName: this.registerForm.value.userName,
-      email: this.registerForm.value.email,
-      phoneNumber: this.registerForm.value.phoneNumber.internationalNumber,
-      governorate: this.registerForm.value.governorate,
-      delegation: this.registerForm.value.delegation,
-      address: this.registerForm.value.address,
-      password: this.registerForm.value.password,
-      confirmPassword: this.registerForm.value.confirmPassword,
+  registerAgriculteur() {
+    this.tempRegisterAgriculteurForm = {
+      firstName: this.registerAgriculteurForm.value.firstName,
+      lastName: this.registerAgriculteurForm.value.lastName,
+      userName: this.registerAgriculteurForm.value.userName,
+      email: this.registerAgriculteurForm.value.email,
+      phoneNumber: this.registerAgriculteurForm.value.phoneNumber.internationalNumber,
+      governorate: this.registerAgriculteurForm.value.governorate,
+      delegation: this.registerAgriculteurForm.value.delegation,
+      address: this.registerAgriculteurForm.value.address,
+      password: this.registerAgriculteurForm.value.password,
+      confirmPassword: this.registerAgriculteurForm.value.confirmPassword,
       chosenProfile: this.chosenProfile
-    }
-    this.afficherContenuInfor = false;
-    this.afficherContenuVerif = true;
-    this.afficherContenuConfirm = false;
-  }
-
-  registerBakourat() {
-    this.tempRegisterBakouratForm = {
-      organisationName: this.registerForm.value.organisationName,
-      userName: this.registerForm.value.userName,
-      email: this.registerForm.value.email,
-      phoneNumber: this.registerForm.value.phoneNumber.internationalNumber,
-      governorate: this.registerForm.value.governorate,
-      delegation: this.registerForm.value.delegation,
-      password: this.registerForm.value.password,
-      confirmPassword: this.registerForm.value.confirmPassword,
-      chosenProfile: this.chosenProfile,
-      university: this.registerForm.value.university,
-      specialty: this.registerForm.value.specialty,
-      yearInUniversity: this.registerForm.value.yearInUniversity,
-      yearOfGraduation: this.registerForm.value.yearOfGraduation,
     }
     this.afficherContenuInfor = false;
     this.afficherContenuVerif = true;
@@ -214,24 +200,46 @@ export class RegisterComponent implements OnInit {
 
   registerEngineer() {
     this.tempRegisterEngineerForm = {
-      organisationName: this.registerForm.value.organisationName,
-      userName: this.registerForm.value.userName,
-      email: this.registerForm.value.email,
-      phoneNumber: this.registerForm.value.phoneNumber.internationalNumber,
-      officeName: this.registerForm.value.officeName,
-      governorate: this.registerForm.value.governorate,
-      delegation: this.registerForm.value.delegation,
-      address: this.registerForm.value.address,
-      password: this.registerForm.value.password,
-      confirmPassword: this.registerForm.value.confirmPassword,
+      organisationName: this.registerEngineerForm.value.organisationName,
+      userName: this.registerEngineerForm.value.userName,
+      email: this.registerEngineerForm.value.email,
+      phoneNumber: this.registerEngineerForm.value.phoneNumber.internationalNumber,
+      officeName: this.registerEngineerForm.value.officeName,
+      governorate: this.registerEngineerForm.value.governorate,
+      delegation: this.registerEngineerForm.value.delegation,
+      address: this.registerEngineerForm.value.address,
+      password: this.registerEngineerForm.value.password,
+      confirmPassword: this.registerEngineerForm.value.confirmPassword,
       chosenProfile: this.chosenProfile,
-      university: this.registerForm.value.university,
-      specialty: this.registerForm.value.specialty,
-      yearInUniversity: this.registerForm.value.yearInUniversity,
-      field: [...this.registerForm.value.fields].join(', '),
-      helperFields: [...this.registerForm.value.helperFields].join(', '),
+      university: this.registerEngineerForm.value.university,
+      specialty: this.registerEngineerForm.value.specialty,
+      yearInUniversity: this.registerEngineerForm.value.yearInUniversity,
+      field: [...this.registerEngineerForm.value.fields].join(', '),
+      helperFields: [...this.registerEngineerForm.value.helperFields].join(', '),
     }
     console.log(this.tempRegisterEngineerForm);
+    this.afficherContenuInfor = false;
+    this.afficherContenuVerif = true;
+    this.afficherContenuConfirm = false;
+  }
+  
+  registerBakourat() {
+    this.tempRegisterBakouratForm = {
+      organisationName: this.registerBakouratForm.value.organisationName,
+      userName: this.registerBakouratForm.value.userName,
+      email: this.registerBakouratForm.value.email,
+      phoneNumber: this.registerBakouratForm.value.phoneNumber.internationalNumber,
+      governorate: this.registerBakouratForm.value.governorate,
+      delegation: this.registerBakouratForm.value.delegation,
+      address: this.registerBakouratForm.value.delegation,
+      password: this.registerBakouratForm.value.address,
+      confirmPassword: this.registerBakouratForm.value.confirmPassword,
+      chosenProfile: this.chosenProfile,
+      university: this.registerBakouratForm.value.university,
+      specialty: this.registerBakouratForm.value.specialty,
+      yearInUniversity: this.registerBakouratForm.value.yearInUniversity,
+      yearOfGraduation: this.registerBakouratForm.value.yearOfGraduation,
+    }
     this.afficherContenuInfor = false;
     this.afficherContenuVerif = true;
     this.afficherContenuConfirm = false;
@@ -246,33 +254,111 @@ export class RegisterComponent implements OnInit {
 
   clickConfirmRegisterForm()
   {
-    this.afficherContenuInfor = false;
-    this.afficherContenuVerif = false;
-    this.afficherContenuConfirm = true;
-    this.accountService.register(this.tempRegisterForm).subscribe({
-      next: () => {
-        this.tempRegisterForm = {
-          organisationName: '',
-          userName: '',
-          email: '',
-          phoneNumber: '',
-          governorate: '',
-          delegation: '',
-          address: '',
-          password: '',
-          confirmPassword: '',
-          chosenProfile: ''
-        };
-      },
-      error: error => {
-        this.validationErrors = error
-      } 
-    })
+    if(this.chosenProfile.toString() === "Agriculteur"){
+      this.afficherContenuInfor = false;
+      this.afficherContenuVerif = false;
+      this.afficherContenuConfirm = true;
+      this.accountService.register(this.tempRegisterAgriculteurForm).subscribe({
+        next: () => {
+          this.tempRegisterAgriculteurForm = {
+            firstName: '',
+            lastName: '',
+            userName: '',
+            email: '',
+            phoneNumber: '',
+            governorate: '',
+            delegation: '',
+            address: '',
+            password: '',
+            confirmPassword: '',
+            chosenProfile: ''
+          };
+        },
+        error: error => {
+          this.validationErrors = error
+        } 
+      })
+    } 
+    else if(this.chosenProfile.toString() === "Ingenieur"){
+      this.afficherContenuInfor = false;
+      this.afficherContenuVerif = false;
+      this.afficherContenuConfirm = true;
+      this.accountService.register(this.tempRegisterEngineerForm).subscribe({
+        next: () => {
+          this.tempRegisterEngineerForm = {
+            organisationName: '',
+            userName: '',
+            email: '',
+            phoneNumber: '',
+            officeName: '',
+            governorate: '',
+            delegation: '',
+            address: '',
+            password: '',
+            confirmPassword: '',
+            chosenProfile: '',
+            university: '',
+            specialty: '',
+            yearInUniversity: '',
+            field: '',
+            helperFields: '',
+          };
+        },
+        error: error => {
+          this.validationErrors = error
+        } 
+      })
+    }
+    else if(this.chosenProfile.toString() === "Bakourat"){
+      this.afficherContenuInfor = false;
+      this.afficherContenuVerif = false;
+      this.afficherContenuConfirm = true;
+      this.accountService.register(this.tempRegisterBakouratForm).subscribe({
+        next: () => {
+          this.tempRegisterBakouratForm = {
+            organisationName: '',
+            userName: '',
+            email: '',
+            phoneNumber: '',
+            governorate: '',
+            delegation: '',
+            address: '',
+            password: '',
+            confirmPassword: '',
+            chosenProfile: '',
+            university:  '',
+            specialty:  '',
+            yearInUniversity:  '',
+            yearOfGraduation:  '',
+          };
+        },
+        error: error => {
+          this.validationErrors = error
+        } 
+      })
+    }
   }
 
   onGovernorateChange() {
-    const governorate = this.registerForm.get('governorate').value;
-    const governorateObj = this.governoratesWithDelegations.find(item => item.governorate === governorate);
-    this.delegations = governorateObj ? governorateObj.delegations : [];
+    if(this.chosenProfile.toString() === "Agriculteur"){
+      const governorate = this.registerAgriculteurForm.get('governorate').value;
+      const governorateObj = this.governoratesWithDelegations.find(item => item.governorate === governorate);
+      this.delegations = governorateObj ? governorateObj.delegations : [];
+    } 
+    else if(this.chosenProfile.toString() === "Ingenieur"){
+      const governorate = this.registerEngineerForm.get('governorate').value;
+      const governorateObj = this.governoratesWithDelegations.find(item => item.governorate === governorate);
+      this.delegations = governorateObj ? governorateObj.delegations : [];
+    }
+    else if(this.chosenProfile.toString() === "Bakourat"){
+      const governorate = this.registerBakouratForm.get('governorate').value;
+      const governorateObj = this.governoratesWithDelegations.find(item => item.governorate === governorate);
+      this.delegations = governorateObj ? governorateObj.delegations : [];
+    }
+
+  }
+
+  ReturnToLogin(){
+    this.returnLogin.emit(true);
   }
 }
