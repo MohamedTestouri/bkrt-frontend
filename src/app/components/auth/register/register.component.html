@@ -95,122 +95,150 @@
             </form>
         </ng-container>
 
-        <ng-container *ngIf="chosenProfile.toString() === 'Ingenieur'">                
-            <form *ngIf="!(accountService.currentUser$ | async)" [formGroup]="registerEngineerForm" (ngSubmit)="registerEngineerForm.valid && registerEngineer()" autocomplete="off">
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                            <app-text-input [formControl]="$any(registerEngineerForm.controls['userName'])" [label]="'إسم المستخدم'"></app-text-input>
-                    </div>
-                    <div class="col-md-6">
-                        <app-text-input [formControl]="$any(registerEngineerForm.controls['organisationName'])" [label]="'إسم هيكل مهني أو جهة مانحة'"></app-text-input>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <app-text-input [formControl]="$any(registerEngineerForm.controls['phoneNumber'])" [label]="'الهاتف'" [type]="'phone'"></app-text-input>
-                    </div>
-                    <div class="col-md-6">
-                        <app-text-input [formControl]="$any(registerEngineerForm.controls['email'])" [label]="'عنوان البريد الإلكتروني'" [type]="'email'"></app-text-input>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <select formControlName="delegation" class="form-select" aria-label="Delegation">
-                            <option value="" disabled selected>اختر المعتمدية</option>
-                            <option *ngFor="let delegation of delegations" [value]="delegation">{{ delegation }}</option>
-                        </select>
-                        <div *ngIf="registerEngineerForm.get('delegation').invalid && (registerEngineerForm.get('delegation').dirty || registerEngineerForm.get('delegation').touched)" style="color: red;">
-                            ينقصك المعتمدية 
+        <ng-container *ngIf="chosenProfile.toString() === 'Ingenieur'">
+            <ng-container *ngIf="!afficherContenuIngenieur2">
+                <form *ngIf="!(accountService.currentUser$ | async)" [formGroup]="registerEngineerForm1" (ngSubmit)="registerEngineerForm1.valid && registerEngineerFirstInfos()" autocomplete="off">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerEngineerForm1.controls['lastName'])" [label]="'اللقب'"></app-text-input>
+                        </div>
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerEngineerForm1.controls['firstName'])" [label]="'الاسم'"></app-text-input>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <select formControlName="governorate" (change)="onGovernorateChange()" class="form-select" aria-label="Governorate">
-                            <option value="" disabled selected>اختر الولاية</option>
-                            <option *ngFor="let governorate of governorates" [value]="governorate">{{ governorate }}</option>
-                        </select>
-                        <div *ngIf="registerEngineerForm.get('governorate').invalid && (registerEngineerForm.get('governorate').dirty || registerEngineerForm.get('governorate').touched)" style="color: red;">
-                            ينقصك الولاية 
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerEngineerForm1.controls['userName'])" [label]="'إسم المستخدم'"></app-text-input>
+                        </div>
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerEngineerForm1.controls['email'])" [label]="'عنوان البريد الإلكتروني'" [type]="'email'"></app-text-input>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <app-text-input [formControl]="$any(registerEngineerForm.controls['address'])" [label]="'العنوان'"></app-text-input>
-                    </div>
-                    <div class="col-md-6">
-                        <app-text-input [formControl]="$any(registerEngineerForm.controls['officeName'])" [label]="'إسم المكتب'"></app-text-input>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <app-text-input [formControl]="$any(registerEngineerForm.controls['confirmPassword'])" [label]="'تاكيد كلمة السر'" [type]="'password'"></app-text-input>
-                    </div>
-                    <div class="col-md-6">
-                        <app-text-input [formControl]="$any(registerEngineerForm.controls['password'])" [label]="'كلمة السر'" [type]="'password'"></app-text-input>
-                    </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                    </div>
-                    <div class="col-md-6">
-                        <select formControlName="university" class="form-select" aria-label="university">
-                            <option value="" disabled selected>اختر الجامعة إلي تخرجت منها</option>
-                            <option *ngFor="let university of universities" [value]="university">{{ university }}</option>
-                        </select>
-                        <div *ngIf="registerEngineerForm.get('university').invalid && (registerEngineerForm.get('university').dirty || registerEngineerForm.get('university').touched)" style="color: red;">
-                            ينقصك الجامعة 
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerEngineerForm1.controls['phoneNumber'])" [label]="'الهاتف'" [type]="'phone'"></app-text-input>
+                        </div>
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerEngineerForm1.controls['officeName'])" [label]="'إسم المكتب'"></app-text-input>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <app-text-input [formControl]="$any(registerEngineerForm.controls['yearInUniversity'])" [label]="'سنة التخرج'"></app-text-input>
-                    </div>
-                    <div class="col-md-6">
-                        <select formControlName="specialty" class="form-select" aria-label="specialty">
-                            <option value="" disabled selected>إختر تخصص الشهادة متاعك</option>
-                            <option *ngFor="let specialty of specialties" [value]="specialty">{{ specialty }}</option>
-                        </select>
-                        <div *ngIf="registerEngineerForm.get('specialty').invalid && (registerEngineerForm.get('specialty').dirty || registerEngineerForm.get('specialty').touched)" style="color: red;">
-                            ينقصك الشهادة 
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="container">
+                                <select formControlName="delegation" class="form-select" aria-label="Delegation">
+                                    <option value="" disabled selected>اختر المعتمدية</option>
+                                    <option *ngFor="let delegation of delegations" [value]="delegation">{{ delegation }}</option>
+                                </select>
+                                <div *ngIf="registerEngineerForm1.get('delegation').invalid && (registerEngineerForm1.get('delegation').dirty || registerEngineerForm1.get('delegation').touched)" style="color: red;">
+                                    ينقصك المعتمدية 
+                                </div>                            
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="container">
+                                <select formControlName="governorate" (change)="onGovernorateChange()" class="form-select" aria-label="Governorate">
+                                    <option value="" disabled selected>اختر الولاية</option>
+                                    <option *ngFor="let governorate of governorates" [value]="governorate">{{ governorate }}</option>
+                                </select>
+                                <div *ngIf="registerEngineerForm1.get('governorate').invalid && (registerEngineerForm1.get('governorate').dirty || registerEngineerForm1.get('governorate').touched)" style="color: red;">
+                                    ينقصك الولاية 
+                                </div>                            
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-md-12">
-                        <h4 class="text-end">إختار المجال إلي تفهم فيه أكثر</h4>
-                        <div class="btn-group-toggle" data-toggle="buttons">
-                            <button type="button" class="btn btn-checkbox mb-3" 
-                                    *ngFor="let option of ['علوم التربة', 'خضروات', 'زراعات محمية', 'بستنة', 'بقوليات', 'زراعات علفية', 'زراعات كبرى', 'أشجار مثمرة']" 
-                                    [class.active]="fieldsArray.value.includes(option)"
-                                    (click)="toggleFieldsCheckbox(option)">
-                                {{ option }}
-                            </button>
+                    <div class="row mb-4 justify-content-center">
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerEngineerForm1.controls['address'])" [label]="'العنوان'"></app-text-input>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-md-12">
-                        <h4 class="text-end">إختار المجال إلي تفهم فيه أكثر</h4>
-                        <div class="btn-group-toggle" data-toggle="buttons">
-                            <button type="button" class="btn btn-checkbox mb-3" 
-                                    *ngFor="let option of ['ولا واحد منهم' ,'مسائل إدارية و اجرائية تخص بعث مشروع فلاحي' ,'الزراعات المائية' ,'الفلاحة المستدامة' ,'الفلاحة البيولوجية']" 
-                                    [class.active]="helperFieldsArray.value.includes(option)"
-                                    (click)="toggleHelperFieldsCheckbox(option)">
-                                {{ option }}
-                            </button>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerEngineerForm1.controls['confirmPassword'])" [label]="'تاكيد كلمة السر'" [type]="'password'"></app-text-input>
+                        </div>
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerEngineerForm1.controls['password'])" [label]="'كلمة السر'" [type]="'password'"></app-text-input>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 mb-4 justify-content-end">
-                        <button [disabled]="!registerAgriculteurForm.valid" type="submit" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
-                    </div>                    
-                    <div class="col-md-12 justify-content-end">
-                        <button type="button" (click)="ReturnToLogin()" class="btn btn-success rounded text-center col-md-8">العودة إلى تسجيل الدخول</button>
-                    </div>                    
-                </div>
-            </form>
+                    
+                    <div class="row">
+                        <div class="col-md-12 mb-4 justify-content-end">
+                            <button [disabled]="!registerEngineerForm1.valid" type="submit" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
+                        </div>                    
+                        <div class="col-md-12 justify-content-end">
+                            <button type="button" (click)="ReturnToLogin()" class="btn btn-success rounded text-center col-md-8">العودة إلى تسجيل الدخول</button>
+                        </div>                    
+                    </div>
+                </form>
+            </ng-container>
+            <ng-container *ngIf="afficherContenuIngenieur2">
+                <form *ngIf="!(accountService.currentUser$ | async)" [formGroup]="registerEngineerForm2" (ngSubmit)="registerEngineerForm2.valid && registerEngineerSecondInfos()" autocomplete="off">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                        </div>
+                        <div class="col-md-6">
+                            <select formControlName="university" class="form-select" aria-label="university">
+                                <option value="" disabled selected>اختر الجامعة إلي تخرجت منها</option>
+                                <option *ngFor="let university of universities" [value]="university">{{ university }}</option>
+                            </select>
+                            <div *ngIf="registerEngineerForm2.get('university').invalid && (registerEngineerForm2.get('university').dirty || registerEngineerForm2.get('university').touched)" style="color: red;">
+                                ينقصك الجامعة 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <app-text-input [formControl]="$any(registerEngineerForm2.controls['yearInUniversity'])" [label]="'سنة التخرج'"></app-text-input>
+                        </div>
+                        <div class="col-md-6">
+                            <select formControlName="specialty" class="form-select" aria-label="specialty">
+                                <option value="" disabled selected>إختر تخصص الشهادة متاعك</option>
+                                <option *ngFor="let specialty of specialties" [value]="specialty">{{ specialty }}</option>
+                            </select>
+                            <div *ngIf="registerEngineerForm2.get('specialty').invalid && (registerEngineerForm2.get('specialty').dirty || registerEngineerForm2.get('specialty').touched)" style="color: red;">
+                                ينقصك الشهادة 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <h4 class="text-end">إختار المجال إلي تفهم فيه أكثر</h4>
+                            <div class="btn-group-toggle" data-toggle="buttons">
+                                <button type="button" class="btn btn-checkbox mb-3" 
+                                        *ngFor="let option of ['علوم التربة', 'خضروات', 'زراعات محمية', 'بستنة', 'بقوليات', 'زراعات علفية', 'زراعات كبرى', 'أشجار مثمرة']" 
+                                        [class.active]="fieldsArray.value.includes(option)"
+                                        (click)="toggleFieldsCheckbox(option)">
+                                    {{ option }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-12">
+                            <h4 class="text-end">إختار المجال إلي تفهم فيه أكثر</h4>
+                            <div class="btn-group-toggle" data-toggle="buttons">
+                                <button type="button" class="btn btn-checkbox mb-3" 
+                                        *ngFor="let option of ['ولا واحد منهم' ,'مسائل إدارية و اجرائية تخص بعث مشروع فلاحي' ,'الزراعات المائية' ,'الفلاحة المستدامة' ,'الفلاحة البيولوجية']" 
+                                        [class.active]="helperFieldsArray.value.includes(option)"
+                                        (click)="toggleHelperFieldsCheckbox(option)">
+                                    {{ option }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12 mb-4 justify-content-end">
+                            <button [disabled]="!registerEngineerForm2.valid" type="submit" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
+                        </div>
+                        <div class="col-md-12 mb-4 justify-content-end">
+                            <button type="button" (click)="ReturnToEngineerForm1()" class="btn btn-success rounded text-center col-md-8">العودة</button>
+                        </div>                      
+                        <div class="col-md-12 justify-content-end">
+                            <button type="button" (click)="ReturnToLogin()" class="btn btn-success rounded text-center col-md-8">العودة إلى تسجيل الدخول</button>
+                        </div>                    
+                    </div>
+                </form>
+            </ng-container>                   
         </ng-container>
 
         <ng-container *ngIf="chosenProfile.toString() === 'Bakourat'">                
@@ -306,8 +334,8 @@
 
         <div *ngIf="chosenProfile.toString() === 'Agriculteur'">
             <ul class="col-md-11 text-end theList">
-                <li><strong>الاسم :</strong> {{ tempRegisterAgriculteurForm.userName }}</li>
-                <li><strong>اللقب :</strong> {{ tempRegisterAgriculteurForm.userName }}</li>
+                <li><strong>الاسم :</strong> {{ tempRegisterAgriculteurForm.firstName }}</li>
+                <li><strong>اللقب :</strong> {{ tempRegisterAgriculteurForm.lastName }}</li>
                 <li><strong>إسم المستخدم :</strong> {{ tempRegisterAgriculteurForm.userName }}</li>
                 <li><strong>عنوان البريد الإلكتروني :</strong> {{ tempRegisterAgriculteurForm.email }}</li>
                 <li><strong>الهاتف :</strong> <span class="phoneNumber">{{ tempRegisterAgriculteurForm.phoneNumber }}</span></li>
@@ -329,19 +357,20 @@
 
         <div *ngIf="chosenProfile.toString() === 'Ingenieur'">
             <ul class="col-md-11 text-end theList">
-                <li><strong>إسم هيكل مهني أو جهة مانحة :</strong> {{ tempRegisterEngineerForm.organisationName }}</li>
+                <li><strong>الاسم :</strong> {{ tempRegisterEngineerForm.firstName }}</li>
+                <li><strong>اللقب :</strong> {{ tempRegisterEngineerForm.lastName }}</li>
                 <li><strong>إسم المستخدم :</strong> {{ tempRegisterEngineerForm.userName }}</li>
-                <li><strong>عنوان البريد الإلكتروني :</strong> {{ tempRegisterEngineerForm.email }}</li>
+                <li><strong>البريد الإلكتروني :</strong> {{ tempRegisterEngineerForm.email }}</li>
                 <li><strong>الهاتف :</strong> <span class="phoneNumber">{{ tempRegisterEngineerForm.phoneNumber }}</span></li>
                 <li><strong>إسم المكتب :</strong> {{ tempRegisterEngineerForm.officeName }}</li>
                 <li><strong>الولاية :</strong> {{ tempRegisterEngineerForm.governorate }}</li>
                 <li><strong>المعتمدية :</strong> {{ tempRegisterEngineerForm.delegation }}</li>
                 <li><strong>العنوان :</strong> {{ tempRegisterEngineerForm.address }}</li>
-                <li><strong>الجامعة :</strong> {{ tempRegisterEngineerForm.university }}</li>
-                <li><strong>التخصص :</strong> {{ tempRegisterEngineerForm.specialty }}</li>
+                <li><strong>الجامعة التي تخرجت منها :</strong> {{ tempRegisterEngineerForm.university }}</li>
+                <li><strong>إختيار إختصاص الشهادة متاعك :</strong> {{ tempRegisterEngineerForm.specialty }}</li>
                 <li><strong>سنة التخرج :</strong> {{ tempRegisterEngineerForm.yearInUniversity }}</li>
                 <li><strong>المجال إلي تفهم فيه أكثر :</strong> {{ tempRegisterEngineerForm.field }}</li>
-                <li><strong>المجال إلي تفهم فيه أكثر :</strong> {{ tempRegisterEngineerForm.helperFields }}</li>
+                <li><strong>المجالات إضافية :</strong> {{ tempRegisterEngineerForm.helperFields }}</li>
             </ul>       
             <div class="row">
                 <div class="col-md-12 mt-4 justify-content-end">
