@@ -1,0 +1,47 @@
+.card-container {
+    display: flex;
+    height: 200vh; /* Ajustez la hauteur selon vos besoins */
+    width: 2700px;
+  }
+  
+  .card {
+    position: relative;
+    width: 2070px; /* Ajustez la largeur selon vos besoins */
+    height: 470px; /* Ajustez la hauteur selon vos besoins */
+    overflow: hidden;
+    top: -177%;
+  }
+  
+  .card-bg {
+    position: relative;
+    width: 2175px;
+    height: 570px;
+    background-size: cover;
+  }
+  .img-fluid {
+    position: absolute;
+    max-width: 400px;
+    height: 250px;
+    transform: translate(610%, 7%);
+
+  }
+  .outer-img {
+    display: block;
+    max-width: 100%;
+    height: 120;
+  }
+  
+  .txt
+  {
+    position: relative;
+    color: black;
+    font-size: 60px;
+    font-weight: 1000;
+  }
+  .img
+  {
+    position: relative;
+    width: 1050px;
+    height: 460px;
+    transform: translate(-2%, -3%);
+  }
