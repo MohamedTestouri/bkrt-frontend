@@ -27,10 +27,9 @@ export class DashboardHeaderComponent implements OnInit {
       console.error('Error fetching current user', error);
     }
   );
-    console.log("user", this.currentUser);
   }
   AccountSettings()
   {
-    this.router.navigateByUrl('/accountSettings');
+    this.router.navigateByUrl('accountSettings');
   }
 }

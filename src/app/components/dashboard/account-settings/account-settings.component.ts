@@ -33,8 +33,8 @@ export class AccountSettingsComponent implements OnInit {
     );
 
     this.form = this.fb.group({
-      username: [this.currentUser.username],
-      organisationName: [this.currentUser.organisationName],
+      firstName: [this.currentUser.firstName],
+      lastName: [this.currentUser.lastName],
       email: [{ value: this.currentUser.email, disabled: true }],
       password: ['', [Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],
       newPassword: ['', [Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],
@@ -45,8 +45,8 @@ export class AccountSettingsComponent implements OnInit {
 
   updateInfo() {
     const updateForm = {
-      organisationName: this.form.value.organisationName? undefined : this.currentUser.organisationName,
-      username: this.form.value.username? undefined : this.currentUser.username,
+      lastName: this.form.value.lastName? undefined : this.currentUser.lastName,
+      firstName: this.form.value.firstName? undefined : this.currentUser.firstName,
       email: this.form.value.email? undefined : this.currentUser.email,
       password: this.form.value.password? undefined : '',
     }
