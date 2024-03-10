@@ -1,14 +1,22 @@
-.h2
+.settings-wrapper
 {
-font-size: 4cap;
-font-weight: 900;
+    background-color: gainsboro;
+    border-radius: 0.625rem;
 }
-.h5
+
+.settings-title
 {
-font-size: 2.5cap;
-font-weight: 500;
+    font-size: 4cap;
+    font-weight: 900;
 }
-.p1
+
+.settings-title-small
+{
+    font-size: 2.5cap;
+    font-weight: 500;
+}
+
+.settings-paragraph
 {
     position: relative;
     font-size: 1.8cap;
@@ -17,31 +25,20 @@ font-weight: 500;
     color: gray;
 }
 
-.inp
+.settings-input
 {
-width: 130%;
-height: 18%;
-transform: translate(-23%, -40%);
+    width: 130%;
+    height: 18%;
+    transform: translate(-23%, -40%);
 }
-.img
-{
-height: 100vh;
-top: -100%;
-right: 200%;
-}
+
+
 .btn1
 {
     width: 200%;
 }
-.input 
-{
-    border: none;
-    background-color: gainsboro;
-}
-.color
-{
-    background-color: gainsboro;
-}
+
+
 .txt
 {
     font-weight: 600;

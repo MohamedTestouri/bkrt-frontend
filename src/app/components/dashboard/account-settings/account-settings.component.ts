@@ -11,9 +11,13 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./account-settings.component.css']
 })
 export class AccountSettingsComponent implements OnInit {
+
   model : any = {};
   currentUser : User;
-  form: FormGroup = new FormGroup({});
+
+  userForm: FormGroup = new FormGroup({});
+  passwordForm: FormGroup = new FormGroup({});
+
   updateForm : UpdateInfo;
   constructor(private fb: FormBuilder, public accountService: AccountService, private router: Router) { }
 
@@ -32,23 +36,26 @@ export class AccountSettingsComponent implements OnInit {
       }
     );
 
-    this.form = this.fb.group({
+    this.userForm = this.fb.group({
       firstName: [this.currentUser.firstName],
       lastName: [this.currentUser.lastName],
       email: [{ value: this.currentUser.email, disabled: true }],
+    });
+
+    this.passwordForm = this.fb.group({
       password: ['', [Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],
       newPassword: ['', [Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],
-      terrain: [''],
+      confirmNewPassword: [''],
     });
-    console.log("form", this.form)
+
+    console.log("form", this.userForm)
   }
 
   updateInfo() {
     const updateForm = {
-      lastName: this.form.value.lastName? undefined : this.currentUser.lastName,
-      firstName: this.form.value.firstName? undefined : this.currentUser.firstName,
-      email: this.form.value.email? undefined : this.currentUser.email,
-      password: this.form.value.password? undefined : '',
+      lastName: this.userForm.value.lastName? undefined : this.currentUser.lastName,
+      firstName: this.userForm.value.firstName? undefined : this.currentUser.firstName,
+      email: this.userForm.value.email? undefined : this.currentUser.email,
     }
     console.log("register", updateForm)
     this.accountService.updateInfo(updateForm).subscribe({
@@ -62,12 +69,12 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   updatePassword() {
-    this.form = this.fb.group({
+    this.userForm = this.fb.group({
       password: ['', Validators.required],
       newPassword: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],
     });
-    this.form.controls['password'].valueChanges.subscribe({
-      next: () => this.form.controls['newPassword'].updateValueAndValidity()
+    this.userForm.controls['password'].valueChanges.subscribe({
+      next: () => this.userForm.controls['newPassword'].updateValueAndValidity()
     })
   }
 

@@ -18,16 +18,16 @@ export class DashboardHeaderComponent implements OnInit {
   constructor(public accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
-    this.accountService.getCurrentUser().subscribe(
-    (user) => {
-      this.currentUser = user;
-      console.log("user", this.currentUser);
-    },
-    (error) => {
-      console.error('Error fetching current user', error);
-    }
-  );
+    this.accountService.getCurrentUser().subscribe({
+      next: user => {
+        this.currentUser = user;
+      },
+      error: e => {
+        console.error('Error fetching current user', e);
+      } 
+    })
   }
+
   AccountSettings()
   {
     this.router.navigateByUrl('accountSettings');

@@ -1,74 +1,89 @@
-<div class="row color">
-    <div class="col-md-3 img">
-        <img class="img" src="assets/images/panaSettings.png" alt="">
+<div class="row settings-wrapper">
+    <div class="col-md-3 d-flex justify-content-center align-items-center">
+        <img class="img-fluid" src="assets/images/panaSettings.png" alt="">
     </div>
     <div class="col-md-9">
-        <form class="form">
+        <div class="row mt-3">
+            <h2 class="text-end settings-title">الإعدادات</h2>
+        </div>
+        <form class="row form" [formGroup]="userForm" (ngSubmit)="userForm.valid" autocomplete="off">
             <div class="col-md-12">
                 <div class="row">
-                    <h2 class="h2 text-end">الإعدادات</h2>
+                    <h5 class="text-end settings-title-small">حساب تعريفي</h5>
                 </div>
                 <div class="row">
-                    <h5 class="h5 text-end">حساب تعريفي</h5>
+                    <p class="text-end settings-paragraph">...... الاسم الأخير والاسم الأول وعنوان البريد الإلكتروني</p>
                 </div>
-                <div class="row">
-                    <p class="p1 text-end">...... الاسم الأخير والاسم الأول وعنوان البريد الإلكتروني
-                    </p>
-                </div>
-                <div class="row float-end">
-                    <ul class="list-unstyled ">
-                        <li class="inp input-group-lg mb-3">
-                            <input type="text" class="form-control text-center" id="firstName" name="firstName"
-                                placeholder="الإسم" [formControl]="$any(form.controls['firstName'])" >
-                        </li>
-                        <li class="inp input-group-lg mb-3">
-                            <input type="text" class="form-control text-center" [formControl]="$any(form.controls['lastName'])" id="lastName" name="lastName"
-                                placeholder="اللقب">
-                        </li>
-                        <li class="inp input-group-lg mb-3">
-                            <input type="email" class="form-control text-center" [formControl]="$any(form.controls['email'])" id="email" name="email"
-                                placeholder="عنوان البريد الإلكتروني" >
-                        </li>
-                        <li class="float-end col-md-5">
-                            <button type="button" class="btn-lg btn btn-success col-md-12 txt" (click)="updateInfo()">تحديث</button>
-                        </li>
-                    </ul>
-                </div>
-                <div class="row col-md-12 m">
-                    <h5 class="h5 text-end">كلمة السر</h5>
-                </div>
-                <div class="row col-md-10 mb-3 float-end">
-                        <label class="p1 text-end">{{ currentUser.email }} :عنوان بريدك الإلكتروني هو </label>
-                </div>
-                <div class="row col-md-12"></div>
-                <div class="row float-end">
-                    <ul class="list-unstyled ">
-                        <li class="input-group-lg mb-3">
-                            <input class="inp form-control text-center" [formControl]="$any(form.controls['password'])"
-                                placeholder="كلمة السر الحالية" [type]="'password'">
-                        </li>
-                        <li class="inp input-group-lg mb-3">
-                            <input class="form-control text-center" [formControl]="$any(form.controls['newPassword'])"
-                                placeholder="كلمة مرور جديدة" [type]="'password'">
-                        </li>
-                        <li class="float-end mb-3 col-md-8">
-                            <button type="button" class="btn-lg btn btn-success col-md-12 txt">تطوير كلمة السر</button>
-                        </li>
-                    </ul>
-                </div>
-                <div class="row col-md-12">
-                    <h5 class="h5 text-end">الأرض المسجلة</h5>
-                </div>
-                <div class="float-end row mb-3">
-                    <div class="col-md-6 float-end">
-                        <button type="button" class="btn-lg btn btn-success txt">تطوير المعلومات الخاصة بالارض</button>
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+                        <app-text-input [formControl]="$any(userForm.controls['firstName'])" [label]="'الإسم'"></app-text-input>
                     </div>
-                    <div class="input-group-lg col-md-6 float-end">
-                        <input type="text" class="form-control text-center" placeholder="الأرض المسجلة الحالية"
-                        [formControl]="$any(form.controls['terrain'])" id="terrain" name="terrain">
+                </div>    
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+                        <app-text-input [formControl]="$any(userForm.controls['lastName'])" [label]="'اللقب'"></app-text-input>
+                    </div>
+                </div>
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+                        <app-text-input [formControl]="$any(userForm.controls['email'])" [label]="'عنوان البريد الإلكتروني'"></app-text-input>
+                    </div>
+                </div>
+                <div class="row float-end">
+                    <div class="container">
+                        <button type="button" class="btn-lg btn btn-success col-md-12 txt" (cdivck)="updateInfo()">تحديث</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form class="row form mt-4" [formGroup]="userForm" (ngSubmit)="userForm.valid" autocomplete="off">
+            <div class="col-md-12">
+                <div class="row">
+                    <h5 class="text-end settings-title-small">كلمة السر</h5>
+                </div>
+                <div class="row">
+                    <p class="text-end settings-paragraph">{{ currentUser.email }} :عنوان بريدك الإلكتروني هو </p>
+                </div>
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+                        <app-text-input [formControl]="$any(passwordForm.controls['password'])" [label]="'كلمة السر الحالية'" [type]="'password'"></app-text-input>
+                    </div>
+                </div>    
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+                        <app-text-input [formControl]="$any(passwordForm.controls['newPassword'])" [label]="'كلمة مرور جديدة'" [type]="'password'"></app-text-input>
+                    </div>
+                </div>
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+                        <app-text-input [formControl]="$any(passwordForm.controls['confirmNewPassword'])" [label]="'تاكيد كلمة مرور جديدة'" [type]="'password'"></app-text-input>
+                    </div>
+                </div>
+                <div class="row mb-3 float-end">
+                    <div class="container">
+                        <button type="button" class="btn-lg btn btn-success col-md-12 txt" (cdivck)="updateInfo()">تحديث</button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+
+<!-- <div class="row col-md-12">
+    <h5 class="h5 text-end">الأرض المسجلة</h5>
+</div>
+<div class="float-end row mb-3">
+    <div class="col-md-6 float-end">
+        <button type="button" class="btn-lg btn btn-success txt">تطوير المعلومات الخاصة بالارض</button>
+    </div>
+    <div class="input-group-lg col-md-6 float-end">
+        <input type="text" class="form-control text-center" placeholder="الأرض المسجلة الحالية" [formControl]="$any(form.controls['terrain'])" id="terrain" name="terrain">
+    </div>
+</div> -->
