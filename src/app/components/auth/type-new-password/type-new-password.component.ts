@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
-import { EMAIL_REGEX } from 'src/app/models/constants';
+import { EMAIL_REGEX } from 'src/app/models/constants/constants';
 import { ResetPassword } from 'src/app/models/resetPassword';
 import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';

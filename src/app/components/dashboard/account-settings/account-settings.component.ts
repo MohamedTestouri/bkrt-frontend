@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AccountService } from 'src/app/services/account.service';
-import { UpdateInfo } from 'src/app/models/update-info';
-import { User } from 'src/app/models/user';
+import { UpdateInfo } from 'src/app/models/updateInfo';
+import { PASSWORD_REGEX } from 'src/app/models/constants/constants';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-account-settings',
@@ -13,52 +13,56 @@ import { User } from 'src/app/models/user';
 export class AccountSettingsComponent implements OnInit {
 
   model : any = {};
-  currentUser : User;
+  userInfos : UpdateInfo;
+
+  passwordRegex = PASSWORD_REGEX;
 
   userForm: FormGroup = new FormGroup({});
   passwordForm: FormGroup = new FormGroup({});
 
   updateForm : UpdateInfo;
-  constructor(private fb: FormBuilder, public accountService: AccountService, private router: Router) { }
+  constructor(private fb: FormBuilder, public userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.initializeForm();
   }
 
   initializeForm() {
+    this.userService.getUserInfo().subscribe({
+      next: _ => {
+        this.userInfos = _;
 
-    this.accountService.getCurrentUser().subscribe(
-      (user) => {
-        this.currentUser = user;
-      }, 
-      (error) => {
-        console.error('Error fetching current user', error);
-      }
-    );
-
-    this.userForm = this.fb.group({
-      firstName: [this.currentUser.firstName],
-      lastName: [this.currentUser.lastName],
-      email: [{ value: this.currentUser.email, disabled: true }],
+        this.userForm = this.fb.group({
+          firstName: [this.userInfos.firstName, Validators.required],
+          lastName: [this.userInfos.lastName, Validators.required],
+          email: [{ value: this.userInfos.email, disabled: true }],
+        });
+    
+        this.passwordForm = this.fb.group({
+          oldPassword: ['', Validators.required],
+          newPassword: ['', [Validators.required, Validators.minLength(8), Validators.pattern(this.passwordRegex)]],
+          confirmPassword: ['',[Validators.required, this.matchValues('newPassword')]],
+        });
+    
+        this.passwordForm.controls['newPassword'].valueChanges.subscribe({
+          next: () => this.passwordForm.controls['confirmPassword'].updateValueAndValidity()
+        })
+      },
+      error: e => {
+        console.error('Error fetching current user', e);
+      } 
     });
 
-    this.passwordForm = this.fb.group({
-      password: ['', [Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],
-      newPassword: ['', [Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],
-      confirmNewPassword: [''],
-    });
+  }
 
-    console.log("form", this.userForm)
+  matchValues(matchTo: string): ValidatorFn {
+    return (control: AbstractControl) => {
+      return control.value === control.parent?.get(matchTo)?.value ? null : {notMatching: true}
+    }
   }
 
   updateInfo() {
-    const updateForm = {
-      lastName: this.userForm.value.lastName? undefined : this.currentUser.lastName,
-      firstName: this.userForm.value.firstName? undefined : this.currentUser.firstName,
-      email: this.userForm.value.email? undefined : this.currentUser.email,
-    }
-    console.log("register", updateForm)
-    this.accountService.updateInfo(updateForm).subscribe({
+    this.userService.updateInfo(this.userForm.value).subscribe({
       next: _ => {
         this.router.navigateByUrl('/');
       },
@@ -69,18 +73,13 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   updatePassword() {
-    this.userForm = this.fb.group({
-      password: ['', Validators.required],
-      newPassword: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])/)]],
-    });
-    this.userForm.controls['password'].valueChanges.subscribe({
-      next: () => this.userForm.controls['newPassword'].updateValueAndValidity()
+    this.userService.updatePassword(this.passwordForm.value).subscribe({
+      next: _ => {
+        this.router.navigateByUrl('/');
+      },
+      error: e => {
+        //this.validationErrors = e;
+      } 
     })
-  }
-
-  matchValues(matchTo: string): ValidatorFn {
-    return (control: AbstractControl) => {
-      return control.value === control.parent?.get(matchTo)?.value ? null : {notMatching: true}
-    }
   }
 }

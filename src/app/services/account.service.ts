@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 import { ResetPassword } from '../models/resetPassword';
 import { ConfirmEmail } from '../models/confirmEmail';
-import { UpdateInfo } from '../models/update-info';
 
 @Injectable({
   providedIn: 'root'
@@ -33,16 +32,6 @@ export class AccountService {
       map(user => {
         if (user) {
           this.setCurrentUser(user);
-        }
-      })
-    )
-  } 
-
-  updateInfo(model: any) {
-    return this.http.post<UpdateInfo>(this.baseUrl + 'users/editInfo', model).pipe(
-      map(updateInfo => {
-        if (updateInfo) {
-          
         }
       })
     )
@@ -82,6 +71,7 @@ export class AccountService {
   getDecodedToken(token: string) {
     return JSON.parse(atob(token.split('.')[1]))
   }
+  
   getCurrentUser(): Observable<User | null> {
     return this.currentUser$;
   }

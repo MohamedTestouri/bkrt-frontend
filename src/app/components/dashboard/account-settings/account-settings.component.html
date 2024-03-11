@@ -6,7 +6,7 @@
         <div class="row mt-3">
             <h2 class="text-end settings-title">الإعدادات</h2>
         </div>
-        <form class="row form" [formGroup]="userForm" (ngSubmit)="userForm.valid" autocomplete="off">
+        <form *ngIf="(userInfos)" class="row form" [formGroup]="userForm" (ngSubmit)="userForm.valid" autocomplete="off">
             <div class="col-md-12">
                 <div class="row">
                     <h5 class="text-end settings-title-small">حساب تعريفي</h5>
@@ -34,23 +34,23 @@
                 </div>
                 <div class="row float-end">
                     <div class="container">
-                        <button type="button" class="btn-lg btn btn-success col-md-12 txt" (cdivck)="updateInfo()">تحديث</button>
+                        <button type="button" class="btn-lg btn btn-success col-md-12 txt" (click)="updateInfo()">تحديث</button>
                     </div>
                 </div>
             </div>
         </form>
-        <form class="row form mt-4" [formGroup]="userForm" (ngSubmit)="userForm.valid" autocomplete="off">
+        <form *ngIf="(userInfos)" class="row form mt-4" [formGroup]="passwordForm" (ngSubmit)="passwordForm.valid" autocomplete="off">
             <div class="col-md-12">
                 <div class="row">
                     <h5 class="text-end settings-title-small">كلمة السر</h5>
                 </div>
                 <div class="row">
-                    <p class="text-end settings-paragraph">{{ currentUser.email }} :عنوان بريدك الإلكتروني هو </p>
+                    <p class="text-end settings-paragraph">{{ userInfos.email }} :عنوان بريدك الإلكتروني هو </p>
                 </div>
                 <div class="row mt-3 mb-3">
                     <div class="col-md-8"></div>
                     <div class="col-md-4">
-                        <app-text-input [formControl]="$any(passwordForm.controls['password'])" [label]="'كلمة السر الحالية'" [type]="'password'"></app-text-input>
+                        <app-text-input [formControl]="$any(passwordForm.controls['oldPassword'])" [label]="'كلمة السر الحالية'" [type]="'password'"></app-text-input>
                     </div>
                 </div>    
                 <div class="row mt-3 mb-3">
@@ -62,12 +62,12 @@
                 <div class="row mt-3 mb-3">
                     <div class="col-md-8"></div>
                     <div class="col-md-4">
-                        <app-text-input [formControl]="$any(passwordForm.controls['confirmNewPassword'])" [label]="'تاكيد كلمة مرور جديدة'" [type]="'password'"></app-text-input>
+                        <app-text-input [formControl]="$any(passwordForm.controls['confirmPassword'])" [label]="'تاكيد كلمة مرور جديدة'" [type]="'password'"></app-text-input>
                     </div>
                 </div>
                 <div class="row mb-3 float-end">
                     <div class="container">
-                        <button type="button" class="btn-lg btn btn-success col-md-12 txt" (cdivck)="updateInfo()">تحديث</button>
+                        <button type="button" class="btn-lg btn btn-success col-md-12 txt" (click)="updatePassword()">تحديث</button>
                     </div>
                 </div>
             </div>

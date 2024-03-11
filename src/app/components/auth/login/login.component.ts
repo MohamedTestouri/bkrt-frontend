@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { EMAIL_REGEX } from 'src/app/models/constants';
+import { EMAIL_REGEX } from 'src/app/models/constants/constants';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     })
   }
-
 
   login() {
     this.accountService.login(this.loginForm.value).subscribe({

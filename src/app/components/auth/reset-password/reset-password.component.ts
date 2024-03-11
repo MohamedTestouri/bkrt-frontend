@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EMAIL_REGEX } from 'src/app/models/constants';
+import { EMAIL_REGEX } from 'src/app/models/constants/constants';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({

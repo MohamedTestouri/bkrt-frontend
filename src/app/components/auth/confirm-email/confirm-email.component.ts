@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
 import { ConfirmEmail } from 'src/app/models/confirmEmail';
-import { EMAIL_REGEX } from 'src/app/models/constants';
+import { EMAIL_REGEX } from 'src/app/models/constants/constants';
 import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';
 

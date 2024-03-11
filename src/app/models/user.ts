@@ -1,10 +1,7 @@
 export interface User {
     username: string;
-    organisationName: string;
-    lastName: string;
-    firstName: string;
     token: string;
-    phone: string;
+    phoneNumber: string;
     email: string;
     roles: string[];
 }
