@@ -5,7 +5,8 @@ import { OverlayModule } from '@angular/cdk/overlay'
 import { CdkMenuModule } from '@angular/cdk/menu'
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -18,14 +19,16 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
     OverlayModule,
     CdkMenuModule,
     CarouselModule.forRoot(),
-    NgxIntlTelInputModule
+    NgxIntlTelInputModule,
+    NgSelectModule
   ],
   exports: [
     ToastrModule,
     OverlayModule,
     CdkMenuModule,
     CarouselModule,
-    NgxIntlTelInputModule
+    NgxIntlTelInputModule,
+    NgSelectModule
   ]
 })
 export class SharedModule { }

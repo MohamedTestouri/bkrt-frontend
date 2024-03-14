@@ -1,66 +1,90 @@
-<form>
-    <div class="col-md-12 text-end">
-        <h2 class="h2"> معلومات عن مشروع الفلاحي</h2>
+<form *ngIf="(accountService.currentUser$ | async)" [formGroup]="agriProjectform" (ngSubmit)="agriProjectform.valid && registerAgriculteur()" autocomplete="off">
+    
+    <div class="row mb-4">
+        <div class="col-md-12 text-end">
+            <h2 class="h2"> معلومات عن مشروع الفلاحي</h2>
+        </div>        
     </div>
 
     <div class="row">
-        <div class="col-md-6 text-end mb-3">
+        <div class="col-md-6">
             <div class="row">
-                <div class="col-md-10">
-                    <select formControlName="delegation" class="form-select" aria-label="Delegation">
-                        <option value="" disabled selected>اختر المعتمدية</option>
-                        <option *ngFor="let delegation of delegations" [value]="delegation">{{ delegation }}</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label class="label text-end">المعتمدية</label>
-                </div>
+                <div class="col-md-6"></div>
+                <div class="col-md-6"></div>
             </div>
         </div>
-
-        <div class="col-md-6 text-end">
+        <div class="col-md-6">
             <div class="row">
-                <div class="col-md-10">
-                    <select formControlName="governorate" (change)="onGovernorateChange()" class="form-select"
-                        aria-label="Governorate">
-                        <option value="" disabled selected>اختر الولاية</option>
-                        <option *ngFor="let governorate of governorates" [value]="governorate">{{ governorate }}
-                        </option>
-                    </select>
+                <div class="col-md-6 mb-4">
+                    <div class="container">
+                        <select formControlName="delegation" class="form-select" aria-label="Delegation">
+                            <option value="" disabled selected>اختر المعتمدية</option>
+                            <option *ngFor="let delegation of delegations" [value]="delegation">{{ delegation }}</option>
+                        </select>
+                        <div *ngIf="agriProjectform.get('delegation').invalid && (agriProjectform.get('delegation').dirty || agriProjectform.get('delegation').touched)" style="color: red;">
+                            ينقصك المعتمدية 
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-2">
-                    <label class="label">الولاية</label>
+                <div class="col-md-6 mb-4">
+                    <div class="container">
+                        <select formControlName="governorate" (change)="onGovernorateChange()" class="form-select" aria-label="Governorate">
+                            <option value="" disabled selected>اختر الولاية</option>
+                            <option *ngFor="let governorate of governorates" [value]="governorate">{{ governorate }}</option>
+                        </select>
+                        <div *ngIf="agriProjectform.get('governorate').invalid && (agriProjectform.get('governorate').dirty || agriProjectform.get('governorate').touched)" style="color: red;">
+                            ينقصك الولاية 
+                        </div>                            
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="row">
+                        <app-text-input class="col-md-9" [formControl]="$any(agriProjectform.controls['site'])" [label]="'الموقع'"></app-text-input>
+                        <label class="label text-end col-md-2">الموقع</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="row">
+                        <app-text-input class="col-md-9" [formControl]="$any(agriProjectform.controls['surface'])" [label]="'مساحة الأرض'"></app-text-input>
+                        <label class="label col-md-3">مساحة الأرض</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="container">
+                        <!--Using ng-option and for loop-->
+                        <ng-select 
+                            [multiple]="true" 
+                            [(ngModel)]="selectedtypeCultures" 
+                            [searchable]="false"
+                            [selectableGroup]="true"
+                            [selectableGroupAsModel]="false"
+                            placeholder="اختر نوع الزراعات"
+                            [closeOnSelect]="false">
+                            <ng-option *ngFor="let typeCulture of typeCultures" [value]="typeCulture.name">{{typeCulture.name}}</ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="row">
+                        <app-text-input class="col-md-9" [formControl]="$any(agriProjectform.controls['site'])" [label]="'الموقع'"></app-text-input>
+                        <label class="label text-end col-md-2">الموقع</label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6 text-end mb-3">
-            <div class="row">
-                <div class="col-md-10">
-                    <span class="input-group" id="gps-search-addon"> <input type="search" class="form-control"
-                            placeholder="Coordonnées GPS" aria-label="Search" aria-describedby="gps-search-addon">🌐
-                    </span>
-                </div>
-                <div class="col-md-2">
-                    <label class="label text-end">الموقع</label>
-                </div>
-            </div>
-        </div>
+    <div class="row"></div>
+</form>
 
-        <div class="col-md-6 text-end">
-            <div class="row">
-                <div class="col-md-10">
-                    <input type="text" placeholder="Surface" class="form-control text-end"
-                        [formControl]="$any(form.controls['surface'])" id="surface" name="surface">
-                </div>
-                <div class="col-md-2">
-                    <label class="label">مساحة الأرض</label>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- <form>
+
+
+
 
     <div class="row">
         <div class="col-md-6 text-end mb-3">
@@ -68,7 +92,7 @@
                 <div class="col-md-10">
                     <select formControlName="typeCulture" class="form-select text-end" aria-label="typeCulture"
                         multiple="multiple">
-                        <option class="form-check" value="" disabled selected>اختر نوع الزراعات</option>
+                        <option class="form-check" value="" disabled selected></option>
                         <option *ngFor="let typeCulture of typeCultures" [value]="governorate">{{ typeCulture }}
                         </option>
                     </select>
@@ -293,4 +317,4 @@
             </button>
         </div>
     </div>
-</form>
+</form> -->
