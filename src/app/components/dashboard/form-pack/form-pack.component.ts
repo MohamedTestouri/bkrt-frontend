@@ -14,26 +14,15 @@ import { TerrainService } from 'src/app/services/terrain.service';
 })
 export class FormPackComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private _terrainService : TerrainService, private router: Router, public accountService: AccountService ) { }
+  constructor(private fb: FormBuilder, private terrainService : TerrainService, private router: Router, public accountService: AccountService ) { }
 
   agriProjectform: FormGroup;
-
+  typeCultures = TYPECULTURES;
   governoratesWithDelegations = GOVERNORATESWITHDELEGATIONS;
   governorates: string[] = GOVERNORATES;
   delegations: string[] = [];
-
-  selectedtypeCultures: string[];
-  typeCultures = TYPECULTURES;
-
-  lat = 37.7749;
-  lng = -122.4194;
   validationErrors: string[] | undefined;
 
-  // Handle marker dragend event
-  markerDragEnd($event: any) {
-    this.lat = $event.coords.lat;
-    this.lng = $event.coords.lng;
-  }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -41,32 +30,83 @@ export class FormPackComponent implements OnInit {
 
   initializeForm() {
     this.agriProjectform = this.fb.group({
-      governorate: ['', Validators.required],
-      delegation: ['', Validators.required],
-      surface: ['', Validators.required],
+      governorate: [''],
+      delegation: [''],
+      surface: [''],
       site: [''],
-
-
-
-      // adresse: ['', [Validators.required]],
-
-      // address: ['', Validators.required],
-      // typeCulture: this.fb.array([]),
-      // moreSpecificity: ['', Validators.required],
-      // fruitiere: [false, ],
-      // natureAgriculture: ['', ],
-      // ageArbres: [{ value: '', disabled: true }],
-      // densitePlantation: [{ value: '', disabled: true }],
-      // densitePlantation2: [{ value: '', disabled: true }],
-      // aspersion: [{ value: '', disabled: true }],
-      // hydroponie: [{ value: '', disabled: true }],  
-      // sousSerre: [{ value: '', disabled: true }],
-      // autre: [{ value: '', disabled: true }],
-      // maraicheres: [false, ],
-      // varietePlantation: [{ value: '', disabled: true }],
-      // betail: [false, ],
-      // typeBetail: [{ value: '', disabled: true }],
-      // nombreBetail: [{ value: '', disabled: true }],
+      typeCultures: [],
+      moreSpecificity: [''],
+      //
+      plantationDensity: [''],
+      treeAge: [''],
+      //
+      vegetable: [''],
+      //
+      irrigation: [''],
+      //
+      cattleBreeding: [''],
+      cattleBreedingType: [''],
+      cattleBreedingNumber: [''],
+      //
+      fieldCropsWheatTendre: [false],
+      fieldCropsWheatDur: [false],
+      fieldCropsBarley: [false],
+      fieldCropsTriticale: [false],    
+      fieldCropsOther: [false],
+      //
+      forageCropsAlfalfa: [false],
+      forageCropsTrefleRay: [false],
+      forageCropsRay_Grass: [false], 
+      forageCropsForageSorghum: [false],
+      forageCropsOther: [false],
+      //
+      fruitGrowingOliveTreeTable: [false],
+      fruitGrowingOliveTreeOil: [false],
+      fruitGrowingAlmond: [false],
+      fruitGrowingArgumes: [false],
+      fruitGrowingVineTable: [false],
+      fruitGrowingVineCurve: [false],
+      fruitGrowingApple: [false],
+      fruitGrowingPearTree: [false],  
+      fruitGrowingPeach: [false],
+      fruitGrowingPomegranate: [false],
+      fruitGrowingPistachioTree: [false],
+      fruitGrowingPalmDate: [false],
+      fruitGrowingOther: [false],
+      //
+      cucurbitsPasteque: [false],
+      cucurbitsMelon: [false],
+      cucurbitsSquash: [false],
+      cucurbitsZucchini: [false],
+      cucurbitsCucumber: [false],
+      cucurbitsOther: [false],
+      //
+      leafyVegetableLettuce: [false],
+      leafyVegetableCelery: [false],
+      leafyVegetableSpinach: [false],
+      leafyVegetableParsley: [false],
+      leafyVegetableSwiss_chard: [false],
+      leafyVegetableOther: [false],
+      //
+      marketGardeningPotato: [false],
+      marketGardeningTomato: [false], 
+      marketGardeningChili: [false],
+      marketGardeningOnion: [false],
+      marketGardeningCarrots: [false],
+      marketGardeningGarlic: [false],
+      marketGardeningArcihaut: [false],
+      marketGardeningStrawberry: [false],
+      marketGardeningEggplant: [false],
+      marketGardeningCabbage: [false],
+      marketGardeningOther: [false],
+      //
+      AromaticPlantMint: [false],
+      AromaticPlantsCariander: [false], 
+      AromaticPlantsThyme: [false],
+      AromaticPlantsRosemary: [false],
+      AromaticPlantsBasil: [false],
+      AromaticPlantsGeraniul: [false], 
+      AromaticPlantsOther: [false],
     });
   }
 
@@ -76,90 +116,19 @@ export class FormPackComponent implements OnInit {
     this.delegations = governorateObj ? governorateObj.delegations : [];
   }
 
-  selectedItems: string[] = [];
+  registerAgriculteurProject() {
+    console.log(this.agriProjectform.value);
 
-  toggleSelection(item: string) {
-    console.log(this.selectedItems)
-    const index = this.selectedItems.indexOf(item);
-    if (index === -1) {
-      this.selectedItems.push(item); // Add item if not already selected
-    } else {
-      this.selectedItems.splice(index, 1); // Remove item if already selected
-    }
+    this.terrainService.create(this.agriProjectform.value).subscribe({
+      next: _ => {
+        this.router.navigateByUrl('/');
+        // this.showError = false;
+      },
+      error: e => {
+        // this.showError = true;
+        // this.validationError = e.error;
+      } 
+    })
   }
 
-  // onGovernorateChange() {
-  //   const governorate = this.form.get('governorate').value;
-  //   const governorateObj = this.governoratesWithDelegations.find(item => item.governorate === governorate);
-  //   this.delegations = governorateObj ? governorateObj.delegations : [];
-  // }
-  // toggleFieldsMaraicheres() {
-  //   const maraicheresControl = this.form.get('maraicheres');
-  //   const varietePlantationControl = this.form.get('varietePlantation');
-  //   const densitePlantation2Control = this.form.get('densitePlantation2');
-  //   const hydroponieControl = this.form.get('hydroponie');
-  //   const autreControl = this.form.get('autre');
-  //   const sousSerreControl = this.form.get('sousSerre');
-  //   const aspersionControl = this.form.get('aspersion');
-
-  //   if (maraicheresControl?.value) {
-  //     varietePlantationControl?.enable();
-  //     densitePlantation2Control?.enable();
-  //     hydroponieControl?.enable();
-  //     autreControl?.enable();
-  //     sousSerreControl?.enable();
-  //     aspersionControl?.enable();
-  //   } else {
-  //     varietePlantationControl?.disable();
-  //     densitePlantation2Control?.disable();
-  //     hydroponieControl?.disable();
-  //     autreControl?.disable();
-  //     sousSerreControl?.disable();
-  //     aspersionControl?.disable();
-  //   }
-  // }
-  // toggleFieldsFruitiere() {
-  //   const fruitiereControl = this.form.get('fruitiere');
-  //   const ageArbresControl = this.form.get('ageArbres');
-  //   const densitePlantationControl = this.form.get('densitePlantation');
-
-  //   if (fruitiereControl?.value) {
-  //     ageArbresControl?.enable();
-  //     densitePlantationControl?.enable();
-  //   } else {
-  //     ageArbresControl?.disable();
-  //     densitePlantationControl?.disable();
-  //   }
-  // }
-
-  // toggleFieldsBetail() {
-  //   const betailControl = this.form.get('betail');
-  //   const typeBetailControl = this.form.get('typeBetail');
-  //   const nombreBetailControl = this.form.get('nombreBetail');
-
-  //   if (betailControl?.value) {
-  //     typeBetailControl?.enable();
-  //     nombreBetailControl?.enable();
-  //   } else {
-  //     typeBetailControl?.disable();
-  //     nombreBetailControl?.disable();
-  //   }
-  // }
-
-  // isDisabled(controlName: string): string {
-  //   const control = this.form.get(controlName);
-  //   return control?.disabled ? 'true' : null;
-  // }
-  // Create()
-  // {
-  //   console.log(this.form.value)
-  //   this._terrainService.create(this.form.value).subscribe({
-  //     next: _ => {
-  //       this.router.navigateByUrl('/');
-  //     },
-  //     error: e => {
-  //       this.validationErrors = e;
-  //     } 
-  //   })
-  // }
 }

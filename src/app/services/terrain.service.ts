@@ -10,9 +10,6 @@ import { Terrain } from '../models/terrain';
 })
 export class TerrainService {
   baseUrl = environment.apiUrl;
-  private currentUserSource = new BehaviorSubject<User | null>(null);
-  private terrain = new BehaviorSubject<Terrain | null>(null);
-  currentUser$ = this.currentUserSource.asObservable();
   
   constructor(private http: HttpClient) { }
 
@@ -23,4 +20,6 @@ export class TerrainService {
       })
     )
   }
+
+
 }

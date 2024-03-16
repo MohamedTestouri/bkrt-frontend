@@ -1,19 +1,70 @@
-<form *ngIf="(accountService.currentUser$ | async)" [formGroup]="agriProjectform" (ngSubmit)="agriProjectform.valid && registerAgriculteur()" autocomplete="off">
-    
+<form *ngIf="(accountService.currentUser$ | async)" [formGroup]="agriProjectform" (ngSubmit)="agriProjectform.valid && registerAgriculteurProject()" autocomplete="off">
     <div class="row mb-4">
         <div class="col-md-12 text-end">
-            <h2 class="h2"> معلومات عن مشروع الفلاحي</h2>
+            <h2> معلومات عن مشروع الفلاحي</h2>
         </div>        
     </div>
-
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row mb-4">
+        <div class="col-md-5">
             <div class="row">
-                <div class="col-md-6"></div>
-                <div class="col-md-6"></div>
+                <div class="col-md-6 mb-4">
+                    <label class="form-label">نوعية الري ؟</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="irrigation" id="irrigationG_G" value="irrigationG_G">
+                        <label class="form-check-label" for="irrigationG_G">G à G</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="irrigation" id="irrigationAspresion" value="irrigationAspresion">
+                        <label class="form-check-label" for="irrigationAspresion">Aspersion</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="irrigation" id="irrigationOther" value="irrigationOther">
+                        <label class="form-check-label" for="irrigationOther">Autres</label>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label class="label2">هل زراعة الخضراوات ؟ </label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="vegetable" id="vegetableOpenField" value="vegetableOpenField">
+                        <label class="form-check-label" for="vegetableOpenField">Plein Champ</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="vegetable" id="vegetableGreenHouse" value="vegetableGreenHouse">
+                        <label class="form-check-label" for="vegetableGreenHouse">Sous Serre</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="vegetable" id="vegetablehydroponics" value="vegetablehydroponics">
+                        <label class="form-check-label" for="vegetablehydroponics">Hydroponie</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row mb-4">
+                        <div class="container">
+                            <app-text-input [formControl]="$any(agriProjectform.controls['cattleBreedingType'])" [label]="'ما نوعها'"></app-text-input>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="container">
+                            <app-text-input [formControl]="$any(agriProjectform.controls['cattleBreedingNumber'])" [label]="'عدد الرؤوس'"></app-text-input>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">تربية الماشية ؟</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="cattleBreeding" id="Yes" value="Yes">
+                        <label class="form-check-label" for="Yes">Oui</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="cattleBreeding" id="No" value="No">
+                        <label class="form-check-label" for="No">Non</label>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="container">
@@ -34,287 +85,305 @@
                         </select>
                         <div *ngIf="agriProjectform.get('governorate').invalid && (agriProjectform.get('governorate').dirty || agriProjectform.get('governorate').touched)" style="color: red;">
                             ينقصك الولاية 
-                        </div>                            
-                    </div>
+                        </div>    
+                    </div>                        
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <div class="row">
-                        <app-text-input class="col-md-9" [formControl]="$any(agriProjectform.controls['site'])" [label]="'الموقع'"></app-text-input>
-                        <label class="label text-end col-md-2">الموقع</label>
+                    <div class="container">
+                        <app-text-input [formControl]="$any(agriProjectform.controls['site'])" [label]="'الموقع'"></app-text-input>
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="row">
-                        <app-text-input class="col-md-9" [formControl]="$any(agriProjectform.controls['surface'])" [label]="'مساحة الأرض'"></app-text-input>
-                        <label class="label col-md-3">مساحة الأرض</label>
+                    <div class="container">
+                        <app-text-input [formControl]="$any(agriProjectform.controls['surface'])" [label]="'مساحة الأرض'"></app-text-input>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 mb-4">
                     <div class="container">
-                        <!--Using ng-option and for loop-->
                         <ng-select 
-                            [multiple]="true" 
-                            [(ngModel)]="selectedtypeCultures" 
-                            [searchable]="false"
-                            [selectableGroup]="true"
-                            [selectableGroupAsModel]="false"
+                            [items]="typeCultures"
+                            bindLabel="name"
+                            bindValue="name"
+                            [multiple]="true"
                             placeholder="اختر نوع الزراعات"
-                            [closeOnSelect]="false">
-                            <ng-option *ngFor="let typeCulture of typeCultures" [value]="typeCulture.name">{{typeCulture.name}}</ng-option>
+                            clearAllText="Clear"
+                            formControlName="typeCultures">
                         </ng-select>
                     </div>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <div class="row">
-                        <app-text-input class="col-md-9" [formControl]="$any(agriProjectform.controls['site'])" [label]="'الموقع'"></app-text-input>
-                        <label class="label text-end col-md-2">الموقع</label>
+                    <div class="container">
+                        <app-text-input [formControl]="$any(agriProjectform.controls['moreSpecificity'])" [label]="'مزيد التحديد'"></app-text-input>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <label class="label2">هل زراعة الأشجار المثمرة ؟ </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="container">
+                        <app-text-input [formControl]="$any(agriProjectform.controls['moreSpecificity'])" [label]="'عمر الأشجار'"></app-text-input>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="container">
+                        <app-text-input [formControl]="$any(agriProjectform.controls['moreSpecificity'])" [label]="'كثافة الزراعة'"></app-text-input>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="row"></div>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-4 mb-2">
+                    <label class="form-label">Arboriculture fruitiére :</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fruitGrowingOliveTreeTable" id="fruitGrowingOliveTreeTable">
+                        <label class="form-check-label" for="fruitGrowingOliveTreeTable">Olivier (table)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fruitGrowingOliveTreeOil" id="fruitGrowingOliveTreeOil">
+                        <label class="form-check-label" for="fruitGrowingOliveTreeOil">Olivier (huile)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fruitGrowingAlmond" id="fruitGrowingAlmond">
+                        <label class="form-check-label" for="fruitGrowingAlmond">Amandier</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fruitGrowingArgumes" id="fruitGrowingArgumes">
+                        <label class="form-check-label" for="fruitGrowingArgumes">argumes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fruitGrowingVineTable" id="fruitGrowingVineTable">
+                        <label class="form-check-label" for="fruitGrowingVineTable">Vigne (table)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fruitGrowingVineCurve" id="fruitGrowingVineCurve">
+                        <label class="form-check-label" for="fruitGrowingVineCurve">Vigne (curve)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fruitGrowingApple" id="fruitGrowingApple">
+                        <label class="form-check-label" for="fruitGrowingApple">Pommier</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fruitGrowingPearTree" id="fruitGrowingPearTree">
+                        <label class="form-check-label" for="fruitGrowingPearTree">Poirier</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fruitGrowingPeach" id="fruitGrowingPeach">
+                        <label class="form-check-label" for="fruitGrowingPeach">Pecher </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fruitGrowingPomegranate" id="fruitGrowingPomegranate">
+                        <label class="form-check-label" for="fruitGrowingPomegranate">Grenadier</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fruitGrowingPistachioTree" id="fruitGrowingPistachioTree">
+                        <label class="form-check-label" for="fruitGrowingPistachioTree">Pistachier</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fruitGrowingPalmDate" id="fruitGrowingPalmDate">
+                        <label class="form-check-label" for="fruitGrowingPalmDate">Palmier Dattier</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fruitGrowingOther" id="fruitGrowingOther">
+                        <label class="form-check-label" for="fruitGrowingOther">Autres</label>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <label class="form-label">Grandes cultures :</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fieldCropsWheatTendre" id="fieldCropsWheatTendre">
+                        <label class="form-check-label" for="fieldCropsWheatTendre">Blé (tendre Luzerne)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fieldCropsWheatDur" id="fieldCropsWheatDur">
+                        <label class="form-check-label" for="fieldCropsWheatDur">Blé (Dur TrèfleRay)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fieldCropsBarley" id="fieldCropsBarley">
+                        <label class="form-check-label" for="fieldCropsBarley">Orge</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fieldCropsTriticale" id="fieldCropsTriticale">
+                        <label class="form-check-label" for="fieldCropsTriticale">Triticale</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="fieldCropsOther" id="fieldCropsOther">
+                        <label class="form-check-label" for="fieldCropsOther">Autres</label>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <label class="form-label">Cultures fourragéres :</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="forageCropsAlfalfa" id="forageCropsAlfalfa">
+                        <label class="form-check-label" for="forageCropsAlfalfa">Luzerne</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="forageCropsTrefleRay" id="forageCropsTrefleRay">
+                        <label class="form-check-label" for="forageCropsTrefleRay">TréfleRay</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="forageCropsRay_Grass" id="forageCropsRay_Grass">
+                        <label class="form-check-label" for="forageCropsRay_Grass">Ray Grass</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="forageCropsForageSorghum" id="forageCropsForageSorghum">
+                        <label class="form-check-label" for="forageCropsForageSorghum">Sorgho fourrager</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="forageCropsOther" id="forageCropsOther">
+                        <label class="form-check-label" for="forageCropsOther">Autres</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+             <div class="row">
+                <div class="col-md-3 mb-2">
+                    <label class="form-label">Cucurbitacées :</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="cucurbitsCucumber" id="cucurbitsCucumber">
+                        <label class="form-check-label" for="cucurbitsCucumber">concombre</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="cucurbitsZucchini" id="cucurbitsZucchini">
+                        <label class="form-check-label" for="cucurbitsZucchini">Courgette</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="cucurbitsSquash" id="cucurbitsSquash">
+                        <label class="form-check-label" for="cucurbitsSquash">Courge</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="cucurbitsMelon" id="cucurbitsMelon">
+                        <label class="form-check-label" for="cucurbitsMelon">Melon</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="cucurbitsPasteque" id="cucurbitsPasteque">
+                        <label class="form-check-label" for="cucurbitsPasteque">Pastéque</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="cucurbitsOther" id="cucurbitsOther">
+                        <label class="form-check-label" for="cucurbitsOther">Autres</label>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <label for="leafyVegetable" class="form-label">Légume à feuilles :</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="leafyVegetableSwiss_chard" id="leafyVegetableSwiss_chard">
+                        <label class="form-check-label" for="leafyVegetableSwiss_chard">Blette</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="leafyVegetableParsley" id="leafyVegetableParsley">
+                        <label class="form-check-label" for="leafyVegetableParsley">Persil</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="leafyVegetableSpinach" id="leafyVegetableSpinach">
+                        <label class="form-check-label" for="leafyVegetableSpinach">Epinards</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="leafyVegetableCelery" id="leafyVegetableCelery">
+                        <label class="form-check-label" for="leafyVegetableCelery">Céleri</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="leafyVegetableLettuce" id="leafyVegetableLettuce">
+                        <label class="form-check-label" for="leafyVegetableLettuce">Laitues</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="leafyVegetableOther" id="leafyVegetableOther">
+                        <label class="form-check-label" for="leafyVegetableOther">Autres</label>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <label class="form-label">Cultures maraichéres :</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="marketGardeningPotato" id="marketGardeningPotato">
+                        <label class="form-check-label" for="marketGardeningPotato">Pomme de terre</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="marketGardeningTomato" id="marketGardeningTomato">
+                        <label class="form-check-label" for="marketGardeningTomato">Tomate</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="marketGardeningChili" id="marketGardeningChili">
+                        <label class="form-check-label" for="marketGardeningChili">Piment</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="marketGardeningOnion" id="marketGardeningOnion">
+                        <label class="form-check-label" for="marketGardeningOnion">Oignon</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="marketGardeningCarrots" id="marketGardeningCarrots">
+                        <label class="form-check-label" for="marketGardeningCarrots">Carottes</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="marketGardeningGarlic" id="marketGardeningGarlic">
+                        <label class="form-check-label" for="marketGardeningGarlic">Ail</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="marketGardeningArcihaut" id="marketGardeningArcihaut">
+                        <label class="form-check-label" for="marketGardeningArcihaut">Arcihaut</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="marketGardeningStrawberry" id="marketGardeningStrawberry">
+                        <label class="form-check-label" for="marketGardeningStrawberry">Fraise</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="marketGardeningEggplant" id="marketGardeningEggplant">
+                        <label class="form-check-label" for="marketGardeningEggplant">Aubergines</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="marketGardeningCabbage" id="marketGardeningCabbage">
+                        <label class="form-check-label" for="marketGardeningCabbage">Choux</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="marketGardeningOther" id="marketGardeningOther">
+                        <label class="form-check-label" for="marketGardeningOther">Autres</label>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <label class="form-label">Plantes aromatiques :</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="AromaticPlantMint" id="AromaticPlantMint">
+                        <label class="form-check-label" for="AromaticPlantMint">Menthe</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="AromaticPlantsCariander" id="AromaticPlantsCariander">
+                        <label class="form-check-label" for="AromaticPlantsCariander">Cariandre</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="AromaticPlantsThyme" id="AromaticPlantsThyme">
+                        <label class="form-check-label" for="AromaticPlantsThyme">Thym</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="AromaticPlantsRosemary" id="AromaticPlantsRosemary">
+                        <label class="form-check-label" for="AromaticPlantsRosemary">Romarin</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="AromaticPlantsBasil" id="AromaticPlantsBasil">
+                        <label class="form-check-label" for="AromaticPlantsBasil">Basilic</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="AromaticPlantsGeraniul" id="AromaticPlantsGeraniul">
+                        <label class="form-check-label" for="AromaticPlantsGeraniul">Géraniul</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" formControlName="AromaticPlantsOther" id="AromaticPlantsOther">
+                        <label class="form-check-label" for="AromaticPlantsOther">Autres</label>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <button [disabled]="!agriProjectform.valid" type="submit" class="btn btn-success rounded text-center col-md-8">تأكيد</button>
+    </div>
 </form>
-
-<!-- <form>
-
-
-
-
-    <div class="row">
-        <div class="col-md-6 text-end mb-3">
-            <div class="row">
-                <div class="col-md-10">
-                    <select formControlName="typeCulture" class="form-select text-end" aria-label="typeCulture"
-                        multiple="multiple">
-                        <option class="form-check" value="" disabled selected></option>
-                        <option *ngFor="let typeCulture of typeCultures" [value]="governorate">{{ typeCulture }}
-                        </option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label class="label text-end">نوع الزراعات</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 text-end">
-            <div class="row">
-                <div class="col-md-10">
-                    <input type="text" class="form-control text-end"
-                        [formControl]="$any(form.controls['moreSpecificity'])" id="moreSpecificity"
-                        name="moreSpecificity">
-                </div>
-                <div class="col-md-2">
-                    <label class="label">مزيد التحديد</label>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 text-end mb-3">
-            <div class="row">
-            </div>
-        </div>
-
-        <div class="col-md-6 text-end">
-            <div class="row">
-                <div class="col-md-10">
-                    <label class="label2">هل زراعة الأشجار المثمرة ؟ </label>
-                </div>
-                <div class="col-md-1">
-                    <input type="checkbox" class="form-check-input" [formControl]="$any(form.controls['fruitiere'])"
-                        id="fruitiere" name="fruitiere" (change)="toggleFieldsFruitiere()">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 text-end mb-3">
-            <div class="row">
-                <div class="col-md-10">
-                    <input type="text" class="form-control text-end" placeholder="Age des arbres"
-                        [formControl]="$any(form.controls['ageArbres'])" id="ageArbres"
-                        [attr.disabled]="isDisabled('ageArbres')" name="ageArbres">
-                </div>
-                <div class="col-md-2">
-                    <label class="label">عمر الأشجار</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 text-end">
-            <div class="row">
-                <div class="col-md-10">
-                    <input type="text" class="form-control text-end" placeholder="Densité de plantation"
-                        [formControl]="$any(form.controls['densitePlantation'])" id="densitePlantation"
-                        [attr.disabled]="isDisabled('densitePlantation')" name="densitePlantation">
-                </div>
-                <div class="col-md-2">
-                    <label class="label">كثافة الزراعة</label>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 text-end mb-3">
-            <div class="row">
-            </div>
-        </div>
-
-        <div class="col-md-6 text-end">
-            <div class="row">
-                <div class="col-md-10">
-                    <label class="label2">هل زراعة الخضراوات ؟ </label>
-                </div>
-                <div class="col-md-1">
-                    <input type="checkbox" class="form-check-input" [formControl]="$any(form.controls['maraicheres'])"
-                        id="maraicheres" name="maraicheres" (change)="toggleFieldsMaraicheres()">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 text-end mb-3">
-            <div class="row">
-                <div class="col-md-10">
-                    <input type="text" class="form-control text-end" placeholder="Aspersion"
-                        [formControl]="$any(form.controls['aspersion'])" id="aspersion"
-                        [attr.disabled]="isDisabled('aspersion')" name="aspersion">
-                </div>
-                <div class="col-md-2">
-                    <label class="label">رش</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 text-end">
-            <div class="row">
-                <div class="col-md-10">
-                    <input type="text" class="form-control text-end" placeholder="Sous serre"
-                        [formControl]="$any(form.controls['sousSerre'])" id="sousSerre"
-                        [attr.disabled]="isDisabled('sousSerre')" name="sousSerre">
-                </div>
-                <div class="col-md-2">
-                    <label class="label">تحت الدفيئة</label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 text-end mb-3">
-            <div class="row">
-                <div class="col-md-10">
-                    <input type="text" class="form-control text-end" placeholder="Autre"
-                        [formControl]="$any(form.controls['autre'])" id="autre" [attr.disabled]="isDisabled('autre')"
-                        name="autre">
-                </div>
-                <div class="col-md-2">
-                    <label class="label">غيرها؟</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 text-end">
-            <div class="row">
-                <div class="col-md-10">
-                    <input type="text" class="form-control text-end" placeholder="Hydroponie"
-                        [formControl]="$any(form.controls['hydroponie'])" id="hydroponie"
-                        [attr.disabled]="isDisabled('hydroponie')" name="hydroponie">
-                </div>
-                <div class="col-md-2">
-                    <label class="label">الزراعة المائية</label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 text-end mb-3">
-            <div class="row">
-                <div class="col-md-10">
-                    <input type="text" class="form-control text-end" placeholder="Variété de plantation fruits/légumes"
-                        [formControl]="$any(form.controls['varietePlantation'])" id="varietePlantation"
-                        [attr.disabled]="isDisabled('varietePlantation')" name="varietePlantation">
-                </div>
-                <div class="col-md-2">
-                    <label class="label">أصناف الزراعة</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 text-end">
-            <div class="row">
-                <div class="col-md-10">
-                    <input type="text" class="form-control text-end" placeholder="Densité de plantation"
-                        [formControl]="$any(form.controls['densitePlantation2'])" id="densitePlantation2"
-                        [attr.disabled]="isDisabled('densitePlantation2')" name="densitePlantation2">
-                </div>
-                <div class="col-md-2">
-                    <label class="label">كثافة الزراعة</label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 text-end mb-3">
-            <div class="row">
-            </div>
-        </div>
-
-        <div class="col-md-6 text-end">
-            <div class="row">
-                <div class="col-md-10">
-                    <label class="label2"> تربية الماشية ؟ </label>
-                </div>
-                <div class="col-md-1">
-                    <input type="checkbox" class="form-check-input" [formControl]="$any(form.controls['betail'])"
-                        id="betail" name="betail" (change)="toggleFieldsBetail()">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 text-end mb-5">
-            <div class="row">
-                <div class="col-md-10">
-                    <input type="number" class="form-control text-end" placeholder="Nombres"
-                        [formControl]="$any(form.controls['nombreBetail'])" id="nombreBetail"
-                        [attr.disabled]="isDisabled('nombreBetail')" name="nombreBetail">
-                </div>
-                <div class="col-md-2">
-                    <label class="label">عدد الرؤوس</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 text-end">
-            <div class="row">
-                <div class="col-md-10">
-                    <input type="text" class="form-control text-end" placeholder="Type de bétail"
-                        [formControl]="$any(form.controls['typeBetail'])" id="typeBetail"
-                        [attr.disabled]="isDisabled('typeBetail')" name="typeBetail">
-                </div>
-                <div class="col-md-2">
-                    <label class="label">ما نوعها </label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div>
-            <button type="button" class="bt btn btn-success btn-lg rounded text-center col-md-2" (click)="Create()">
-                تأكيد
-            </button>
-        </div>
-    </div>
-</form> -->
