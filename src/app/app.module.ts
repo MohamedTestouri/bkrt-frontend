@@ -40,7 +40,8 @@ import { ConfirmEmailComponent } from './components/auth/confirm-email/confirm-e
 import { SubscriptionsPackagesComponent } from './components/subscriptions-packages/subscriptions-packages.component';
 import { NewTerrainComponent } from './components/dashboard/new-terrain/new-terrain.component';
 import { FormPackComponent } from './components/dashboard/form-pack/form-pack.component';
-
+import { RendezVousComponent } from './components/rendez-vous/rendez-vous/rendez-vous.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { FormPackComponent } from './components/dashboard/form-pack/form-pack.co
     SubscriptionsPackagesComponent,
     NewTerrainComponent,
     FormPackComponent,
+    RendezVousComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -79,6 +81,7 @@ import { FormPackComponent } from './components/dashboard/form-pack/form-pack.co
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    FullCalendarModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

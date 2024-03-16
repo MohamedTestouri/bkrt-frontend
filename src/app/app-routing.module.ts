@@ -19,10 +19,11 @@ import { AccountSettingsComponent } from './components/dashboard/account-setting
 import { SubscriptionsPackagesComponent } from './components/subscriptions-packages/subscriptions-packages.component';
 import { NewTerrainComponent } from './components/dashboard/new-terrain/new-terrain.component';
 import { FormPackComponent } from './components/dashboard/form-pack/form-pack.component';
+import { RendezVousComponent } from './components/rendez-vous/rendez-vous/rendez-vous.component';
 
 const routes: Routes = [
   {path: 'login', component: ParentAuthComponent, canActivate: [AlreadyAuthGuard]},
-  {path: '', 
+  {path: '',
     component: ParentComponent,
     canActivate: [AuthGuard],
     children: [
@@ -33,6 +34,7 @@ const routes: Routes = [
       {path: 'dashboardHeader', component: DashboardHeaderComponent},
       {path: 'newTerrain', component: NewTerrainComponent},
       {path: 'formPack', component: FormPackComponent},
+      {path:'rendezvous',component:RendezVousComponent},
       {path: 'home', component: HomeComponent},
       {path: '**', component: NotFoundComponent, pathMatch: 'full'},
     ]
