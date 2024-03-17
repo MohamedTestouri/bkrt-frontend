@@ -34,7 +34,8 @@ export class FormPackComponent implements OnInit {
       delegation: [''],
       surface: [''],
       site: [''],
-      typeCultures: [],
+      typeCulturesArray: [],
+      typeCultures: [''],
       moreSpecificity: [''],
       //
       plantationDensity: [''],
@@ -100,13 +101,13 @@ export class FormPackComponent implements OnInit {
       marketGardeningCabbage: [false],
       marketGardeningOther: [false],
       //
-      AromaticPlantMint: [false],
-      AromaticPlantsCariander: [false], 
-      AromaticPlantsThyme: [false],
-      AromaticPlantsRosemary: [false],
-      AromaticPlantsBasil: [false],
-      AromaticPlantsGeraniul: [false], 
-      AromaticPlantsOther: [false],
+      aromaticPlantMint: [false],
+      aromaticPlantsCariander: [false], 
+      aromaticPlantsThyme: [false],
+      aromaticPlantsRosemary: [false],
+      aromaticPlantsBasil: [false],
+      aromaticPlantsGeraniul: [false], 
+      aromaticPlantsOther: [false],
     });
   }
 
@@ -117,8 +118,7 @@ export class FormPackComponent implements OnInit {
   }
 
   registerAgriculteurProject() {
-    console.log(this.agriProjectform.value);
-
+    this.agriProjectform.value.typeCultures = this.agriProjectform.value.typeCulturesArray.join(", ")
     this.terrainService.create(this.agriProjectform.value).subscribe({
       next: _ => {
         this.router.navigateByUrl('/');

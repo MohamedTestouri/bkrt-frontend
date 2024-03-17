@@ -3,7 +3,8 @@ export interface Terrain {
     delegation: string;
     surface: string;
     site: string;
-    typeCultures: string[];
+    typeCulturesArray: string[];
+    typeCultures: string;
     moreSpecificity: string;
     //
     plantationDensity: string;
@@ -69,11 +70,11 @@ export interface Terrain {
     marketGardeningCabbage: boolean;
     marketGardeningOther: boolean;
     //
-    AromaticPlantMint: boolean;
-    AromaticPlantsCariander: boolean; 
-    AromaticPlantsThyme: boolean;
-    AromaticPlantsRosemary: boolean;
-    AromaticPlantsBasil: boolean;
-    AromaticPlantsGeraniul: boolean; 
-    AromaticPlantsOther: boolean;
+    aromaticPlantMint: boolean;
+    aromaticPlantsCariander: boolean; 
+    aromaticPlantsThyme: boolean;
+    aromaticPlantsRosemary: boolean;
+    aromaticPlantsBasil: boolean;
+    aromaticPlantsGeraniul: boolean; 
+    aromaticPlantsOther: boolean;
 }
