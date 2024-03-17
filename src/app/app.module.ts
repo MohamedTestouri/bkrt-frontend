@@ -43,6 +43,8 @@ import { FormPackComponent } from './components/dashboard/form-pack/form-pack.co
 import { TypeNewPasswordComponent } from './components/auth/type-new-password/type-new-password.component';
 import { CommentPubComponent } from './components/dashboard/comment-pub/comment-pub.component';
 
+import { RendezVousComponent } from './components/rendez-vous/rendez-vous/rendez-vous.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,7 @@ import { CommentPubComponent } from './components/dashboard/comment-pub/comment-
     FormPackComponent,
     TypeNewPasswordComponent,
     CommentPubComponent,
+    RendezVousComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -83,6 +86,7 @@ import { CommentPubComponent } from './components/dashboard/comment-pub/comment-
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
+    FullCalendarModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

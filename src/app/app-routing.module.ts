@@ -22,6 +22,7 @@ import { FormPackComponent } from './components/dashboard/form-pack/form-pack.co
 import { ConfirmEmailComponent } from './components/auth/confirm-email/confirm-email.component';
 import { SendEmailComponent } from './components/auth/send-email/send-email.component';
 import { TypeNewPasswordComponent } from './components/auth/type-new-password/type-new-password.component';
+import { RendezVousComponent } from './components/rendez-vous/rendez-vous/rendez-vous.component';
 
 const routes: Routes = [
   {path: 'login', component: ParentAuthComponent, canActivate: [AlreadyAuthGuard]},
@@ -39,6 +40,7 @@ const routes: Routes = [
       {path: 'dashboardHeader', component: DashboardHeaderComponent},
       {path: 'newTerrain', component: NewTerrainComponent},
       {path: 'formPack', component: FormPackComponent},
+      {path:'rendezvous',component:RendezVousComponent},
       {path: 'home', component: HomeComponent},
       {path: '**', component: NotFoundComponent, pathMatch: 'full'},
     ]

@@ -15,7 +15,7 @@ export const navbarData = [
         label: '  المنتدى الفلاحي'
     },
     {
-        routeLink: 'test2',
+        routeLink: 'rendezvous',
         icon: 'fal fa-calendar',
         label: ' المواعيد و الزيارات'
     },
