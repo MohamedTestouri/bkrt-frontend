@@ -47,6 +47,7 @@ import { RendezVousComponent } from './components/rendez-vous/rendez-vous/rendez
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { DemandeComponent } from './components/demande/demande-apointment.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { DemandePackComponent } from './components/subscriptions-packages/demande-pack/demande-pack.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +80,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     CommentPubComponent,
     RendezVousComponent,
     DemandeComponent,
+    DemandePackComponent,
   ],
   imports: [
     BrowserAnimationsModule,

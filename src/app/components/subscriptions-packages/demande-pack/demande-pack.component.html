@@ -1,0 +1,48 @@
+<div class="head">
+    <div class="head-content">
+        <app-dashboard-header></app-dashboard-header>
+    </div>
+</div>
+
+<div class="body">
+    <div class="card mb-3" style="width: 100%;">
+        <div class="row g-0">
+            <div class="col-md-6" style="background-color: #084F4B;">
+                <p> </p>
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <div class="row">
+                        <h5 class="card-title fw-bold fs-3">Your order summary</h5>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="assets/images/Olea-Pack 1.png">
+                        </div>
+
+                        <div class="col-md-6">
+                            <p class="card-text text-end fw-bold fs-4">الإشتراك الفضي</p>
+                            <div class="input-group mb-3">
+                                <button class="btn btn-outline-secondary" type="button" (click)="decrement()">-</button>
+                                <input type="number" class="numbr form-control" [(ngModel)]="number" (change)="checkValidity()" min="1">
+                                <button class="btn btn-outline-secondary" type="button" (click)="increment()">+</button>
+                              </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                    </div>
+
+                    <div class="row">
+
+                    </div>
+
+
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

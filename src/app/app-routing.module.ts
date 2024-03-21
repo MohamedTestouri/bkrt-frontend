@@ -24,6 +24,7 @@ import { SendEmailComponent } from './components/auth/send-email/send-email.comp
 import { TypeNewPasswordComponent } from './components/auth/type-new-password/type-new-password.component';
 import { RendezVousComponent } from './components/rendez-vous/rendez-vous/rendez-vous.component';
 import { DemandeComponent } from './components/demande/demande-apointment.component';
+import { DemandePackComponent } from './components/subscriptions-packages/demande-pack/demande-pack.component';
 
 const routes: Routes = [
   {path: 'login', component: ParentAuthComponent, canActivate: [AlreadyAuthGuard]},
@@ -44,6 +45,7 @@ const routes: Routes = [
       {path:'rendezvous',component:RendezVousComponent},
       {path: 'home', component: HomeComponent},
       {path: 'demande', component: DemandeComponent},
+      {path: 'demande-pack', component: DemandePackComponent},
 
       {path: '**', component: NotFoundComponent, pathMatch: 'full'},
     ]

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subscriptions-packages',
@@ -12,14 +13,14 @@ RubiraPack : boolean = true;
 SaphranPack : boolean = true;
 oleaPrice : number = 89;
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
   }
 
   clickOleaPack()
   {
-
+    this.router.navigateByUrl('/demande-pack');
   }
 
   clickRubiraPack()

@@ -30,6 +30,7 @@ export class DemandeComponent implements OnInit {
   afficherContenuDem: boolean = true;
   terrains : Terrain[];
   demandeForm: FormGroup;
+  appointmentForm: FormGroup;
   validationErrors: string[] | undefined;
   plantations: string[] | undefined;
   bsInlineValue = new Date();
@@ -151,7 +152,7 @@ export class DemandeComponent implements OnInit {
       } 
     })
 
-    this.getTerrainsByAgr();
+    //this.getTerrainsByAgr();
   }
 
   onDateChange(date: Date): void {
@@ -161,37 +162,25 @@ export class DemandeComponent implements OnInit {
   }
   initializeDemandeForm() {
     this.demandeForm = this.fb.group({
-      ingenieur: [false],
-      veterinaire: [false],
-      technicienMontage: [false],
-      technicien2: [false],
       typeCulturesArray: [],
-      typeCultures: [''],
-      typeCulture: [''],
-      animaux: [false],
-      administratifquestion: [''],
-      alimentaire: [false],
-      autre: [false],
-      autre2: [false],
-      maladiesPlantes: [false],
-      eauIrrigation: [false],
-      remiseSolFertilisation: [false],
       question: [''],
-      visite: [false],
-      aDistance: [false],
       autrePlantationDomaines: [''],
       autrePlantationQuestion: [''],
       file: [''],
-      matin: [false],
-      soir: [false],
       sujets: this.sujets,
       domaines: this.domaines,
       specialistes: this.specialistes,
       typeAgricultures: this.types,
-      periodes: this.periodes,
       terrains: [],
-      terrain: [''],
-      date: [''],
+      
+    });
+
+    this.appointmentForm = 
+    this.fb.group({
+      heure:[''],
+      minute:[''],
+      periodes: this.periodes,
+      methodeRevoir : this.revoirOptions,
     });
   }
 
