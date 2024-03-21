@@ -3,6 +3,7 @@ import { CalendarOptions } from '@fullcalendar/core'; // Importation corrigée
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { EventInput } from '@fullcalendar/core';
 import interactionPlugin from '@fullcalendar/interaction';
+import { Router } from '@angular/router';
 
 @Component({
  selector: 'app-rendez-vous',
@@ -34,11 +35,11 @@ export class RendezVousComponent implements OnInit {
     initialView: 'dayGridMonth',
     plugins: [dayGridPlugin,interactionPlugin],
     selectable: true,
-    select: this.handleDateSelect,
+    //select: this.handleDateSelect,
     events: []
  };
 
- constructor() { }
+ constructor(private router: Router) { }
 
  ngOnInit(): void {
  }
@@ -46,4 +47,10 @@ export class RendezVousComponent implements OnInit {
  createEventId() {
     return '_' + Math.random().toString(36).substr(2, 9);
  }
+
+goTodemandeAppointment()
+{
+   this.router.navigateByUrl('/demande');
+}
+
 }

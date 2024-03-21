@@ -1,6 +1,41 @@
+<div>
+    <app-dashboard-header></app-dashboard-header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <full-calendar class="custom-calendar" [options]="calendarOptions"></full-calendar>
+            </div>
+        </div>
+        <!-- <span><input type='color' id='colorPicker'></span> -->
+    </div>
+    <div class="container float-center">
+        <div class="row cards float-center">
+            <div class="col-lg-4">
+                <div class="card-container">
+                    <div class="card" style="width: 25rem;">
+                        <img src="assets/images/Image.png" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: darkseagreen;">
+                          <h5 class="card-title text-center fw-bold">هل تحتاج تحاليل تربة</h5>
+                         
+                          <a (click)="goTodemandeAppointment()" class="btn btn-light float-center fw-bold">نعم</a>
+                        </div>
+                      </div>
+                </div>
+            </div>
 
- <div>
-  <app-dashboard-header></app-dashboard-header>
-  <full-calendar [options]="calendarOptions"></full-calendar>
- </div>
- <span><input type='color' id='colorPicker'></span>
+            <div class="col-lg-4">
+                <div class="card-container">
+                    <div class="card" style="width: 25rem;">
+                        <img src="assets/images/Image.png" class="card-img-top" alt="...">
+                        <div class="card-body" style="background-color: darkseagreen;">
+                          <h5 class="card-title text-center fw-bold">هل تحتاج إلى مختص</h5>
+                          
+                          <a (click)="goTodemandeAppointment()" class="btn btn-light float-center fw-bold">نعم</a>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <!-- <span><input type='color' id='colorPicker'></span> -->
+    </div>
+</div>

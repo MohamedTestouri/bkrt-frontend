@@ -1,0 +1,12 @@
+.custom-calendar
+{
+    transform: translate(0rem, -98rem);
+    position: relative;
+    width: 80rem;
+    height: 40rem;
+}
+.cards
+{
+    transform: translate(13rem, -95rem);
+    float: center;
+}
