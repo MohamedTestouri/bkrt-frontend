@@ -1,16 +1,10 @@
-<div class="card-container">
-    <div class="card">
-        <div class="card-bg" style="background-image: url('assets/images/Rectangle 1915.png');"></div>
-        <div class="card-body">
-            <div (click)="toggleForm()" class="outer-image">
-                <img src="assets/images/Avatar.png" alt="Image de la carte" class="img-fluid float-center outer-img">
-                <div >
-                   
-                </div>
-                <div>
-                    <label class="text">إضافة أرض جديدة</label>
-                </div>
-            </div>
+<div class="card bg-light" style="height: 12rem; top: -4rem; width: 100%;">
+    <img src="assets/images/Rectangle 1915.png" class="card-img" alt="..." style="height: 12rem; width: 100%;">
+    <div class="card-img-overlay">
+        <img src="assets/images/Avatar.png" alt="Image de la carte" (click)="toggleForm()" class="img-fluid float-center outer-img mb-3" style="height: 5rem;">
+        <div>
+            <h5 class="card-title text-white text-center fs-3 fw-bold">إضافة أرض جديدة</h5>
+           
         </div>
     </div>
 </div>

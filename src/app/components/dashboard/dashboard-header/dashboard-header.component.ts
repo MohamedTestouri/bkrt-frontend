@@ -14,6 +14,7 @@ export class DashboardHeaderComponent implements OnInit {
   resteParticipation : number = 0;
   resteRendezVous : number = 0;
   resteAnalyses : number = 0;
+  agriculteurStaut : string = "مبتدئ";
 
   constructor(public accountService: AccountService, private router: Router) { }
 
