@@ -45,7 +45,8 @@ import { CommentPubComponent } from './components/dashboard/comment-pub/comment-
 
 import { RendezVousComponent } from './components/rendez-vous/rendez-vous/rendez-vous.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
-
+import { DemandeComponent } from './components/demande/demande-apointment.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +78,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     TypeNewPasswordComponent,
     CommentPubComponent,
     RendezVousComponent,
+    DemandeComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -87,6 +89,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     ReactiveFormsModule,
     SharedModule,
     FullCalendarModule,
+    BsDatepickerModule.forRoot(),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

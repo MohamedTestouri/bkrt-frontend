@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
-import { GOVERNORATES, GOVERNORATESWITHDELEGATIONS, TYPECULTURES } from 'src/app/models/constants/constants';
+import { GOVERNORATES, GOVERNORATESWITHDELEGATIONS, TYPEAGRICULTURES } from 'src/app/models/constants/constants';
 import { AccountService } from 'src/app/services/account.service';
 import { TerrainService } from 'src/app/services/terrain.service';
 
@@ -17,7 +17,7 @@ export class FormPackComponent implements OnInit {
   constructor(private fb: FormBuilder, private terrainService : TerrainService, private router: Router, public accountService: AccountService ) { }
 
   agriProjectform: FormGroup;
-  typeCultures = TYPECULTURES;
+  typeCultures = TYPEAGRICULTURES;
   governoratesWithDelegations = GOVERNORATESWITHDELEGATIONS;
   governorates: string[] = GOVERNORATES;
   delegations: string[] = [];
