@@ -5,10 +5,37 @@
 </div>
 
 <div class="body">
-    <div class="card mb-3" style="width: 100%;">
+    <div class="card mb-3" style="width: 100%; top: -4rem;">
         <div class="row g-0">
             <div class="col-md-6" style="background-color: #084F4B;">
-                <p> </p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold fs-4">1. Versement avec RIB </h5>
+                                    <p class="card-text fw-bold fs-5">RIB : 129928/783202/7850262</p>
+                                    <div class="input-file-container mb-5">
+                                        <input type="file" id="attachment" name="attachment"
+                                            accept=".pdf,.doc,.docx,.txt">
+                                        <label for="attachment" style="color: green;" class="input-file-icon">Ajouter
+                                            votre pièce justificative <i class="fas fa-paperclip"></i></label>
+                                    </div>
+
+                                    <h5 class="card-title fw-bold fs-4 ">2. Payer sur place à notre bureau </h5>
+                                    <p>Adresse :</p>
+                                    <p class="mb-5"> BP 743 - Ecole Polytechnique de Tunisie - La Marsa 2078 Tunis-
+                                        Tunisie </p>
+                                    <button class="btn btn-success fw-bold col-md-6" style="background-color: #084F4B;"
+                                        type="button">Valider</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
                 <div class="card-body">
@@ -17,32 +44,81 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
-                            <img src="assets/images/Olea-Pack 1.png">
+                        <div class="col-md-6 mb-2">
+                            <img [src]="image">
                         </div>
 
-                        <div class="col-md-6">
-                            <p class="card-text text-end fw-bold fs-4">الإشتراك الفضي</p>
+                        <div class="col-md-3 float-end">
+
+                        </div>
+                        <div class="col-md-3 float-end">
+                            <p class="card-text text-end fw-bold fs-4">{{namePack}}</p>
                             <div class="input-group mb-3">
-                                <button class="btn btn-outline-secondary" type="button" (click)="decrement()">-</button>
-                                <input type="number" class="numbr form-control" [(ngModel)]="number" (change)="checkValidity()" min="1">
-                                <button class="btn btn-outline-secondary" type="button" (click)="increment()">+</button>
-                              </div>
+                                <button class="btn btn-outline-secondary rounded-circle fw-bold" type="button"
+                                    (click)="decrement()" style="color: grey;">-</button>
+                                <input type="number" class="numbr form-control text-center" [(ngModel)]="number"
+                                    style="border: floralwhite;" (change)="checkValidity()" min="1">
+                                <button class="btn btn-outline-success rounded-circle fw-bold" type="button"
+                                    (click)="increment()" style="color: darkgreen;">+</button>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row">
-
+                        <div class="row float-start">
+                            <ul class="list-group" style="border:white;">
+                                <li class="list-group-item">
+                                    <span>
+                                        <i class="bi bi-check">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
+                                            </svg>
+                                        </i>
+                                        4 accompagnements en ligne
+                                    </span>
+                                </li>
+                                <li class="list-group-item">
+                                    <span>
+                                        <i class="bi bi-check">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
+                                            </svg>
+                                        </i>
+                                        1 visite terrain
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div class="row">
-
+                    <div class="row col-md-3 mb-3">
+                        <input type="text" placeholder="Code réduction" class="rounded"
+                            style="background-color: #44936A; color: black;">
                     </div>
 
+                    <div class="row col-md-3 mb-3">
+                        <button type="button" class="btn btn-success fw-bold" style="background-color: #084F4B;">
+                            APPLY</button>
+                    </div>
 
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <div class="row col-md-4">
+                        <button type="button" class="btn btn-success fw-bold text-end"
+                            style="background-color: #084F4B;">
+                            إختر الأرض
+                        </button>
+                    </div>
+
+                    <div class="row text-end fs-4">
+                        <p> Total Payable  : <span class="fw-bold">${{pricePack}}</span> </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<app-add-abonnements></app-add-abonnements>

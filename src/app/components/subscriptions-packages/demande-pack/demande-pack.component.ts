@@ -12,7 +12,10 @@ export class DemandePackComponent implements OnInit {
   constructor(private router : Router, private fb: FormBuilder) { }
   number: number = 0;
   demandePackForm: FormGroup;
-  
+  image: string = "assets/images/Olea-Pack 1.png";
+  namePack: string="الإشتراك الفضي";
+  pricePack: string= "89";
+
   ngOnInit(): void {
     this.InitializeForm();
   }
