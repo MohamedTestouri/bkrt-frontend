@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UpdateInfo } from '../models/updateInfo';
 import { UpdatePassword } from '../models/updatePassword';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { Agriculteurs } from '../models/agriculteurs';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -34,4 +36,8 @@ export class UserService {
       })
     )
   } 
+
+  getAgriculteurs(): Observable<Agriculteurs[]> {
+    return this.http.get<Agriculteurs[]>(this.baseUrl + 'users/getAgriculteurs');
+  }
 }

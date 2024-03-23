@@ -1,7 +1,8 @@
 .inner-image
 {
-  transform: translate(115%, 14%);
+  transform: translate(110%, 13%);
 }
+
 .card-title
 {
   position: relative;
@@ -12,5 +13,6 @@
 }
 .d-grid2
 {
-  left: 10rem;
+  top: -12rem;
+  left: 5rem;
 }

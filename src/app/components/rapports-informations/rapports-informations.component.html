@@ -1,0 +1,88 @@
+<div class="head">
+    <div class="head-content">
+        <app-dashboard-header></app-dashboard-header>
+    </div>
+</div>
+<div class="body">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th class="fw-bold text-end"></th>
+                <th class="fw-bold text-end"></th>
+                <th class="fw-bold text-end">الحالة</th>
+                <th class="fw-bold text-end">رقم الهاتف</th>
+                <th class="fw-bold text-end">تاريخ التعاقد</th>
+                <th class="fw-bold text-end">الولاية</th>
+                <th class="fw-bold text-end">إسم الفلاح</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let agriculteur of agriculteurs">
+                <td class="text-end">
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-success fw-bold" (click)="openModal(modalContent)">
+                            حذف
+                        </button>
+                    </div>
+                </td>
+                <td class="text-end">
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-success fw-bold">
+                            تعديل
+                        </button>
+                    </div>
+                </td>
+                <td class="text-end">
+
+                    {{ agriculteur.statut }}
+
+                </td>
+                <td class="text-end">
+
+                    {{ agriculteur.phoneNumber }}
+
+                </td>
+                <td class="text-end">
+
+                    {{ agriculteur.dateContrat }}
+
+                </td>
+                <td class="text-end">
+
+                    {{ agriculteur.gouvernorat }}
+
+                </td>
+                <td class="text-end">
+
+                    {{ agriculteur.lastName }} {{agriculteur.firstName}}
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <ng-template #modalContent let-modal>
+        <div class="modal-header float-end bg-light">
+            <h5 class="modal-title text-end fw-bold" style="color: darkgreen;">حذف الفلاح</h5>
+            <button type="button" class="btn-close" (click)="modal.dismiss()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body bg-light">
+            <div class="row col-md-12">
+                <div class="form-check form-switch">
+                    <input class="form-check-input col-md-7" type="checkbox" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label text-end fw-bold col-md-5" for="flexSwitchCheckChecked">حذف الفلاح
+                        كليا</label>
+                </div>
+            </div>
+
+            <div class="row text-center col-md-12">
+                <p class="fs-6">لا يمكن إعادة المستخدم في المستقبل</p>
+            </div>
+        </div>
+        <div class="modal-footer bg-light">
+            <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">الإلغاء</button>
+            <button type="button" class="btn btn-success">حفظ وإغلاق</button>
+        </div>
+    </ng-template>
+</div>

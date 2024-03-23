@@ -25,6 +25,7 @@ import { TypeNewPasswordComponent } from './components/auth/type-new-password/ty
 import { RendezVousComponent } from './components/rendez-vous/rendez-vous/rendez-vous.component';
 import { DemandeComponent } from './components/demande/demande-apointment.component';
 import { DemandePackComponent } from './components/subscriptions-packages/demande-pack/demande-pack.component';
+import { RapportsInformationsComponent } from './components/rapports-informations/rapports-informations.component';
 
 const routes: Routes = [
   {path: 'login', component: ParentAuthComponent, canActivate: [AlreadyAuthGuard]},
@@ -46,6 +47,7 @@ const routes: Routes = [
       {path: 'home', component: HomeComponent},
       {path: 'demande', component: DemandeComponent},
       {path: 'demande-pack', component: DemandePackComponent},
+      {path: 'rapports-informations', component: RapportsInformationsComponent},
 
       {path: '**', component: NotFoundComponent, pathMatch: 'full'},
     ]

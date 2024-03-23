@@ -5,7 +5,7 @@ export const navbarData = [
         label: 'لوحة التحكم'
     },
     {
-        routeLink: 'test',
+        routeLink: 'rapports-informations',
         icon: 'fal fa-chart-bar',
         label: 'التقارير و المعلومات'
     },
@@ -29,9 +29,9 @@ export const navbarData = [
         icon: 'fal fa-home',
         label: 'الرئيسية'
     },
-    // {
-    //     routeLink: 'settings',
-    //     icon: 'fal fa-cog',
-    //     label: 'Settings'
-    // },
+    {
+        routeLink: 'demande',
+        icon: 'fal fa-shopping-cart',
+        label: 'الطلبات'
+    },
 ];

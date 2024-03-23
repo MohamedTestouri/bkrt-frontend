@@ -49,6 +49,7 @@ import { DemandeComponent } from './components/demande/demande-apointment.compon
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { DemandePackComponent } from './components/subscriptions-packages/demande-pack/demande-pack.component';
 import { AddAbonnementsComponent } from './components/subscriptions-packages/add-abonnements/add-abonnements.component';
+import { RapportsInformationsComponent } from './components/rapports-informations/rapports-informations.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +84,7 @@ import { AddAbonnementsComponent } from './components/subscriptions-packages/add
     DemandeComponent,
     DemandePackComponent,
     AddAbonnementsComponent,
+    RapportsInformationsComponent,
   ],
   imports: [
     BrowserAnimationsModule,
