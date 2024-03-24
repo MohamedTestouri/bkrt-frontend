@@ -5,6 +5,7 @@
 </div>
 
 <div class="body">
+    <form [formGroup]="demandePackForm" (ngSubmit)="demandePackForm.valid" autocomplete="off">
     <div class="card mb-3" style="width: 100%; top: -4rem;">
         <div class="row g-0">
             <div class="col-md-6" style="background-color: #084F4B;">
@@ -20,7 +21,7 @@
                                     <p class="card-text fw-bold fs-5">RIB : 129928/783202/7850262</p>
                                     <div class="input-file-container mb-5">
                                         <input type="file" id="attachment" name="attachment"
-                                            accept=".pdf,.doc,.docx,.txt">
+                                            formControlName="attachment" accept=".pdf,.doc,.docx,.txt">
                                         <label for="attachment" style="color: green;" class="input-file-icon">Ajouter
                                             votre pièce justificative <i class="fas fa-paperclip"></i></label>
                                     </div>
@@ -30,7 +31,7 @@
                                     <p class="mb-5"> BP 743 - Ecole Polytechnique de Tunisie - La Marsa 2078 Tunis-
                                         Tunisie </p>
                                     <button class="btn btn-success fw-bold col-md-6" style="background-color: #084F4B;"
-                                        type="button">Valider</button>
+                                        (click)="createDemandePacks()" type="button">Valider</button>
                                 </div>
                             </div>
                         </div>
@@ -56,8 +57,10 @@
                             <div class="input-group mb-3">
                                 <button class="btn btn-outline-secondary rounded-circle fw-bold" type="button"
                                     (click)="decrement()" style="color: grey;">-</button>
-                                <input type="number" class="numbr form-control text-center" [(ngModel)]="number"
-                                    style="border: floralwhite;" (change)="checkValidity()" min="1">
+                                    <app-text-input type="number" class="numbr form-control text-center" [formControl]="$any(demandePackForm.controls['number'])" [(ngModel)]="number" 
+                                    style="border: floralwhite;"
+                                    (change)="checkValidity()" min="1"></app-text-input>
+
                                 <button class="btn btn-outline-success rounded-circle fw-bold" type="button"
                                     (click)="increment()" style="color: darkgreen;">+</button>
                             </div>
@@ -97,7 +100,8 @@
 
                     <div class="row col-md-3 mb-3">
                         <input type="text" placeholder="Code réduction" class="rounded"
-                            style="background-color: #44936A; color: black;">
+                         name="codeReduction"
+                            formControlName="codeReduction" style="background-color: #44936A; color: black;">
                     </div>
 
                     <div class="row col-md-3 mb-3">
@@ -113,12 +117,13 @@
                     </div>
 
                     <div class="row text-end fs-4">
-                        <p> Total Payable  : <span class="fw-bold">${{pricePack}}</span> </p>
+                        <p> Total Payable : <span class="fw-bold">${{pricePack}}</span> </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</form>
 </div>
 
 <app-add-abonnements></app-add-abonnements>
