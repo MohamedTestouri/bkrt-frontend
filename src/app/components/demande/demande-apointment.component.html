@@ -50,11 +50,9 @@
                             .كل ما تكون المنصة قادرة أنها تستجيب للطلب متاعك بنجاعة
                         </h4>
                     </div>
-                </ng-container>
 
-                <ng-container *ngIf="afficherContenuDem" id="nav-demande" role="tabpanel">
-                    <form [formGroup]="demandeForm" (ngSubmit)="demandeForm.valid" autocomplete="off">
-                        <div class="row mb-3 justify-content-end" style="color: #44936B;">
+                    <form [formGroup]="demandeForm" autocomplete="off">
+                        <div class="row mb-2 justify-content-end" style="color: #44936B;">
                             <div class="col-md-5 fw-bold fs-5">
                                 <label>
                                     إختار المجال أو المجالات إلي تحب يعاونك فيهم المختص
@@ -67,18 +65,14 @@
                             </div>
                         </div>
 
-                        <div class="row mb-4">
+                        <div class="row mb-2">
                             <div class="col-md-8">
                                 <div class="col-lg-12 align-items-end">
                                     <div class="form-check" *ngFor="let domaine of domaines">
-                                        <input class="form-check-input float-end" 
-                                               type="radio" 
-                                               name="domaines" 
-                                               [id]="domaine.id" 
-                                               [value]="domaine.value" 
-                                               (click)="logSelectedDomaine(domaine.id)"
-                                               formControlName="domaines"
-                                               [(ngModel)]="selectedDomaine">
+                                        <input class="form-check-input float-end" type="radio" name="domaines"
+                                            [id]="domaine.id" [value]="domaine.value"
+                                            (click)="logSelectedDomaine(domaine.id)" formControlName="domaines"
+                                            [(ngModel)]="selectedDomaine">
                                         <label class="form-check-label mx-4 float-end" [for]="domaine.id">
                                             {{ domaine.label }}
                                         </label>
@@ -88,21 +82,17 @@
                                         [label]="'الرجاء التحديد أكثر'" name="autrePlantationDomaines"
                                         [type]="'autrePlantationDomaines'"></app-text-input>
                                 </div>
-                                
+
 
                             </div>
                             <div class="col-md-4">
                                 <div class="row">
                                     <div class="col-lg-11 align-items-end">
                                         <div class="form-check" *ngFor="let specialiste of specialistes">
-                                            <input class="form-check-input float-end" 
-                                                   type="radio" 
-                                                   name="specialistes" 
-                                                   [id]="specialiste.id" 
-                                                   [value]="specialiste.value" 
-                                                   (click)="logSelectedSpecialiste(specialiste.id)"
-                                                   formControlName="specialistes"
-                                                   [(ngModel)]="selectedSpecialiste">
+                                            <input class="form-check-input float-end" type="radio" name="specialistes"
+                                                [id]="specialiste.id" [value]="specialiste.value"
+                                                (click)="logSelectedSpecialiste(specialiste.id)"
+                                                formControlName="specialistes" [(ngModel)]="selectedSpecialiste">
                                             <label class="form-check-label mx-4 float-end" [for]="specialiste.id">
                                                 {{ specialiste.label }}
                                             </label>
@@ -114,17 +104,11 @@
 
                         <div class="row mb-4 fw-bold fs-5 col-md-12 justify-content-end" style="color: #44936B;">
                             <div class="col-md-4 float-end">
-                                <ng-select 
-                                [items]="typeCultures"
-                                name="typeCulturesArray"
-                                bindLabel="label"
-                                bindValue="label"
-                                [(ngModel)]="plantationSelected"
-                                [multiple]="false"
-                                placeholder="اختر نوع الزراعات"
-                                clearAllText="Clear"
-                                formControlName="typeCulturesArray">
-                            </ng-select>
+                                <ng-select [items]="typeCultures" name="typeCulturesArray" bindLabel="label"
+                                    bindValue="label" [(ngModel)]="plantationSelected" [multiple]="false"
+                                    placeholder="اختر نوع الزراعات" clearAllText="Clear"
+                                    formControlName="typeCulturesArray">
+                                </ng-select>
                             </div>
                             <div class="col-md-4">
                                 <label class=" float-end">
@@ -149,14 +133,9 @@
                             <div class="col-md-8">
                                 <div class="col-lg-12 align-items-end">
                                     <div class="form-check" *ngFor="let sujet of sujets">
-                                        <input class="form-check-input float-end" 
-                                               type="radio" 
-                                               name="sujets" 
-                                               [id]="sujet.id" 
-                                               [value]="sujet.value" 
-                                               (click)="logSelectedSujet(sujet.id)"
-                                               formControlName="sujets"
-                                               [(ngModel)]="selectedSujet">
+                                        <input class="form-check-input float-end" type="radio" name="sujets"
+                                            [id]="sujet.id" [value]="sujet.value" (click)="logSelectedSujet(sujet.id)"
+                                            formControlName="sujets" [(ngModel)]="selectedSujet">
                                         <label class="form-check-label mx-4 float-end" [for]="sujet.id">
                                             {{ sujet.label }}
                                         </label>
@@ -170,37 +149,25 @@
                             <div class="col-md-4">
                                 <div class="col-lg-11 align-items-end">
                                     <div class="form-check" *ngFor="let type of types">
-                                        <input class="form-check-input float-end" 
-                                               type="radio" 
-                                               name="typeAgricultures" 
-                                               [id]="type.id" 
-                                               [value]="type.value" 
-                                               formControlName="typeAgricultures"
-                                               (click)="logSelectedType(type.id)"
-                                               [(ngModel)]="selectedType">
+                                        <input class="form-check-input float-end" type="radio" name="typeAgricultures"
+                                            [id]="type.id" [value]="type.value" formControlName="typeAgricultures"
+                                            (click)="logSelectedType(type.id)" [(ngModel)]="selectedType">
                                         <label class="form-check-label mx-4 float-end" [for]="type.id">
                                             {{ type.label }}
                                         </label>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
 
                         <div class="row mb-4 fw-bold fs-5 col-md-12 justify-content-end" style="color: #44936B;">
                             <div class="col-md-4 float-end">
-                                <ng-select 
-                                [items]="terrains"
-                                bindLabel="label"
-                                bindValue="label"
-                                name="terrains"
-                                [(ngModel)]="terrain"
-                                [multiple]="false"
-                                placeholder="اختر أرضك"
-                                clearAllText="Clear"
-                                formControlName="terrains">
-                            </ng-select>
-                                
+                                <ng-select [items]="terrains" bindLabel="label" bindValue="label" name="terrains"
+                                    [(ngModel)]="terrain" [multiple]="false" placeholder="اختر أرضك"
+                                    clearAllText="Clear" formControlName="terrains">
+                                </ng-select>
+
                             </div>
                             <div class="col-md-4">
                                 <label class=" float-end">
@@ -210,16 +177,7 @@
                         </div>
 
                         <div class="row mb-4 fw-bold fs-5 col-md-12 justify-content-end" style="color: #44936B;">
-
-                            <div class="col-md-4">
-                                <label class=" float-end">
-                                    الرجاء تكتبلنا سؤالك للمختص
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="row fw-bold fs-5 col-md-12 justify-content-end" style="color: #44936B;">
-                            <div class="col-md-2 border rounded">
+                            <div class="col-md-2 border rounded" style="color: #44936B;">
                                 <label for="formFile" class="form-label float-end">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-download" viewBox="0 0 16 16">
@@ -229,14 +187,18 @@
                                     </svg>
                                     اضغط لإضافة ملف
                                 </label>
-                                <input class="form-control" name="file" type="file" id="formFile" value="file" formControlName="file"
-                                    style="visibility: hidden; position: absolute;">
-
+                                <input class="form-control" name="file" type="file" id="formFile" value="file"
+                                    formControlName="file" style="visibility: hidden; height: 0.5rem;">
+                            </div>
+                            <div class="col-md-2 float-end">
+                                <app-text-input class="float-end" [formControl]="$any(demandeForm.controls['question'])"
+                                    name="question" [label]="'سؤالك ...'" [type]="'question'"></app-text-input>
                             </div>
 
-                            <div class="col-md-2 float-end">
-                                <app-text-input class="float-end" [formControl]="$any(demandeForm.controls['question'])" name="question"
-                                    [label]="'سؤالك ...'" [type]="'question'"></app-text-input>
+                            <div class="col-md-4">
+                                <label class=" float-end">
+                                    الرجاء تكتبلنا سؤالك للمختص
+                                </label>
                             </div>
                         </div>
 
@@ -249,193 +211,194 @@
                         </div>
                     </form>
                 </ng-container>
-            
+
                 <ng-container *ngIf="afficherContenuAppointmentDate" id="nav-rendez-vous" role="tabpanel"
                     aria-labelledby="nav-rendez-vous-tab">
-                    <form [formGroup]="appointmentForm" (ngSubmit)="appointmentForm.valid" autocomplete="off">
-                    <div class="row col-md-12 text-end mb-3" style="color: #09504A;">
-                        <label class="fs-5 fw-bold">
-                            كيفاش تحب تقابل الخبير؟
-                        </label>
-                    </div>
-                    <div class="row col-md-12 text-end mb-4" style="color: #84BC26;">
-                        <div class="col-lg-12 align-items-end">
-                            <!-- Form check group -->
-                            <div class="form-check" *ngFor="let revoirOption of revoirOptions">
-                              <input class="form-check-input float-end"
-                                     type="radio"
-                                     name="methodeRevoir"
-                                     [id]="revoirOption.id"
-                                     (click)="logSelectedRevoir(revoirOption.id)"
-                                     [value]="revoirOption.label"
-                                     formControlName="methodeRevoir"
-                                     [(ngModel)]="selectedRevoirOption">
-                              <label class="form-check-label mx-4 float-end" [for]="revoirOption.id">
-                                {{ revoirOption.label }}
-                              </label>
-                            </div>
-                          </div>
-                          
-                    </div>
-
-                    <div class="row col-md-12 text-end mb-3" style="color: #09504A;">
-                        <label class="fs-5 fw-bold">
-                            إختار تاريخ وتوقيت الموعد </label>
-                    </div>
-
-                    <div class="row col-lg-3 float-end">
-                        <div class="w-auto">
-                            <bs-datepicker-inline [bsValue]="bsInlineValue" (bsValueChange)="onDateChange($event)"></bs-datepicker-inline>
+                    <form [formGroup]="appointmentForm" autocomplete="off">
+                        <div class="row col-md-12 text-end mb-3" style="color: #09504A;">
+                            <label class="fs-5 fw-bold">
+                                كيفاش تحب تقابل الخبير؟
+                            </label>
                         </div>
-                    </div>
-
-                    <div class="row col-lg-5 float-end">
-                        <div class="col-lg-8 align-items-end">
-                            <!-- Form check group -->
-                            <div class="form-check" *ngFor="let periode of periodes">
-                              <input class="form-check-input float-end"
-                                     type="radio"
-                                     name="periodes"
-                                     [id]="periode.id"
-                                     [value]="periode.value" 
-                                     formControlName="periodes"
-                                     [checked]="periode.checked"
-                                     [(ngModel)]="selectedPeriode"
-                                     (click)="logSelectedPeriod(periode.id)"
-                                     (change)="toggleTime(periode)">
-                              <label class="form-check-label mx-4 float-end" [for]="periode.id">
-                                {{ periode.label }}
-                              </label>
-                            </div>
-                          </div>
-                          
-                    </div>
-
-                    <ng-container *ngIf="afficherContenuAppointmentTime" id="nav-rendez-vous" role="tabpanel"
-                        aria-labelledby="nav-rendez-vous-tab">
-                        <timepicker [(ngModel)]="mytime" [hourStep]="hstep" [minuteStep]="mstep" [showSeconds]="false">
-                        </timepicker>
-                        <!-- <pre class="alert alert-info">Time is: {{mytime}}</pre> -->
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <table class="table table-bordered" style="border: white;">
-                                        <thead>
-                                            <tr>
-                                                <th class="fw-bold">الساعة</th>
-                                                <th class="fw-bold">الدقائق</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="btn-group" role="group">
-                                                        <button type="button" class="btn btn-success"
-                                                            *ngFor="let hour of options.hstep"
-                                                            [ngClass]="{ 'btn-selected': hour === selectedHour }"
-                                                            formControlName="heure"
-                                                            (click)="selectHour(hour)">
-                                                            {{ hour }}
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="btn-group" role="group">
-                                                        <button type="button" class="btn btn-success"
-                                                            *ngFor="let minute of options.mstep"
-                                                            [ngClass]="{ 'btn-selected': minute === selectedMinute }"
-                                                            formControlName="minute"
-                                                            (click)="selectMinute(minute)">
-                                                            {{ minute }}
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                        <div class="row col-md-12 text-end mb-4" style="color: #84BC26;">
+                            <div class="col-lg-12 align-items-end">
+                                <!-- Form check group -->
+                                <div class="form-check" *ngFor="let revoirOption of revoirOptions">
+                                    <input class="form-check-input float-end" type="radio" name="methodeRevoir"
+                                        [id]="revoirOption.id" (click)="logSelectedRevoir(revoirOption.id)"
+                                        [value]="revoirOption.label" formControlName="methodeRevoir"
+                                        [(ngModel)]="selectedRevoirOption">
+                                    <label class="form-check-label mx-4 float-end" [for]="revoirOption.id">
+                                        {{ revoirOption.label }}
+                                    </label>
                                 </div>
                             </div>
-                        </div>
-                    </ng-container>
 
-                    <ng-container *ngIf="afficherContenuAppointmentTime2" id="nav-rendez-vous" role="tabpanel"
-                        aria-labelledby="nav-rendez-vous-tab">
-                        <timepicker [(ngModel)]="mytime" [hourStep]="hstep" [minuteStep]="mstep" [showSeconds]="false">
-                        </timepicker>
-                        <!-- <pre class="alert alert-info">Time is: {{mytime}}</pre> -->
-                        <div class="container">
-                            <div class="row">
-                                <div class="col">
-                                    <table class="table table-bordered" style="border: white;">
-                                        <thead>
-                                            <tr>
-                                                <th class="fw-bold">الساعة</th>
-                                                <th class="fw-bold">الدقائق</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="btn-group" role="group">
-                                                        <button type="button" class="btn btn-success"
-                                                            *ngFor="let hour of options2.hstep"
-                                                            [ngClass]="{ 'btn-selected': hour === selectedHour }"
-                                                            formControlName="heure"
-                                                            (click)="selectHour(hour)">
-                                                            {{ hour }}
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="btn-group" role="group">
-                                                        <button type="button" class="btn btn-success"
-                                                            *ngFor="let minute of options2.mstep"
-                                                            
-                                                            formControlName="minute"[ngClass]="{ 'btn-selected': minute === selectedMinute }"
-                                                            (click)="selectMinute(minute)">
-                                                            {{ minute }}
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                        </div>
+
+                        <div class="row col-md-12 text-end mb-3" style="color: #09504A;">
+                            <label class="fs-5 fw-bold">
+                                إختار تاريخ وتوقيت الموعد </label>
+                        </div>
+
+                        <div class="row col-lg-3 float-end">
+                            <div class="w-auto">
+                                <bs-datepicker-inline [bsValue]="bsInlineValue"
+                                    (bsValueChange)="onDateChange($event)"></bs-datepicker-inline>
                             </div>
                         </div>
-                    </ng-container>
 
-                    <div class="col-md-4" *ngIf="alertRequired">
-                        <div class="alert alert-danger fw-bold fs-4 text-center" role="alert">
-                            يجب تحديد التاريخ و التوقيت                          </div>
+                        <div class="row col-lg-5 float-end">
+                            <div class="col-lg-8 align-items-end">
+                                <!-- Form check group -->
+                                <div class="form-check" *ngFor="let periode of periodes">
+                                    <input class="form-check-input float-end" type="radio" name="periodes"
+                                        [id]="periode.id" [value]="periode.value" formControlName="periodes"
+                                        [checked]="periode.checked" [(ngModel)]="selectedPeriode"
+                                        (click)="logSelectedPeriod(periode.id)" (change)="toggleTime(periode)">
+                                    <label class="form-check-label mx-4 float-end" [for]="periode.id">
+                                        {{ periode.label }}
+                                    </label>
+                                </div>
+                            </div>
+
                         </div>
 
-                    <div class="row col-lg-12">
-                        <div class="col-md-10 mx-4 text-center">
-                            <button [disabled]="!appointmentForm.valid" type="button" (click)="DoneAppointmentDate()"
-                                class="btn btn-success rounded text-center col-md-5">تأكيد</button>
+                        <ng-container *ngIf="afficherContenuAppointmentTime" id="nav-rendez-vous" role="tabpanel"
+                            aria-labelledby="nav-rendez-vous-tab">
+                            <timepicker [(ngModel)]="mytime" [hourStep]="hstep" [minuteStep]="mstep"
+                                [showSeconds]="false">
+                            </timepicker>
+                            <!-- <pre class="alert alert-info">Time is: {{mytime}}</pre> -->
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <table class="table table-bordered" style="border: white;">
+                                            <thead>
+                                                <tr>
+                                                    <th class="fw-bold">الساعة</th>
+                                                    <th class="fw-bold">الدقائق</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="btn-group" role="group"
+                                                            [formGroup]="appointmentForm">
+                                                            <button type="button" class="btn btn-success"
+                                                                *ngFor="let hour of options.hstep"
+                                                                formControlName="selectedHour1"
+                                                                [(ngModel)]="selectHour"
+                                                                (click)="selectHour(hour)">
+                                                                {{ hour }}
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-group" role="group"
+                                                            [formGroup]="appointmentForm">
+                                                            <button type="button" class="btn btn-success"
+                                                                *ngFor="let minute of options.mstep"
+                                                                [(ngModel)]="selectMinute"
+                                                                formControlName="selectedMinute1"
+                                                                (click)="selectMinute(minute)">
+                                                                {{ minute }}
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
 
+                        <ng-container *ngIf="afficherContenuAppointmentTime2" id="nav-rendez-vous" role="tabpanel"
+                            aria-labelledby="nav-rendez-vous-tab">
+                            <timepicker [(ngModel)]="mytime" [hourStep]="hstep" [minuteStep]="mstep"
+                                [showSeconds]="false">
+                            </timepicker>
+                            <!-- <pre class="alert alert-info">Time is: {{mytime}}</pre> -->
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <table class="table table-bordered" style="border: white;">
+                                            <thead>
+                                                <tr>
+                                                    <th class="fw-bold">الساعة</th>
+                                                    <th class="fw-bold">الدقائق</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="btn-group" role="group"
+                                                            [formGroup]="appointmentForm">
+                                                            <button type="button" class="btn btn-success"
+                                                                *ngFor="let hour of options2.hstep"
+                                                                [(ngModel)]="selectHour"
+                                                                formControlName="selectedHour2"
+                                                                (click)="selectHour(hour)">
+                                                                {{ hour }}
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-group" role="group"
+                                                            [formGroup]="appointmentForm">
+                                                            <button type="button" class="btn btn-success"
+                                                                *ngFor="let minute of options2.mstep"
+                                                                [(ngModel)]="selectMinute"
+                                                                formControlName="selectedMinute2"
+                                                                (click)="selectMinute(minute)">
+                                                                {{ minute }}
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+
+                        <div class="col-md-4" *ngIf="alertRequired">
+                            <div class="alert alert-danger fw-bold fs-4 text-center" role="alert">
+                                يجب تحديد التاريخ و التوقيت </div>
                         </div>
-                    </div>
-                </form>
+
+                        <div class="row col-lg-12">
+                            <div class="col-md-10 mx-4 text-center">
+                                <button type="button"
+                                    (click)="DoneAppointmentDate()"
+                                    class="btn btn-success rounded text-center col-md-5">تأكيد</button>
+
+                            </div>
+                        </div>
+                    </form>
                 </ng-container>
-                
+
                 <ng-container *ngIf="afficherContenuVerif">
                     <ul class="col-md-11 text-end list-unstyled">
                         <li><strong>المختص إلي تحب تقابلو :</strong> {{ tempDemandeForm.specialiste }}</li>
-                        <li><strong>المجال أو المجالات إلي تحب يعاونك فيهم المختص :</strong> {{ tempDemandeForm.domaine }}</li>
+                        <li><strong>المجال أو المجالات إلي تحب يعاونك فيهم المختص :</strong> {{ tempDemandeForm.domaine
+                            }}</li>
                         <li><strong> الزراعات إلي عندك :</strong> {{ tempDemandeForm.typeCulture }}</li>
                         <li><strong>نوعية الفلاحة متاعك :</strong> {{ tempDemandeForm.typeAgriculture }}</li>
                         <li><strong> الأرض موضوع الطلب :</strong> {{ tempDemandeForm.terrain }}</li>
                         <li><strong>السؤال يهم الموضوع :</strong> {{ tempDemandeForm.sujet }}</li>
                         <li><strong>سؤالك للمختص :</strong> {{ tempDemandeForm.question }}</li>
                         <li><strong>كيفاش تحب تقابل المختص :</strong> {{ tempAppointmentForm.methodeRevoir }}</li>
-                        <li><strong>تاريخ وتوقيت الموعد :</strong> {{ formattedDate }} {{ tempAppointmentForm.heure}} : {{ tempAppointmentForm.minute}}</li>
-                    </ul>       
+                        <li><strong>تاريخ وتوقيت الموعد :</strong> {{ formattedDate }} {{ tempAppointmentForm.heure}} :
+                            {{ tempAppointmentForm.minute}}</li>
+                    </ul>
                     <div class="row">
                         <div class="col-md-9 mt-4 justify-content-center">
-                            <button (click)="clickConfirmDemandeForm()" type="button" class="btn btn-success rounded text-center col-md-5">تأكيد</button>
-                        </div>                    
+                            <button (click)="clickConfirmDemandeForm()" type="button"
+                                class="btn btn-success rounded text-center col-md-5">تأكيد</button>
+                        </div>
                     </div>
                 </ng-container>
             </div>

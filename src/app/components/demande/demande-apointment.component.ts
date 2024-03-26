@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Appointments } from 'src/app/models/apointment';
 import { TYPECULTURES } from 'src/app/models/constants/constants';
 import { IOptions } from 'src/app/models/constants/time-options';
@@ -163,7 +163,7 @@ export class DemandeComponent implements OnInit {
   initializeDemandeForm() {
     this.demandeForm = this.fb.group({
       typeCulturesArray: [],
-      question: [''],
+      question: ['', Validators.required],
       autrePlantationDomaines: [''],
       autrePlantationQuestion: [''],
       file: [''],
@@ -177,8 +177,10 @@ export class DemandeComponent implements OnInit {
 
     this.appointmentForm = 
     this.fb.group({
-      heure:[''],
-      minute:[''],
+      selectedHour1: [''],
+      selectedMinute1: [''],
+      selectedHour2: [''],
+      selectedMinute2: [''],
       periodes: this.periodes,
       methodeRevoir : this.revoirOptions,
     });
