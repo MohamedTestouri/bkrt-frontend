@@ -266,9 +266,9 @@
 
                         <ng-container *ngIf="afficherContenuAppointmentTime" id="nav-rendez-vous" role="tabpanel"
                             aria-labelledby="nav-rendez-vous-tab">
-                            <timepicker [(ngModel)]="mytime" [hourStep]="hstep" [minuteStep]="mstep"
+                            <!-- <timepicker [(ngModel)]="mytime" [hourStep]="hstep" [minuteStep]="mstep"
                                 [showSeconds]="false">
-                            </timepicker>
+                            </timepicker> -->
                             <!-- <pre class="alert alert-info">Time is: {{mytime}}</pre> -->
                             <div class="container">
                                 <div class="row">
@@ -283,27 +283,25 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <div class="btn-group" role="group"
-                                                            [formGroup]="appointmentForm">
-                                                            <button type="button" class="btn btn-success"
-                                                                *ngFor="let hour of options.hstep"
-                                                                formControlName="selectedHour1"
-                                                                [(ngModel)]="selectHour"
-                                                                (click)="selectHour(hour)">
-                                                                {{ hour }}
-                                                            </button>
+                                                        <div class="btn-group" role="group">
+                                                            <ul>
+                                                                <li *ngFor="let hour of options.hstep"
+                                                                    [ngClass]="{ 'btn': true, 'btn-success': hour === selectedHour, 'btn-selected': hour === selectedHour }"
+                                                                    (click)="selectHour(hour)">
+                                                                    {{ hour }}
+                                                                </li>
+                                                            </ul>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div class="btn-group" role="group"
-                                                            [formGroup]="appointmentForm">
-                                                            <button type="button" class="btn btn-success"
-                                                                *ngFor="let minute of options.mstep"
-                                                                [(ngModel)]="selectMinute"
-                                                                formControlName="selectedMinute1"
-                                                                (click)="selectMinute(minute)">
-                                                                {{ minute }}
-                                                            </button>
+                                                        <div class="btn-group" role="group">
+                                                            <ul>
+                                                                <li *ngFor="let minute of options.mstep"
+                                                                    [ngClass]="{ 'btn': true, 'btn-success': minute === selectedMinute, 'btn-selected': minute === selectedMinute }"
+                                                                    (click)="selectMinute(minute)">
+                                                                    {{ minute }}
+                                                                </li>
+                                                            </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -316,9 +314,9 @@
 
                         <ng-container *ngIf="afficherContenuAppointmentTime2" id="nav-rendez-vous" role="tabpanel"
                             aria-labelledby="nav-rendez-vous-tab">
-                            <timepicker [(ngModel)]="mytime" [hourStep]="hstep" [minuteStep]="mstep"
+                            <!-- <timepicker [(ngModel)]="mytime" [hourStep]="hstep" [minuteStep]="mstep"
                                 [showSeconds]="false">
-                            </timepicker>
+                            </timepicker> -->
                             <!-- <pre class="alert alert-info">Time is: {{mytime}}</pre> -->
                             <div class="container">
                                 <div class="row">
@@ -333,27 +331,25 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <div class="btn-group" role="group"
-                                                            [formGroup]="appointmentForm">
-                                                            <button type="button" class="btn btn-success"
-                                                                *ngFor="let hour of options2.hstep"
-                                                                [(ngModel)]="selectHour"
-                                                                formControlName="selectedHour2"
-                                                                (click)="selectHour(hour)">
-                                                                {{ hour }}
-                                                            </button>
+                                                        <div class="btn-group" role="group">
+                                                            <ul>
+                                                                <li *ngFor="let hour of options2.hstep"
+                                                                    [ngClass]="{ 'btn': true, 'btn-success': hour === selectedHour, 'btn-selected': hour === selectedHour }"
+                                                                    (click)="selectHour(hour)">
+                                                                    {{ hour }}
+                                                                </li>
+                                                            </ul>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div class="btn-group" role="group"
-                                                            [formGroup]="appointmentForm">
-                                                            <button type="button" class="btn btn-success"
-                                                                *ngFor="let minute of options2.mstep"
-                                                                [(ngModel)]="selectMinute"
-                                                                formControlName="selectedMinute2"
-                                                                (click)="selectMinute(minute)">
-                                                                {{ minute }}
-                                                            </button>
+                                                        <div class="btn-group" role="group">
+                                                            <ul>
+                                                                <li *ngFor="let minute of options2.mstep"
+                                                                    [ngClass]="{ 'btn': true, 'btn-success': minute === selectedMinute, 'btn-selected': minute === selectedMinute }"
+                                                                    (click)="selectMinute(minute)">
+                                                                    {{ minute }}
+                                                                </li>
+                                                            </ul>
                                                         </div>
                                                     </td>
                                                 </tr>

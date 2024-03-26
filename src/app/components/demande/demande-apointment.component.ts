@@ -11,6 +11,7 @@ import { TerrainService } from 'src/app/services/terrain.service';
 
  import { format } from 'date-fns';
  import { ar } from 'date-fns/locale';
+import { DemandeAppointmentService } from 'src/app/services/demande-appointment.service';
 
 
 @Component({
@@ -134,7 +135,7 @@ export class DemandeComponent implements OnInit {
     { id: 'visite', label: 'زيارة ميدانية', value: 'زيارة ميدانية' },
     { id: 'aDistance', label: 'مقابلة عبر الإنترنت', value: 'مقابلة عبر الإنترنت' }
   ];
-  constructor(public accountService: AccountService, private fb: FormBuilder, private terrainService : TerrainService) {
+  constructor(public accountService: AccountService, private fb: FormBuilder, private terrainService : TerrainService, private demandeAppointmentService : DemandeAppointmentService) {
     this.maxDate.setDate(this.maxDate.getDate() + 7);
     this.bsInlineRangeValue = [this.bsInlineValue, this.maxDate];
     this.formattedDate = format(this.bsInlineValue, 'EEEE dd MMMM yyyy', { locale: ar });
@@ -177,10 +178,8 @@ export class DemandeComponent implements OnInit {
 
     this.appointmentForm = 
     this.fb.group({
-      selectedHour1: [''],
-      selectedMinute1: [''],
-      selectedHour2: [''],
-      selectedMinute2: [''],
+      hstep: [''],
+      
       periodes: this.periodes,
       methodeRevoir : this.revoirOptions,
     });
@@ -203,7 +202,6 @@ export class DemandeComponent implements OnInit {
     this.afficherContenuVerif = false;
     this.afficherContenuAppointmentDate = true;
     this.afficherContenuAppointmentTime = false;
-    console.log("demande", this.tempDemandeForm);
   }
 
   logSelectedSpecialiste(id : string) {
