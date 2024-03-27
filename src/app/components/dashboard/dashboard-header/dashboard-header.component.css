@@ -1,18 +1,3 @@
-.inner-image
-{
-  transform: translate(110%, 13%);
-}
-
-.card-title
-{
-  position: relative;
-}
-.d-grid
-{
-  left: -10rem;
-}
-.d-grid2
-{
-  top: -12rem;
-  left: 5rem;
+.gradient-bg {
+  background: linear-gradient(to left, #45946B, #084F4B);
 }
