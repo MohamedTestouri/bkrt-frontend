@@ -1,10 +1,15 @@
-<div class="card bg-light" style="height: 12rem; top: -4rem; width: 100%;">
-    <img src="assets/images/Rectangle 1915.png" class="card-img" alt="..." style="height: 12rem; width: 100%;">
-    <div class="card-img-overlay">
-        <img src="assets/images/Avatar.png" alt="Image de la carte" (click)="toggleForm()" class="img-fluid float-center outer-img mb-3" style="height: 5rem;">
-        <div>
-            <h5 class="card-title text-white text-center fs-3 fw-bold">إضافة أرض جديدة</h5>
-           
+<div class="card text-white gradient-bg" style="width: 100%;">
+    <div class="row align-items-center" style="height: 100%;">
+        <div class="col-lg-12 mt-3 mb-3">
+            <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+                <button class="icon-button" (click)="AddNewTerrain()">
+                    <span class="fa-stack fa-3x">
+                        <i class="fas fa-circle fa-stack-2x" style="color: #BCD8CB;"></i> <!-- Circle background -->
+                        <i class="fas fa-plus fa-stack-1x" style="color: #09504A;"></i> <!-- Font Awesome plus sign icon -->
+                    </span>
+                </button>
+                <h5 class="card-title text-white text-center fs-3 fw-bold mt-3">إضافة أرض جديدة</h5>
+            </div>
         </div>
     </div>
 </div>
