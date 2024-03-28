@@ -1,0 +1,10 @@
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icon-button:hover .fa-circle,
+.icon-button:hover .fa-plus {
+    background-color: #BCD8CA; /* Change color to desired color on hover */
+}

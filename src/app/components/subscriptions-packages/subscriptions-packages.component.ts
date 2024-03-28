@@ -8,6 +8,11 @@ import { Router } from '@angular/router';
 })
 export class SubscriptionsPackagesComponent implements OnInit {
 
+  isExpandedSaphran: boolean = false;
+  isExpandedRubira: boolean = false;
+  isExpandedOlea: boolean = false;
+
+
 OleaPack : boolean = true;
 RubiraPack : boolean = true;
 SaphranPack : boolean = true;
@@ -16,6 +21,18 @@ oleaPrice : number = 89;
   constructor(private router : Router) { }
 
   ngOnInit(): void {
+  }
+
+
+
+  toggleExpandedSaphran() {
+      this.isExpandedSaphran = !this.isExpandedSaphran;
+  }
+  toggleExpandedRubira() {
+      this.isExpandedRubira = !this.isExpandedRubira;
+  }
+  toggleExpandedOlea() {
+      this.isExpandedOlea = !this.isExpandedOlea;
   }
 
   clickOleaPack()
@@ -32,14 +49,4 @@ oleaPrice : number = 89;
   {
 
   }
-  toggleOlea() {
-    this.OleaPack = !this.OleaPack;
-  }
-  toggleRubira() {
-    this.RubiraPack = !this.RubiraPack;
-  }
-  toggleSaphran() {
-    this.SaphranPack = !this.SaphranPack;
-  }
-
 }

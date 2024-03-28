@@ -1,0 +1,11 @@
+.expanded .card-body {
+    height: auto;
+}
+
+.expanded .additional-info {
+    display: block;
+}
+
+.additional-info {
+    display: none;
+}

@@ -1,561 +1,159 @@
-<div class="head">
-    <div class="head-content">
-        <app-dashboard-header></app-dashboard-header>
-    </div>
-</div>
-<div class="card float-center" style="width: 100%; top: -4rem; height: 4rem;">
-    <div class="card-body text-center">
-        <div>
-            <p class="fs-3 fw-bold">قائمة الإشتراكات والحزم</p>
-        </div>
-    </div>
+<div class="row mb-3">
+    <app-dashboard-header></app-dashboard-header>
 </div>
 
-<div class="d-lg-none">
-    <div class="row">
-        <div class="col-sm-4">
-            <div *ngIf="SaphranPack">
-                <div class="card" style="top: -4rem; width: 12rem;">
-                    <div class="card-header text-center" style="background-color: white; border:white; ">
-                        <img class="float-center position-relative" style="width: 10rem; height: 1.3rem;"
-                            src="assets/images/saphran pack.png">
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <img class="mx-auto" src="assets/images/Saphran-Pack-- 1.png" style="width:20rem;"
-                                (click)="toggleSaphran()">
-                        </div>
-                    </div>
-                    <div class="card-footer text-center" style="background-color: white; border:white; ">
-                        <button class="btn1 btn btn-lg mx-auto" style="background-color: #DCB253;" type="button"
-                            (click)="clickSaphranPack()">إشترك
-                            الان
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div *ngIf="!SaphranPack">
-                <div class="card" style="top: -4rem; width: 14rem;">
-                    <div class="card-header text-end" style="background-color: white; border:white; ">
-                        <img class="float-center position-relative" style="width: 10rem; height: 1.3rem;"
-                            src="assets/images/saphran pack.png">
-                    </div>
-                    <div class="card-body">
-                        <div class="row float-end">
-                            <img class="mx-auto" src="assets/images/Saphran-Pack-- 1.png" style="width:10rem;"
-                                (click)="toggleSaphran()">
-                        </div>
-                        <div class="row float-start">
-                            <label for="oleaPrice" class="fs-2 fw-bold"> {{ oleaPrice }}$ <span
-                                    class="fs-5">/month</span></label>
-                        </div>
-                        <div class="row float-start">
-                            <label for="oleaPrice" class="fs-2 fw-bold"> الإشتراك الذهبي</label>
-                        </div>
-                        <div class="row float-start">
-                            <ul class="list-group" style="border:white;">
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        4 visites terrain
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        4 consultations en ligne
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        2 analyses
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        les images satellite
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-footer text-center" style="background-color: white; border:white; ">
-                        <button class="btn1 btn btn-lg justify-content-md-center" style="background-color: #DCB253;"
-                            type="button" (click)="clickSaphranPack()">إشترك
-                            الان</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div *ngIf="RubiraPack">
-                <div class="card" style="top: -4rem; width: 12rem;">
-                    <div class="card-header text-center" style="background-color: white; border:white; ">
-                        <img class="float-center position-relative" style="width: 10rem; height: 1.3rem;"
-                            src="assets/images/rubira pack.png">
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <img class="float-center" src="assets/images/Rubira-Pack 1.png" style="width:20rem;"
-                                (click)="toggleRubira()">
-                        </div>
-                    </div>
-                    <div class="card-footer text-center" style="background-color: white; border:white; ">
-                        <button class="btn1 btn btn-lg float-center " style="background-color: #870A24;" type="button"
-                            (click)="clickSaphranPack()">إشترك
-                            الان</button>
-                    </div>
-                </div>
-            </div>
-
-            <div *ngIf="!RubiraPack">
-                <div class="card" style="top: -4rem; width: 14rem;">
-                    <div class="card-header text-center" style="background-color: white; border:white; ">
-                        <img class="float-center position-relative" style="width: 10rem; height: 1.3rem;"
-                            src="assets/images/rubira pack.png">
-                    </div>
-                    <div class="card-body">
-                        <div class="row float-end">
-                            <img class="mx-auto" src="assets/images/Rubira-Pack 1.png" style="width:10rem;"
-                                (click)="toggleRubira()">
-                        </div>
-                        <div class="row float-start">
-                            <label for="oleaPrice" class="fs-2 fw-bold"> {{ 70 }}$ <span
-                                    class="fs-5">/month</span></label>
-                        </div>
-                        <div class="row float-start">
-                            <label for="oleaPrice" class="fs-2 fw-bold"> الإشتراك الفضي</label>
-                        </div>
-                        <div class="row float-start">
-                            <ul class="list-group" style="border:white;">
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        4 visites terrain en ligne
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        4 consultations en ligne
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        2 analyses
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-footer text-center" style="background-color: white; border:white; ">
-                        <button class="btn1 btn btn-lg float-center " style="background-color: #870A24;" type="button"
-                            (click)="clickSaphranPack()">إشترك
-                            الان</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div *ngIf="OleaPack">
-                <div class="card" style="top: -4rem; width: 12rem;">
-                    <div class="card-header text-center" style="background-color: white; border:white; ">
-                        <img class="float-center position-relative" style="width: 10rem; height: 1.3rem;"
-                            src="assets/images/Most Popular.png">
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <img class="float-center" src="assets/images/Olea-Pack 1.png" style="width:20rem;"
-                                (click)="toggleOlea()">
-                        </div>
-                    </div>
-                    <div class="card-footer text-center" style="background-color: white; border:white; ">
-                        <button class="btn1 btn btn-lg float-center " style="background-color: #6B8E23;" type="button"
-                            (click)="clickOleaPack()">إشترك
-                            الان</button>
-                    </div>
-                </div>
-            </div>
-
-            <div *ngIf="!OleaPack">
-                <div class="card" style="top: -4rem; width: 14rem;">
-                    <div class="card-header text-center" style="background-color: white; border:white; ">
-                        <img class="float-center position-relative" style="width: 12rem; height: 1.3rem;"
-                            src="assets/images/Most Popular.png">
-                    </div>
-                    <div class="card-body">
-                        <div class="row float-end">
-                            <img class="mx-auto" src="assets/images/Olea-Pack 1.png" style="width:10rem;"
-                                (click)="toggleOlea()">
-                        </div>
-                        <div class="row float-start">
-                            <label for="oleaPrice" class="fs-2 fw-bold"> {{ 40 }}$ <span
-                                    class="fs-5">/month</span></label>
-                        </div>
-                        <div class="row float-start">
-                            <label for="oleaPrice" class="fs-2 fw-bold"> الإشتراك الفضي</label>
-                        </div>
-                        <div class="row float-start">
-                            <ul class="list-group" style="border:white;">
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        4 accompagnements en ligne
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        4 consultations en ligne
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-footer text-center" style="background-color: white; border:white; ">
-                        <button class="btn1 btn btn-lg float-center " style="background-color: #6B8E23;" type="button"
-                            (click)="clickOleaPack()">إشترك
-                            الان</button>
-                    </div>
+<div class="row mb-3">
+    <div class="card" style="width: 100%;">
+        <div class="row align-items-center" style="height: 100%;">
+            <div class="col-lg-12 mt-3 mb-3">
+                <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+                    <h5 class="card-title text-center fs-3 fw-bold mt-3">قائمة الإشتراكات والحزم</h5>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="d-none d-lg-block">
-    <div class="row">
-
-        <div class="col-sm-4">
-            <div *ngIf="SaphranPack">
-                <div class="card" style="top: -4rem; width: 25rem;">
-                    <div class="card-header text-center" style="background-color: white; border:white; ">
-                        <img class="float-center position-relative" style="width: 10rem; height: 1.3rem;"
-                            src="assets/images/saphran pack.png">
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <img class="mx-auto" src="assets/images/Saphran-Pack-- 1.png" style="width:20rem;"
-                                (click)="toggleSaphran()">
+<div class="row">
+    <!-- First Card -->
+    <div class="col-lg-4 mb-3">
+        <div class="card" style="width: 100%;" [ngClass]="{'expanded': isExpandedSaphran}">
+            <div class="card-body">
+                <!-- First Image -->
+                <img src="assets/images/saphran_pack.png" class="img-fluid mx-auto d-block mb-3" alt="First Image">
+                
+                <!-- Second Image -->
+                <img src="assets/images/Saphran_Pack_1.png" class="img-fluid mx-auto d-block mb-3" alt="Second Image" (click)="toggleExpandedSaphran()">
+                
+                <!-- Additional Information -->
+                <div class="additional-info" *ngIf="isExpandedSaphran">
+                    <div class="container">
+                        <!-- Additional content here -->
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-12">
+                                <div class="fs-2 fw-bold text-center">{{ oleaPrice }}$ <span class="fs-5">/month</span></div>
+                            </div>
+                            <div class="col-12">
+                                <div class="fs-2 fw-bold text-center"> الإشتراك الذهبي</div>
+                            </div>
+                            <div class="col-12">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <span><i class="fa fa-check"></i>4 visites terrain</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><i class="fa fa-check"></i>4 consultations en ligne</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><i class="fa fa-check"></i>2 analyses</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><i class="fa fa-check"></i>les images satellite</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-footer text-center" style="background-color: white; border:white; ">
-                        <button class="btn1 btn btn-lg mx-auto" style="background-color: #DCB253;" type="button"
-                            (click)="clickSaphranPack()">إشترك
-                            الان
-                        </button>
                     </div>
                 </div>
-            </div>
-
-            <div *ngIf="!SaphranPack">
-                <div class="card" style="top: -4rem; width: 19rem;">
-                    <div class="card-header text-end" style="background-color: white; border:white; ">
-                        <img class="float-center position-relative" style="width: 10rem; height: 1.3rem;"
-                            src="assets/images/saphran pack.png">
-                    </div>
-                    <div class="card-body">
-                        <div class="row float-end">
-                            <img class="mx-auto" src="assets/images/Saphran-Pack-- 1.png" style="width:10rem;"
-                                (click)="toggleSaphran()">
-                        </div>
-                        <div class="row float-start">
-                            <label for="oleaPrice" class="fs-2 fw-bold"> {{ oleaPrice }}$ <span
-                                    class="fs-5">/month</span></label>
-                        </div>
-                        <div class="row float-start">
-                            <label for="oleaPrice" class="fs-2 fw-bold"> الإشتراك الذهبي</label>
-                        </div>
-                        <div class="row float-start">
-                            <ul class="list-group" style="border:white;">
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        4 visites terrain
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        4 consultations en ligne
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        2 analyses
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        les images satellite
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-footer text-center" style="background-color: white; border:white; ">
-                        <button class="btn1 btn btn-lg justify-content-md-center" style="background-color: #DCB253;"
-                            type="button" (click)="clickSaphranPack()">إشترك
-                            الان</button>
-                    </div>
+                
+                <!-- Button -->
+                <div class="d-grid gap-2 col-8 mx-auto">
+                    <button class="btn btn-lg" style="background-color: #DCB253;" type="button" (click)="clickSaphranPack()">إشترك الآن</button>
                 </div>
             </div>
-
         </div>
+    </div>
 
-        <div class="col-sm-4">
-            <div *ngIf="RubiraPack">
-                <div class="card" style="top: -4rem; width: 25rem;">
-                    <div class="card-header text-center" style="background-color: white; border:white; ">
-                        <img class="float-center position-relative" style="width: 15rem; height: 1.3rem;"
-                            src="assets/images/rubira pack.png">
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <img class="float-center" src="assets/images/Rubira-Pack 1.png" style="width:20rem;"
-                                (click)="toggleRubira()">
+    <!-- Second Card -->
+    <div class="col-lg-4 mb-3">
+        <div class="card" style="width: 100%;" [ngClass]="{'expanded': isExpandedRubira}">
+            <div class="card-body">
+                <!-- First Image -->
+                <img src="assets/images/rubira_pack.png" class="img-fluid mx-auto d-block mb-3" alt="First Image">
+                 
+                <!-- Second Image -->
+                <img src="assets/images/Rubira_Pack_1.png" class="img-fluid mx-auto d-block mb-3" alt="Second Image" (click)="toggleExpandedRubira()">
+                
+                <!-- Additional Information -->
+                <div class="additional-info" *ngIf="isExpandedRubira">
+                    <div class="container">
+                        <!-- Additional content here -->
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-12">
+                                <div class="fs-2 fw-bold text-center">{{ oleaPrice }}$ <span class="fs-5">/month</span></div>
+                            </div>
+                            <div class="col-12">
+                                <div class="fs-2 fw-bold text-center"> الإشتراك الذهبي</div>
+                            </div>
+                            <div class="col-12">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <span><i class="fa fa-check"></i>4 visites terrain</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><i class="fa fa-check"></i>4 consultations en ligne</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><i class="fa fa-check"></i>2 analyses</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-footer text-center" style="background-color: white; border:white; ">
-                        <button class="btn1 btn btn-lg float-center " style="background-color: #870A24;" type="button"
-                            (click)="clickSaphranPack()">إشترك
-                            الان</button>
                     </div>
                 </div>
-            </div>
-
-            <div *ngIf="!RubiraPack">
-                <div class="card" style="top: -4rem; width: 19rem;">
-                    <div class="card-header text-end" style="background-color: white; border:white; ">
-                        <img class="float-center position-relative" style="width: 12rem; height: 1.3rem;"
-                            src="assets/images/rubira pack.png">
-                    </div>
-                    <div class="card-body">
-                        <div class="row float-end">
-                            <img class="mx-auto" src="assets/images/Rubira-Pack 1.png" style="width:10rem;"
-                                (click)="toggleRubira()">
-                        </div>
-                        <div class="row float-start">
-                            <label for="oleaPrice" class="fs-2 fw-bold"> {{ 70 }}$ <span
-                                    class="fs-5">/month</span></label>
-                        </div>
-                        <div class="row float-start">
-                            <label for="oleaPrice" class="fs-2 fw-bold"> الإشتراك الفضي</label>
-                        </div>
-                        <div class="row float-start">
-                            <ul class="list-group" style="border:white;">
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        4 visites terrain en ligne
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        4 consultations en ligne
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        2 analyses
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-footer text-center" style="background-color: white; border:white; ">
-                        <button class="btn1 btn btn-lg float-center " style="background-color: #870A24;" type="button"
-                            (click)="clickSaphranPack()">إشترك
-                            الان</button>
-                    </div>
+                
+                <!-- Button -->
+                <div class="d-grid gap-2 col-8 mx-auto">
+                    <button class="btn btn-lg" style="background-color: #870A24;" type="button" (click)="clickSaphranPack()">إشترك الآن</button>
                 </div>
             </div>
-
         </div>
-
-        <div class="col-sm-4">
-            <div *ngIf="OleaPack">
-                <div class="card" style="top: -4rem; width: 25rem;">
-                    <div class="card-header text-center" style="background-color: white; border:white; ">
-                        <img class="float-center position-relative" style="width: 12rem; height: 1.3rem;"
-                            src="assets/images/Most Popular.png">
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <img class="float-center" src="assets/images/Olea-Pack 1.png" style="width:20rem;"
-                                (click)="toggleOlea()">
+    </div>
+    
+    <!-- Third Card -->
+    <div class="col-lg-4 mb-3">
+        <div class="card" style="width: 100%;" [ngClass]="{'expanded': isExpandedOlea}">
+            <div class="card-body">
+                <!-- First Image -->
+                <img src="assets/images/olea_pack.png" class="img-fluid mx-auto d-block mb-3" alt="First Image">
+                
+                <!-- Second Image -->
+                <img src="assets/images/Olea_Pack_1.png" class="img-fluid mx-auto d-block mb-3" alt="Second Image" (click)="toggleExpandedOlea()">
+                
+                <!-- Additional Information -->
+                <div class="additional-info" *ngIf="isExpandedOlea">
+                    <div class="container">
+                        <!-- Additional content here -->
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-12">
+                                <div class="fs-2 fw-bold text-center">{{ oleaPrice }}$ <span class="fs-5">/month</span></div>
+                            </div>
+                            <div class="col-12">
+                                <div class="fs-2 fw-bold text-center"> الإشتراك الذهبي</div>
+                            </div>
+                            <div class="col-12">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <span><i class="fa fa-check"></i>4 visites terrain</span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <span><i class="fa fa-check"></i>4 consultations en ligne</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-footer text-center" style="background-color: white; border:white; ">
-                        <button class="btn1 btn btn-lg float-center " style="background-color: #6B8E23;" type="button"
-                            (click)="clickOleaPack()">إشترك
-                            الان</button>
                     </div>
                 </div>
-            </div>
-
-            <div *ngIf="!OleaPack">
-                <div class="card" style="top: -4rem; width: 19rem;">
-                    <div class="card-header text-end" style="background-color: white; border:white; ">
-                        <img class="float-center position-relative" style="width: 12rem; height: 1.3rem;"
-                            src="assets/images/Most Popular.png">
-                    </div>
-                    <div class="card-body">
-                        <div class="row float-end">
-                            <img class="mx-auto" src="assets/images/Olea-Pack 1.png" style="width:10rem;"
-                                (click)="toggleOlea()">
-                        </div>
-                        <div class="row float-start">
-                            <label for="oleaPrice" class="fs-2 fw-bold"> {{ 40 }}$ <span
-                                    class="fs-5">/month</span></label>
-                        </div>
-                        <div class="row float-start">
-                            <label for="oleaPrice" class="fs-2 fw-bold"> الإشتراك الفضي</label>
-                        </div>
-                        <div class="row float-start">
-                            <ul class="list-group" style="border:white;">
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        4 accompagnements en ligne
-                                    </span>
-                                </li>
-                                <li class="list-group-item">
-                                    <span>
-                                        <i class="bi bi-check">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
-                                            </svg>
-                                        </i>
-                                        4 consultations en ligne
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-footer text-center" style="background-color: white; border:white; ">
-                        <button class="btn1 btn btn-lg float-center " style="background-color: #6B8E23;" type="button"
-                            (click)="clickOleaPack()">إشترك
-                            الان</button>
-                    </div>
+                
+                <!-- Button -->
+                <div class="d-grid gap-2 col-8 mx-auto">
+                    <button class="btn btn-lg" style="background-color: #6B8E23;" type="button" (click)="clickSaphranPack()">إشترك الآن</button>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
-<app-add-abonnements></app-add-abonnements>
-
+<div class="row">
+    <app-add-abonnements></app-add-abonnements>
+</div>
