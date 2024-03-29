@@ -48,7 +48,7 @@ const routes: Routes = [
       {path: 'home', component: HomeComponent},
       {path: 'demande', component: DemandeComponent},
       {path: 'demande-list', component: DemandeListComponent},
-      {path: 'demande-pack', component: DemandePackComponent},
+      { path: 'demande-pack/:imageName', component: DemandePackComponent },
       {path: 'rapports-informations', component: RapportsInformationsComponent},
 
       {path: '**', component: NotFoundComponent, pathMatch: 'full'},

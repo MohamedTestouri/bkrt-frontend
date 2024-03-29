@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DemandePacks } from 'src/app/models/demande-packs';
+import { Pack } from 'src/app/models/pack';
 import { DemandePacksService } from 'src/app/services/demande-packs.service';
+import { PackService } from 'src/app/services/pack.service';
 
 @Component({
   selector: 'app-demande-pack',
@@ -11,17 +13,54 @@ import { DemandePacksService } from 'src/app/services/demande-packs.service';
 })
 export class DemandePackComponent implements OnInit {
 
-  constructor(private router : Router, private fb: FormBuilder, private demandePackservice: DemandePacksService) { }
+  constructor(private router : Router, private fb: FormBuilder, private demandePackservice: DemandePacksService, private route: ActivatedRoute, private packService : PackService) { }
   number: number = 0;
   demandePackForm: FormGroup;
   tempDemandePacks: DemandePacks;
-  image: string = "assets/images/Olea-Pack 1.png";
-  namePack: string="الإشتراك الفضي";
-  pricePack: string= "89";
+  namePack: string="";
+  pricePack: string= "";
+  imageName: string = '' ;
+  pack : Pack;
+  imagePath: string = '';
 
   ngOnInit(): void {
     this.InitializeForm();
+    this.route.params.subscribe(params => {
+      this.imageName = params['imageName'];
+      this.getPackByName(this.imageName);
+
+      if(this.imageName == "Olea")
+      {
+        this.imagePath = "assets/images/Olea_Pack_1.png";
+        this.namePack= "الإشتراك الفضي";
+      }
+      else if(this.imageName == "Rubira")
+      {
+        this.imagePath = "assets/images/Rubira_Pack_1.png";
+        this.namePack= "الإشتراك الفضي";
+      }
+      else if(this.imageName == "Saphran")
+      {
+        this.imagePath = "assets/images/Saphran_Pack_1.png";
+        this.namePack= "الإشتراك الذهبي";
+      }
+    });
   }
+
+  getPackByName(name: string)
+{
+  this.packService.getPackByName(name)
+      .subscribe(
+        (data: Pack) => {
+          this.pack = data;
+          this.pricePack = this.pack.prix;
+          console.log("pack", this.pack)
+        },
+        error => {
+          console.error('Erreur lors de la récupération du pack :', error);
+        }
+      );
+}
 
   createDemandePacks() {
     this.tempDemandePacks=
@@ -32,10 +71,10 @@ export class DemandePackComponent implements OnInit {
       codeReduction: this.demandePackForm.value.codeReduction,
       date: null,
       statut:'',
+      packId: this.pack.id,
     }
     this.demandePackservice.create(this.tempDemandePacks).subscribe({
       next: _ => {
-        console.log("dem", this.tempDemandePacks)
         this.router.navigateByUrl('/');
         // this.showError = false;
       },

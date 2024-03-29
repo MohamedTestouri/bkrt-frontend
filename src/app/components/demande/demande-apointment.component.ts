@@ -151,7 +151,6 @@ export class DemandeComponent implements OnInit {
       } 
     })
 
-    //this.getTerrainsByAgr();
   }
 
   onDateChange(date: Date): void {
@@ -242,18 +241,6 @@ export class DemandeComponent implements OnInit {
     this.selectedType = typeLabel;
   }
 
-  getTerrainsByAgr()
-  {
-    this.terrainService.getTerrainsByAgr(this.currentUser).subscribe({
-      next:(data) => {
-        this.terrains = data;
-      },
-      error: e => {
-        // this.showError = true;
-        // this.validationError = e.error;
-      } 
-    })
-  }
   DoneAppointmentDate() {
     if (
       (this.selectedHour == undefined && this.selectedMinute == undefined) ||

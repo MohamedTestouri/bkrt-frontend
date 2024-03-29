@@ -6,4 +6,5 @@ export interface DemandePacks
     codeReduction:number;
     date: any;
     statut: string;
+    packId: number;
 }
