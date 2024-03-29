@@ -50,6 +50,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { DemandePackComponent } from './components/subscriptions-packages/demande-pack/demande-pack.component';
 import { AddAbonnementsComponent } from './components/subscriptions-packages/add-abonnements/add-abonnements.component';
 import { RapportsInformationsComponent } from './components/rapports-informations/rapports-informations.component';
+import { DemandeListComponent } from './components/demande-list/demande-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,6 +86,7 @@ import { RapportsInformationsComponent } from './components/rapports-information
     DemandePackComponent,
     AddAbonnementsComponent,
     RapportsInformationsComponent,
+    DemandeListComponent,
   ],
   imports: [
     BrowserAnimationsModule,

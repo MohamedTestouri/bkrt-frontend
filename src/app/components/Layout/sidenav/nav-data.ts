@@ -36,7 +36,7 @@ export const navbarData = [
         role: ['Admin', 'Agriculteur']
     },
     {
-        routeLink: 'demande',
+        routeLink: 'demande-list',
         icon: 'fal fa-shopping-cart',
         label: 'الطلبات',
         role: ['Admin']

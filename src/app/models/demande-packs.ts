@@ -4,4 +4,6 @@ export interface DemandePacks
     packType: string;
     fichier: string;
     codeReduction:number;
+    date: any;
+    statut: string;
 }

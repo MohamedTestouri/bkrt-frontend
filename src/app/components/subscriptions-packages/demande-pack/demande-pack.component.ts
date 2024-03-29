@@ -30,6 +30,8 @@ export class DemandePackComponent implements OnInit {
       number : this.demandePackForm.value.number,
       packType : this.namePack,
       codeReduction: this.demandePackForm.value.codeReduction,
+      date: null,
+      statut:'',
     }
     this.demandePackservice.create(this.tempDemandePacks).subscribe({
       next: _ => {

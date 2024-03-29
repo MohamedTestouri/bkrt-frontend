@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { DemandePacks } from 'src/app/models/demande-packs';
-import { map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +19,9 @@ export class DemandePacksService {
         const Terrain = response;
       })
     )
+  }
+
+  getDemandePacks(): Observable<DemandePacks[]> {
+    return this.http.get<DemandePacks[]>(this.baseUrl + 'demandePack/');
   }
 }

@@ -26,6 +26,7 @@ import { RendezVousComponent } from './components/rendez-vous/rendez-vous/rendez
 import { DemandeComponent } from './components/demande/demande-apointment.component';
 import { DemandePackComponent } from './components/subscriptions-packages/demande-pack/demande-pack.component';
 import { RapportsInformationsComponent } from './components/rapports-informations/rapports-informations.component';
+import { DemandeListComponent } from './components/demande-list/demande-list.component';
 
 const routes: Routes = [
   {path: 'login', component: ParentAuthComponent, canActivate: [AlreadyAuthGuard]},
@@ -46,6 +47,7 @@ const routes: Routes = [
       {path:'rendezvous',component:RendezVousComponent},
       {path: 'home', component: HomeComponent},
       {path: 'demande', component: DemandeComponent},
+      {path: 'demande-list', component: DemandeListComponent},
       {path: 'demande-pack', component: DemandePackComponent},
       {path: 'rapports-informations', component: RapportsInformationsComponent},
 
