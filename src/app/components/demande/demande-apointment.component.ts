@@ -8,11 +8,9 @@ import { Terrain } from 'src/app/models/terrain';
 import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';
 import { TerrainService } from 'src/app/services/terrain.service';
-
- import { format } from 'date-fns';
- import { ar } from 'date-fns/locale';
 import { DemandeAppointmentService } from 'src/app/services/demande-appointment.service';
-
+import { format } from 'date-fns';
+import { ar } from 'date-fns/locale';
 
 @Component({
   selector: 'app-demande',

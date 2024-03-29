@@ -13,7 +13,7 @@ export class NewTerrainComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toggleForm()
+  AddNewTerrain()
   {
     this.router.navigateByUrl('/formPack');
   }

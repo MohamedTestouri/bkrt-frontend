@@ -44,7 +44,7 @@ const routes: Routes = [
       {path: 'dashboardHeader', component: DashboardHeaderComponent},
       {path: 'newTerrain', component: NewTerrainComponent},
       {path: 'formPack', component: FormPackComponent},
-      {path:'rendezvous',component:RendezVousComponent},
+      {path: 'rendezvous',component:RendezVousComponent},
       {path: 'home', component: HomeComponent},
       {path: 'demande', component: DemandeComponent},
       {path: 'demande-list', component: DemandeListComponent},

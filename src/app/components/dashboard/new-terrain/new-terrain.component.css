@@ -1,35 +1,14 @@
-.card-container {
-    display: flex;
-    height: 200vh; /* Ajustez la hauteur selon vos besoins */
-    width: 100%;
-  }
-  
-  .card {
-    position: relative;
-  width: 88%; /* Ajustez la largeur selon vos besoins */
-  height: 23vh; /* Ajustez la hauteur selon vos besoins */
-  overflow: hidden;
-  top: -88.77%;
-  }
-  
-  .card-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  }
-  .img-fluid {
-    position: relative;
-    width: 7%;
-    height: 50%;
-    transform: translate(650%, 5%);
-  }
-  .text
-  {
-    left: 40%;
-    position: relative;
-    color: antiquewhite;
-    font-size: 4cap;
-  }
+.gradient-bg {
+  background: linear-gradient(to left, #45946B, #084F4B);
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.icon-button:hover .fa-circle,
+.icon-button:hover .fa-plus {
+  background-color: #BCD8CA; /* Change color to desired color on hover */
+}
