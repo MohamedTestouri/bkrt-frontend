@@ -19,7 +19,6 @@ import { NotFoundComponent } from './components/errors/not-found/not-found.compo
 import { ServerErrorComponent } from './components/errors/server-error/server-error.component';
 import { ConfirmDialogComponent } from './components/modals/confirm-dialog/confirm-dialog.component';
 import { TextInputComponent } from './components/forms/text-input/text-input.component';
-import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 
@@ -59,7 +58,6 @@ import { RapportsInformationsComponent } from './components/rapports-information
     ConfirmDialogComponent,
     RegisterComponent,
     TextInputComponent,
-    HomeComponent,
     LoginComponent,
     ProfileChoiceComponent,
 

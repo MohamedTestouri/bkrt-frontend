@@ -6,6 +6,12 @@ export const navbarData = [
         role: ['Admin', 'Agriculteur']
     },
     {
+        routeLink: 'subscriptions-packages',
+        icon: 'fal fa-files-o',
+        label: 'الحزم',
+        role: ['Admin', 'Agriculteur']
+    },
+    {
         routeLink: 'rapports-informations',
         icon: 'fal fa-chart-bar',
         label: 'التقارير و المعلومات',
@@ -23,22 +29,16 @@ export const navbarData = [
         label: ' المواعيد و الزيارات',
         role: ['Admin', 'Agriculteur']
     },
-    {
-        routeLink: 'subscriptions-packages',
-        icon: 'fal fa-files-o',
-        label: 'الحزم',
-        role: ['Admin', 'Agriculteur']
-    },
-    {
-        routeLink: 'home',
-        icon: 'fal fa-home',
-        label: 'الرئيسية',
-        role: ['Admin', 'Agriculteur']
-    },
-    {
-        routeLink: 'demande',
-        icon: 'fal fa-shopping-cart',
-        label: 'الطلبات',
-        role: ['Admin']
-    },
+    // {
+    //     routeLink: 'home',
+    //     icon: 'fal fa-home',
+    //     label: 'الرئيسية',
+    //     role: ['Admin', 'Agriculteur']
+    // },
+    // {
+    //     routeLink: 'demande',
+    //     icon: 'fal fa-shopping-cart',
+    //     label: 'الطلبات',
+    //     role: ['Admin', 'Agriculteur']
+    // },
 ];

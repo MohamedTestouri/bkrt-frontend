@@ -30,7 +30,7 @@ export class AccountSettingsComponent implements OnInit {
   initializeForm() {
     this.userService.getUserInfo().subscribe({
       next: _ => {
-        this.userInfos = _;
+        this.userInfos = _ ;
 
         this.userForm = this.fb.group({
           firstName: [this.userInfos.firstName, Validators.required],

@@ -11,46 +11,48 @@ import { Router } from '@angular/router';
  styleUrls: ['./rendez-vous.component.css']
 })
 export class RendezVousComponent implements OnInit {
- // Définition de handleDateSelect avant calendarOptions
- handleDateSelect = (selectInfo) => {
-    let title = prompt('Titre de l\'événement:');
-    let color = prompt('Couleur de l\'événemen:');
-    let calendarApi = selectInfo.view.calendar;
 
-    calendarApi.unselect();
+   // Définition de handleDateSelect avant calendarOptions
+   handleDateSelect = (selectInfo) => {
+      let title = prompt('Titre de l\'événement:');
+      let color = prompt('Couleur de l\'événemen:');
+      let calendarApi = selectInfo.view.calendar;
 
-    if (title) {
-      calendarApi.addEvent({
-        id: this.createEventId(),
-        title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        color: color,
-        allDay: selectInfo.allDay
-      });
-    }
- }
+      calendarApi.unselect();
 
- calendarOptions: CalendarOptions = {
-    initialView: 'dayGridMonth',
-    plugins: [dayGridPlugin,interactionPlugin],
-    selectable: true,
-    //select: this.handleDateSelect,
-    events: []
- };
+      if (title) {
+         calendarApi.addEvent({
+         id: this.createEventId(),
+         title,
+         start: selectInfo.startStr,
+         end: selectInfo.endStr,
+         color: color,
+         allDay: selectInfo.allDay
+         });
+      }
+   }
 
- constructor(private router: Router) { }
+   calendarOptions: CalendarOptions = {
+      initialView: 'dayGridMonth',
+      height:'auto',
+      plugins: [dayGridPlugin,interactionPlugin],
+      selectable: true,
+      //select: this.handleDateSelect,
+      events: []
+   };
 
- ngOnInit(): void {
- }
+   constructor(private router: Router) { }
 
- createEventId() {
-    return '_' + Math.random().toString(36).substr(2, 9);
- }
+   ngOnInit(): void {
+   }
 
-goTodemandeAppointment()
-{
-   this.router.navigateByUrl('/demande');
-}
+   createEventId() {
+      return '_' + Math.random().toString(36).substr(2, 9);
+   }
+
+   goTodemandeAppointment()
+   {
+      this.router.navigateByUrl('/demande');
+   }
 
 }
