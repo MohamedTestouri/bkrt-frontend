@@ -20,9 +20,4 @@ export class TerrainService {
       })
     )
   }
-
-  getTerrainsByAgr(user : User) {
-    return this.http.get<Terrain[]>(this.baseUrl + 'terrain/terrains');
-  }
-
 }

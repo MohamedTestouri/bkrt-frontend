@@ -6,7 +6,7 @@
 
 <div class="body">
     <form [formGroup]="demandePackForm" (ngSubmit)="demandePackForm.valid" autocomplete="off">
-    <div class="card mb-3" style="width: 100%; top: -4rem;">
+    <div class="card mb-3" style="width: 100%;">
         <div class="row g-0">
             <div class="col-md-6" style="background-color: #084F4B;">
                 <div class="container">
@@ -46,7 +46,7 @@
 
                     <div class="row">
                         <div class="col-md-6 mb-2">
-                            <img [src]="image">
+                            <img [src]='imagePath' alt="Image">
                         </div>
 
                         <div class="col-md-3 float-end">
@@ -117,7 +117,7 @@
                     </div>
 
                     <div class="row text-end fs-4">
-                        <p> Total Payable : <span class="fw-bold">${{pricePack}}</span> </p>
+                        <p> Total Payable : <span class="fw-bold form-control">${{pricePack}}</span> </p>
                     </div>
                 </div>
             </div>

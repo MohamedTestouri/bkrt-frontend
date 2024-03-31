@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Appointments } from 'src/app/models/apointment';
 import { TYPECULTURES } from 'src/app/models/constants/constants';
 import { IOptions } from 'src/app/models/constants/time-options';
@@ -8,6 +8,7 @@ import { Terrain } from 'src/app/models/terrain';
 import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';
 import { TerrainService } from 'src/app/services/terrain.service';
+import { DemandeAppointmentService } from 'src/app/services/demande-appointment.service';
 import { format } from 'date-fns';
 import { ar } from 'date-fns/locale';
 
@@ -132,7 +133,7 @@ export class DemandeComponent implements OnInit {
     { id: 'visite', label: 'زيارة ميدانية', value: 'زيارة ميدانية' },
     { id: 'aDistance', label: 'مقابلة عبر الإنترنت', value: 'مقابلة عبر الإنترنت' }
   ];
-  constructor(public accountService: AccountService, private fb: FormBuilder, private terrainService : TerrainService) {
+  constructor(public accountService: AccountService, private fb: FormBuilder, private terrainService : TerrainService, private demandeAppointmentService : DemandeAppointmentService) {
     this.maxDate.setDate(this.maxDate.getDate() + 7);
     this.bsInlineRangeValue = [this.bsInlineValue, this.maxDate];
     this.formattedDate = format(this.bsInlineValue, 'EEEE dd MMMM yyyy', { locale: ar });
@@ -150,7 +151,6 @@ export class DemandeComponent implements OnInit {
       } 
     })
 
-    //this.getTerrainsByAgr();
   }
 
   onDateChange(date: Date): void {
@@ -161,7 +161,7 @@ export class DemandeComponent implements OnInit {
   initializeDemandeForm() {
     this.demandeForm = this.fb.group({
       typeCulturesArray: [],
-      question: [''],
+      question: ['', Validators.required],
       autrePlantationDomaines: [''],
       autrePlantationQuestion: [''],
       file: [''],
@@ -175,8 +175,8 @@ export class DemandeComponent implements OnInit {
 
     this.appointmentForm = 
     this.fb.group({
-      heure:[''],
-      minute:[''],
+      hstep: [''],
+      
       periodes: this.periodes,
       methodeRevoir : this.revoirOptions,
     });
@@ -199,7 +199,6 @@ export class DemandeComponent implements OnInit {
     this.afficherContenuVerif = false;
     this.afficherContenuAppointmentDate = true;
     this.afficherContenuAppointmentTime = false;
-    console.log("demande", this.tempDemandeForm);
   }
 
   logSelectedSpecialiste(id : string) {
@@ -242,18 +241,6 @@ export class DemandeComponent implements OnInit {
     this.selectedType = typeLabel;
   }
 
-  getTerrainsByAgr()
-  {
-    this.terrainService.getTerrainsByAgr(this.currentUser).subscribe({
-      next:(data) => {
-        this.terrains = data;
-      },
-      error: e => {
-        // this.showError = true;
-        // this.validationError = e.error;
-      } 
-    })
-  }
   DoneAppointmentDate() {
     if (
       (this.selectedHour == undefined && this.selectedMinute == undefined) ||
