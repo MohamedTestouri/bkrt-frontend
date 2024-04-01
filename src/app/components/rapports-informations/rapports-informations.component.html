@@ -3,8 +3,20 @@
         <app-dashboard-header></app-dashboard-header>
     </div>
 </div>
+<div class="row col-md-12 mb-4">
+    <div class="col-md-8">
+        <label class="fs-3 fw-bold float-end">{{ listName }}</label>
+    </div>
+
+    <div class="col-md-4">
+        <ng-select [items]="choixList" bindLabel="label" bindValue="label" name="choixList"
+        [multiple]="false" placeholder="إختر قائمة" class="col-md-5 text-end float-end"
+        clearAllText="Clear" (change)="onChoixListChange($event)">
+        </ng-select>
+    </div>
+</div>
 <div class="body">
-    <table class="table table-hover">
+    <table *ngIf="showListAgriculteurs" class="table table-hover">
         <thead>
             <tr>
                 <th class="fw-bold text-end"></th>
@@ -18,6 +30,63 @@
         </thead>
         <tbody>
             <tr *ngFor="let agriculteur of agriculteurs">
+                <td class="text-end">
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-success fw-bold" (click)="openModal(modalContent)">
+                            حذف
+                        </button>
+                    </div>
+                </td>
+                <td class="text-end">
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-success fw-bold">
+                            تعديل
+                        </button>
+                    </div>
+                </td>
+                <td class="text-end">
+
+                    {{ agriculteur.statut }}
+
+                </td>
+                <td class="text-end">
+
+                    {{ agriculteur.phoneNumber }}
+
+                </td>
+                <td class="text-end">
+
+                    {{ agriculteur.dateContrat }}
+
+                </td>
+                <td class="text-end">
+
+                    {{ agriculteur.gouvernorat }}
+
+                </td>
+                <td class="text-end">
+
+                    {{ agriculteur.lastName }} {{agriculteur.firstName}}
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table *ngIf="showListIngenieurs" class="table table-hover">
+        <thead>
+            <tr>
+                <th class="fw-bold text-end"></th>
+                <th class="fw-bold text-end"></th>
+                <th class="fw-bold text-end">الحالة</th>
+                <th class="fw-bold text-end">رقم الهاتف</th>
+                <th class="fw-bold text-end">تاريخ التعاقد</th>
+                <th class="fw-bold text-end">الولاية</th>
+                <th class="fw-bold text-end">إسم المهندس </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let engineer of engineers">
                 <td class="text-end">
                     <div class="col-md-4">
                         <button type="button" class="btn btn-success fw-bold" (click)="openModal(modalContent)">
