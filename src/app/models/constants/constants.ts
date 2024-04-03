@@ -1,7 +1,6 @@
 // constants.ts
 
-export const EMAIL_REGEX =
-  '^[a-zA-Z0-9]+(?:.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:.[a-zA-Z0-9]+)*$';
+export const EMAIL_REGEX = '^[a-zA-Z0-9]+(?:.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:.[a-zA-Z0-9]+)*$';
 
 export const PASSWORD_REGEX = '^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z]).{8,}$';
 
@@ -358,4 +357,33 @@ export const TYPECULTURES = [
     name: 'Horticultural Crops',
     label: 'Cultures horticoles | الزراعة البستانية',
   },
+];
+
+export const SPECIALITES = [
+  { id: 'ingenieur', value: 'مهندس فلاحي', label: 'مهندس فلاحي' },
+  { id: 'veterinaire', value: 'طبيب بيطري', label: 'طبيب بيطري' },
+  { id: 'technicienMontage', value: 'فني مختص في التركيب', label: 'فني مختص في التركيب' },
+  { id: 'technicien2', value: 'فني مختص في الزبيرة', label: 'فني مختص في الزبيرة' }
+];
+
+export const DOMAINESAGRICULTURE = [
+  { id: 'plantation', value: 'زراعات', label: 'زراعات' },
+  { id: 'animaux', value: 'حيوانات', label: 'حيوانات' },
+  { id: 'administratif', value: 'مسائل إدارية وإجرائية تخص بعث مشروع فلاحي', label: 'مسائل إدارية وإجرائية تخص بعث مشروع فلاحي' },
+  { id: 'alimentaire', value: 'مشروع تحويلي و صناعات غذائية', label: 'مشروع تحويلي و صناعات غذائية' },
+  { id: 'autre', value: 'أخرى', label: 'أخرى' }
+];
+
+export const SUJETAGRICULTURE = [
+  { id: 'remiseSolFertilisation', value: 'استصلاح تربة و تسميد', label: 'استصلاح تربة و تسميد' },
+  { id: 'eauIrrigation', value: 'مياه و ري', label: 'مياه و ري' },
+  { id: 'maladiesPlantes', value: 'أمراض النباتات', label: 'أمراض النباتات' },
+  { id: 'autre2', value: 'أخرى', label: 'أخرى' }
+];
+
+export const TYPEAGRICULTURE = [
+  { id: 'agricultureNormale', value: 'فلاحة عادية', label: 'فلاحة عادية' },
+  { id: 'agricultureBiologique', value: 'فلاحة بيولوجية', label: 'فلاحة بيولوجية' },
+  { id: 'agricultureRefuge', value: 'فلاحة مستدامة', label: 'فلاحة مستدامة' },
+  { id: 'agricultureAquatique', value: 'زراعات مائية', label: 'زراعات مائية' }
 ];

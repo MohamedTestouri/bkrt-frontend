@@ -1,0 +1,325 @@
+<div class="row">
+    <div class="col-lg-5 d-flex justify-content-center align-items-center auth-left-side">
+        <!-- <app-auth-left-carousel></app-auth-left-carousel> -->
+    </div>
+    <div class="col-lg-7 d-flex flex-column ">
+        <div class="row">
+            <div class="button-container col-lg">
+                <button class="btn btn-md" type="button">
+                    <img src="assets/images/logout.png" /><span class="fw-bold custom-img-text">رجوع إلى الوراء </span>
+                </button>
+            </div>
+            <div class="col-lg-4 text-end">
+                <img src="assets/images/logo.png">
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <ul class="nav nav-tabs justify-content-end fs-5 fw-bold mb-3" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button #thirdTabButton 
+                        class="nav-link custom-tab-color" 
+                        id="third-tab" 
+                        data-bs-toggle="tab" 
+                        data-bs-target="#third" 
+                        type="button" 
+                        role="tab" 
+                        aria-controls="third" 
+                        aria-selected="true"
+                        [disabled]="isFirstTabDisabled">التثبت.III
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button #secondTabButton
+                        class="nav-link custom-tab-color" 
+                        id="second-tab" 
+                        data-bs-toggle="tab" 
+                        data-bs-target="#second" 
+                        type="button" 
+                        role="tab" 
+                        aria-controls="second" 
+                        aria-selected="false"
+                        [disabled]="isSecondTabDisabled">الموعد.II
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button #firstTabButton  
+                        class="nav-link custom-tab-color active" 
+                        id="first-tab" 
+                        data-bs-toggle="tab" 
+                        data-bs-target="#first" 
+                        type="button" 
+                        role="tab" 
+                        aria-controls="first" 
+                        aria-selected="false"
+                        [disabled]="isThirdTabDisabled">الطلب.I
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+
+                <div class="tab-pane fade" id="third" role="tabpanel" aria-labelledby="third-tab">
+                    <div class="row mt-3 container">
+                        <ul class="col-md-11 text-end list-unstyled">
+                            <li><strong>المختص إلي تحب تقابلو :</strong></li>
+                            <li><strong>المجال أو المجالات إلي تحب يعاونك فيهم المختص :</strong></li>
+                            <li><strong> الزراعات إلي عندك :</strong></li>
+                            <li><strong>نوعية الفلاحة متاعك :</strong></li>
+                            <li><strong> الأرض موضوع الطلب :</strong></li>
+                            <li><strong>السؤال يهم الموضوع :</strong></li>
+                            <li><strong>سؤالك للمختص :</strong></li>
+                            <li><strong>كيفاش تحب تقابل المختص :</strong></li>
+                            <li><strong>تاريخ وتوقيت الموعد :</strong></li>
+                        </ul>
+                        <div class="row">
+                            <div class="col-md-9 mt-4 justify-content-center">
+                                <!-- <button (click)="clickConfirmDemandeForm()" type="button"class="btn btn-success rounded text-center col-md-5">تأكيد</button> -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
+                    <div class="row mt-3 container">
+                        <form [formGroup]="demandeAppointementForm" autocomplete="off">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-12">
+                                    <div class="row text-end">
+                                        <div class="fw-bold fs-5">
+                                            <label class="custom-label-color">كيفاش تحب تقابل الخبير؟</label>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-lg-12 align-items-end row">
+                                            <div class="form-check" *ngFor="let revoirOption of revoirOptions">
+                                                <input class="form-check-input float-end" type="radio" formControlName="methodeRevoir" [id]="revoirOption.id" [value]="revoirOption.value">
+                                                <label class="form-check-label mx-4 float-end" [for]="revoirOption.id">{{ revoirOption.label }}</label>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                            <div class="row justify-content-center mt-4">
+                                <div class="col-lg-12">
+                                    <div class="row text-end">
+                                        <div class="fw-bold fs-5">
+                                            <label class="custom-label-color">إختار تاريخ وتوقيت الموعد</label>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 justify-content-center">
+                                        <div class="col-lg-6">
+                                            <div class="row justify-content-center mb-3">
+                                                <div class="col-lg-6">
+                                                    <div class="text-center">
+                                                        <timepicker formControlName="timepickerControl" [showMeridian]="isMeridian" [min]="minTime" [max]="maxTime"></timepicker>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-check text-center" *ngFor="let periode of periodes">
+                                                        <input class="form-check-input float-end" type="radio" formControlName="periode" [id]="periode.id" [value]="periode.value">
+                                                        <label class="form-check-label mx-4 float-end" [for]="periode.id">{{ periode.label }}</label>
+                                                    </div>                                                
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-center">
+                                                <div class="col-6">
+                                                    <div class="pr-3 pb-3 pe-3 w-auto text-center">
+                                                        <bs-datepicker-inline 
+                                                            [bsValue]="demandeAppointementForm.get('datepickerControl').value" 
+                                                            (bsValueChange)="demandeAppointementForm.get('datepickerControl').setValue($event)"    
+                                                            [bsConfig]="{minDate: minDate, daysDisabled: [6,0]}">
+                                                        </bs-datepicker-inline>
+                                                    </div>                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>                        
+                    </div>
+                </div>
+
+                <div class="tab-pane fade show active" id="first" role="tabpanel" aria-labelledby="first-tab">
+                    <div class="row mt-3 text-end custom-header-color">
+                        <h4 class="fw-bold">.قبل ما تعمر إستمارة الموعد متاعك٬ نذكروك إلي كل ما تكون المعلومات إلي تدخلهم دقيقة و واضحة</h4>
+                    </div>
+                    <div class="row mt-3 text-end custom-header-color">
+                        <h4 class="fw-bold">.كل ما تكون المنصة قادرة أنها تستجيب للطلب متاعك بنجاعة</h4>
+                    </div>
+                    <div class="row mt-3 container">
+                        <form [formGroup]="demandeAppointementForm" autocomplete="off">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="row text-end">
+                                        <div class="fw-bold fs-5">
+                                            <label class="custom-label-color">إختار المجال أو المجالات إلي تحب يعاونك فيهم المختص</label>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-lg-12">
+                                            <!-- <app-radio-buttons [formControl]="$any(demandeAppointementForm.controls['domaine'])" [radioList]="domaines"></app-radio-buttons> -->
+
+                                            <div class="align-items-end row">
+                                                <div class="form-check" *ngFor="let domaine of domaines">
+                                                    <input class="form-check-input float-end" type="radio" formControlName="domaine" [id]="domaine.id" [value]="domaine.value">
+                                                    <label class="form-check-label mx-4 float-end" [for]="domaine.id">{{ domaine.label }}</label>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row text-end">
+                                        <div class="fw-bold fs-5">
+                                            <label class="custom-label-color">حدد المختص إلي تحب تقابلو</label>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-lg-12">
+                                            <!-- <app-radio-buttons [formControl]="$any(demandeAppointementForm.controls['specialite'])" [radioList]="specialistes"></app-radio-buttons> -->
+
+                                            <div class="align-items-end row">
+                                                <div class="form-check" *ngFor="let specialite of specialistes">
+                                                    <input class="form-check-input float-end" type="radio" formControlName="specialite" [id]="specialite.id" [value]="specialite.value">
+                                                    <label class="form-check-label mx-4 float-end" [for]="specialite.id">{{ specialite.label }}</label>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="row mt-4">
+                                        <div class="col-lg-4"></div>
+                                        <ng-select class="col-lg-8" 
+                                            [items]="typeCultures" 
+                                            bindLabel="label"
+                                            bindValue="label" 
+                                            [multiple]="true"
+                                            placeholder="اختر نوع الزراعات" 
+                                            clearAllText="Clear"
+                                            formControlName="typeCulturesArray">
+                                        </ng-select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row mt-4">
+                                        <div class="custom-label-color">
+                                            <h4 class="text-end">شنوما الزراعات إلي عندك</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="row mt-3 text-end">
+                                        <div class="fw-bold fs-5">
+                                            <label class="custom-label-color">هل السؤال يهم واحد من المواضيع التالية؟</label>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-lg-12">
+
+                                            <!-- <app-radio-buttons [formControl]="$any(demandeAppointementForm.controls['sujetAgriculture'])" [radioList]="sujetAgriculture"></app-radio-buttons> -->
+                                            
+                                            <div class="align-items-end row">
+                                                <div class="form-check" *ngFor="let sujetAgriculture of sujetAgricultures">
+                                                    <input class="form-check-input float-end" type="radio" formControlName="sujetAgriculture" [id]="sujetAgriculture.id" [value]="sujetAgriculture.value">
+                                                    <label class="form-check-label mx-4 float-end" [for]="sujetAgriculture.id">{{ sujetAgriculture.label }}</label>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row mt-3 text-end">
+                                        <div class="fw-bold fs-5">
+                                            <label class="custom-label-color">نوعية الفلاحة متاعك</label>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-lg-12">
+                                            <!-- <app-radio-buttons [formControl]="$any(demandeAppointementForm.controls['typeAgriculture'])" [radioList]="typeAgriculture"></app-radio-buttons> -->
+
+                                            <div class="align-items-end row">
+                                                <div class="form-check" *ngFor="let typeAgriculture of typeAgricultures">
+                                                    <input class="form-check-input float-end" type="radio" formControlName="typeAgriculture" [id]="typeAgriculture.id" [value]="typeAgriculture.value">
+                                                    <label class="form-check-label mx-4 float-end" [for]="typeAgriculture.id">{{ typeAgriculture.label }}</label>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="row mt-4">
+                                        <div class="col-lg-4"></div>
+                                        <ng-select class="col-lg-8"
+                                            [items]="terrains" 
+                                            bindLabel="site" 
+                                            bindValue="id" 
+                                            [multiple]="false" 
+                                            placeholder="اختر أرضك"
+                                            clearAllText="Clear" 
+                                            formControlName="terrain">
+                                        </ng-select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row mt-4">
+                                        <div class="custom-label-color">
+                                            <h5 class="text-end">الأرض موضوع الطلب</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="row mt-5">
+                                        <div class="col-lg-12 text-end">
+                                            <button type="button" class="btn btn-primary">
+                                                <i class="fas fa-upload"></i> اضغط لإضافة ملف
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>    
+                                <div class="col-lg-6">
+                                    <div class="row mt-4 text-end">
+                                        <div class="fw-bold fs-5">
+                                            <label class="custom-label-color">الرجاء تكتبلنا سؤالك للمختص</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating float-end" style="height: 80%; width: 80%;">
+                                        <app-text-area [formControl]="$any(demandeAppointementForm.controls['question'])" [label]="'سؤالك'" [type]="'textArea'"></app-text-area>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-container *ngIf="showError && validationErrors.length > 0">
+                                <div class="row justify-content-center mt-3">
+                                  <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                      <li *ngFor="let error of validationErrors">{{ error }}</li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </ng-container>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-12 text-center mt-5">
+                                    <button type="button" (click)="moveToSecondTab(secondTabButton)" class="btn btn-success rounded text-center col-md-5">تأكيد</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

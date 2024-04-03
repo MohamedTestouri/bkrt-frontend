@@ -18,10 +18,10 @@ import { ConfirmEmailComponent } from './components/auth/confirm-email/confirm-e
 import { SendEmailComponent } from './components/auth/send-email/send-email.component';
 import { TypeNewPasswordComponent } from './components/auth/type-new-password/type-new-password.component';
 import { RendezVousComponent } from './components/rendez-vous/rendez-vous/rendez-vous.component';
-import { DemandeComponent } from './components/demande/demande-apointment.component';
 import { DemandePackComponent } from './components/subscriptions-packages/demande-pack/demande-pack.component';
 import { RapportsInformationsComponent } from './components/rapports-informations/rapports-informations.component';
 import { DemandeListComponent } from './components/demande-list/demande-list.component';
+import { DemandeAppointmentComponent } from './components/dashboard/demande-appointment/demande-appointment.component';
 
 const routes: Routes = [
   {path: 'login', component: ParentAuthComponent, canActivate: [AlreadyAuthGuard]},
@@ -40,9 +40,9 @@ const routes: Routes = [
       {path: 'newTerrain', component: NewTerrainComponent},
       {path: 'formPack', component: FormPackComponent},
       {path: 'rendezvous',component:RendezVousComponent},
-      {path: 'demande', component: DemandeComponent},
+      {path: 'demande-appointment', component: DemandeAppointmentComponent},
       {path: 'demande-list', component: DemandeListComponent},
-      { path: 'demande-pack/:imageName', component: DemandePackComponent },
+      {path: 'demande-pack/:imageName', component: DemandePackComponent },
       {path: 'rapports-informations', component: RapportsInformationsComponent},
 
       {path: '**', component: NotFoundComponent, pathMatch: 'full'},

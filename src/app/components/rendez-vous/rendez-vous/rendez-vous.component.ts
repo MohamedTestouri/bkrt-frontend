@@ -52,7 +52,7 @@ export class RendezVousComponent implements OnInit {
 
    goTodemandeAppointment()
    {
-      this.router.navigateByUrl('/demande');
+      this.router.navigateByUrl('/demande-appointment');
    }
 
 }

@@ -1,0 +1,76 @@
+
+.auth-left-side {
+    background-image: url('src/assets/images/rectangle.png');
+    background-size: cover;
+  }
+  
+.btn:hover {
+  /* Add your hover effect styles here */
+  background-color: #28a745; /* Example: Change background color on hover */
+  color: white; /* Example: Change text color on hover */
+}
+
+.border
+{
+  color: #09504A;
+  background-color: darkseagreen;
+}
+
+.btn-selected {
+  background-color: lightgreen; /* Changer la couleur de fond lorsque le bouton est sélectionné */
+  color: black; /* Changer la couleur du texte */
+  font-weight: bold; /* Mettre en gras */
+}
+
+.strong
+{
+  color: #09504A;
+}
+  
+  
+  
+
+.custom-img-text{
+  margin-left: 10px; 
+  color: #09504A;
+}
+
+.custom-button-color{
+  color: #44936B;
+}
+
+.custom-tab-color{
+  color: #44936B;
+}
+
+.custom-header-color{
+  color: #84BC26;
+}
+
+.custom-label-color{
+  color: #44936B;
+}
+
+
+
+/* Styles pour les radios non cochés */
+.form-check-input:not(:checked) {
+  background-color: #778d8b;
+}
+
+/* Styles pour les radios cochés */
+.form-check-input:checked {
+  background-color: #84BC26;
+}
+
+/* Styles pour les labels associés aux radios cochés */
+.form-check-input:checked + .form-check-label {
+  color: black;
+  font-weight: 800;
+}
+
+/* Styles pour les labels associés aux radios non cochés */
+.form-check-input:not(:checked) + .form-check-label {
+  color: gray;
+  font-weight: 800;
+}

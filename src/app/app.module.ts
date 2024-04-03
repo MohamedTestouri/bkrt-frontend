@@ -44,13 +44,13 @@ import { CommentPubComponent } from './components/dashboard/comment-pub/comment-
 
 import { RendezVousComponent } from './components/rendez-vous/rendez-vous/rendez-vous.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { DemandeComponent } from './components/demande/demande-apointment.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { DemandePackComponent } from './components/subscriptions-packages/demande-pack/demande-pack.component';
 import { AddAbonnementsComponent } from './components/subscriptions-packages/add-abonnements/add-abonnements.component';
 import { RapportsInformationsComponent } from './components/rapports-informations/rapports-informations.component';
 import { DemandeListComponent } from './components/demande-list/demande-list.component';
 import { TextAreaComponent } from './components/forms/text-area/text-area.component';
+import { DemandeAppointmentComponent } from './components/dashboard/demande-appointment/demande-appointment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,12 +81,12 @@ import { TextAreaComponent } from './components/forms/text-area/text-area.compon
     TypeNewPasswordComponent,
     CommentPubComponent,
     RendezVousComponent,
-    DemandeComponent,
     DemandePackComponent,
     AddAbonnementsComponent,
     RapportsInformationsComponent,
     DemandeListComponent,
     TextAreaComponent,
+    DemandeAppointmentComponent,
   ],
   imports: [
     BrowserAnimationsModule,

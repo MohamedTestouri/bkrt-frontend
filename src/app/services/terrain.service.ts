@@ -20,4 +20,8 @@ export class TerrainService {
       })
     )
   }
+
+  getAgriculteurTerrains() {
+    return this.http.get<Terrain[]>(this.baseUrl + 'terrain/getAgriculteurTerrains');
+  }
 }
