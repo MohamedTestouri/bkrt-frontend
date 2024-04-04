@@ -74,3 +74,20 @@
   color: gray;
   font-weight: 800;
 }
+
+/************************/
+
+.custom-list{
+  list-style-position: inside; /* Set the position of the bullets inside the list items */
+  direction: rtl; /* Set the text direction to right-to-left */
+  text-align: left; /* Align the text to the left */
+}
+
+.custom-list li {
+  color: #949492; /* Change the color of the text next to the bullet point */
+}
+
+.custom-list li::marker {
+  color: #09504A; /* Change the color of the bullet point */
+  font-size: 20px;
+}

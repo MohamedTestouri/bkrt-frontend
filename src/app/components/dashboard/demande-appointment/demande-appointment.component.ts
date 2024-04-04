@@ -1,12 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Appointments } from 'src/app/models/apointment';
 import { DOMAINESAGRICULTURE, SPECIALITES, SUJETAGRICULTURE, TYPEAGRICULTURE, TYPECULTURES } from 'src/app/models/constants/constants';
 import { IOptions } from 'src/app/models/constants/time-options';
-import { Demande } from 'src/app/models/demande';
+import { DemandeAppointment } from 'src/app/models/demandeAppointment';
 import { Terrain } from 'src/app/models/terrain';
-import { AccountService } from 'src/app/services/account.service';
 import { DemandeAppointmentService } from 'src/app/services/demande-appointment.service';
 import { TerrainService } from 'src/app/services/terrain.service';
 
@@ -50,15 +48,61 @@ export class DemandeAppointmentComponent implements OnInit {
 
   minDate: Date;
 
-  myTime: Date = new Date();
+  myTime: Date;
   minTime: Date = new Date();
   maxTime: Date = new Date();
   isMeridian = false;
 
+  updateTimeRange(periode: any) {
+    if (periode === 'الفترة الصباحية') {
+      this.minTime.setHours(8);
+      this.minTime.setMinutes(0);
+      const defaultDate = new Date();
+      defaultDate.setHours(9); 
+      defaultDate.setMinutes(0);0
+      defaultDate.setSeconds(0);
+      this.demandeAppointementForm.get('timepickerControl').setValue(defaultDate);
+      this.maxTime.setHours(11);
+      this.maxTime.setMinutes(30);
+  } else if (periode === 'الفترة المسائية') {
+    console.log("lil ", this.minTime, this.maxTime)
+    this.maxTime.setHours(16);
+    this.maxTime.setMinutes(30);
+    const defaultDate = new Date();
+    defaultDate.setHours(13); 
+    defaultDate.setMinutes(0); 
+    defaultDate.setSeconds(0);
+    this.demandeAppointementForm.get('timepickerControl').setValue(defaultDate);
+    this.minTime.setHours(13);
+    this.minTime.setMinutes(0);
+    }
+  }
+  
+
+
+  // isMorning: boolean = true; // Assuming initially it's morning
+  // timepickerForm: FormGroup;
+  // minMorningTime = { hour: 9, minute: 30 };
+  // maxMorningTime = { hour: 11, minute: 30 };
+  // minEveningTime = { hour: 13, minute: 30 };
+  // maxEveningTime = { hour: 16, minute: 30 };
+
+  
+  // toggleTime() {
+  //   this.isMorning = !this.isMorning;
+  // }
+
+  // get minTime() {
+  //   return this.isMorning ? this.minMorningTime : this.minEveningTime;
+  // }
+
+  // get maxTime() {
+  //   return this.isMorning ? this.maxMorningTime : this.maxEveningTime;
+  // }
 
   bsInlineValue = new Date();
   bsInlineRangeValue: Date[];
-  tempDemandeForm: Demande;
+  tempDemandeForm: DemandeAppointment;
   tempAppointmentForm: Appointments;
   option: IOptions;
   selectedHour: number | undefined;
@@ -68,11 +112,10 @@ export class DemandeAppointmentComponent implements OnInit {
   constructor(private fb: FormBuilder, private terrainService : TerrainService, private demandeAppointmentService : DemandeAppointmentService) {
     this.minDate = new Date();
     this.minDate.setDate(this.minDate.getDate());
-
     this.minTime.setHours(8);
     this.minTime.setMinutes(0);
-    this.maxTime.setHours(23);
-    this.maxTime.setMinutes(55);
+    this.maxTime.setHours(11);
+    this.maxTime.setMinutes(30);
   }
 
   ngOnInit(): void {
@@ -91,6 +134,12 @@ export class DemandeAppointmentComponent implements OnInit {
   }
 
   initializeDemandeAppointementForm() {
+
+    const defaultDate = new Date();
+    defaultDate.setHours(9); // Set hours to 9
+    defaultDate.setMinutes(0); // Set minutes to 0
+    defaultDate.setSeconds(0); // Set seconds to 0
+
     this.demandeAppointementForm = this.fb.group({
       specialite: ['', Validators.required],
       domaine: ['', Validators.required],
@@ -103,7 +152,7 @@ export class DemandeAppointmentComponent implements OnInit {
       file: [''],  
 
       methodeRevoir: [''], // Add validators as needed
-      timepickerControl: [''], // Initialize with default value if needed
+      timepickerControl: [defaultDate], // Initialize with default value if needed
       periode: [''], // Add validators as needed
       datepickerControl: [''] // Initialize with default value if needed
     });
@@ -120,32 +169,6 @@ export class DemandeAppointmentComponent implements OnInit {
     };
   }
 
-  // SaveDemande() {
-
-  //   this.demandeAppointementForm.markAllAsTouched();
-
-  //   if(this.demandeAppointementForm.invalid){
-  //     // Log the form errors to the console
-  //     console.log('Form errors:', this.demandeAppointementForm.errors);
-  //   }
-  //   console.log(this.demandeAppointementForm.value);
-  //   // this.tempDemandeForm = {
-  //   //   autreDomaines: this.demandeAppointementForm.value.autrePlantationDomaines,
-  //   //   autreSujetQuestion: this.demandeAppointementForm.value.autrePlantationQuestion,
-  //   //   file: this.demandeAppointementForm.value.file,
-  //   //   question: this.demandeAppointementForm.value.question,
-  //   //   typeAgriculture: this.selectedType,
-  //   //   domaine: this.domaineSelected,
-  //   //   typeCulture: this.plantationSelected,
-  //   //   specialiste: this.selectedSpecialiste,
-  //   //   sujet: this.selectedSujet,
-  //   //   terrain : this.demandeAppointementForm.value.terrain,
-  //   // };
-  //   // this.afficherContenuDem = false;
-  //   // this.afficherContenuVerif = false;
-  //   // this.afficherContenuAppointmentDate = true;
-  //   // this.afficherContenuAppointmentTime = false;
-  // }
 
   moveToSecondTab(buttonRef: ElementRef) {
     // Mark all form controls as touched to trigger validation
@@ -179,7 +202,7 @@ export class DemandeAppointmentComponent implements OnInit {
     // Log the form values to the console
     console.log(this.demandeAppointementForm.value);
 
-    this.isFirstTabDisabled = false;
+    this.isFirstTabDisabled = true;
     this.isSecondTabDisabled = false;
     this.isThirdTabDisabled = true;
   
@@ -199,6 +222,33 @@ export class DemandeAppointmentComponent implements OnInit {
     }
   }
 
+  moveToThirdTab(buttonRef: ElementRef) {
+  
+    // Log the form values to the console
+    console.log(this.demandeAppointementForm.value);
+
+    this.isFirstTabDisabled = true;
+    this.isSecondTabDisabled = true;
+    this.isThirdTabDisabled = false;
+  
+    // Remove 'active' class from the second tab button
+    this.secondTabButton.nativeElement.classList.remove('active');
+    // Add 'active' class to the third tab button
+    this.thirdTabButton.nativeElement.classList.add('active');
+
+    // Update the active tab content
+    const thirdTabContent = document.getElementById('third');
+    if (thirdTabContent) {
+      thirdTabContent.classList.add('active', 'show');
+    }
+    const secondTabContent = document.getElementById('second');
+    if (secondTabContent) {
+      secondTabContent.classList.remove('active', 'show');
+    }
+
+
+  }
+
   // Helper method to get error messages based on error key
   getErrorMessage(errorKey: string): string {
     // Define error messages for each error key
@@ -211,4 +261,25 @@ export class DemandeAppointmentComponent implements OnInit {
     return errorMessages[errorKey] || 'Invalid value.';
   }
   
+
+  
+  SaveDemande() {
+
+    // this.demandeAppointementForm.markAllAsTouched();
+
+    // if(this.demandeAppointementForm.invalid){
+    //   // Log the form errors to the console
+    //   console.log('Form errors:', this.demandeAppointementForm.errors);
+    // }
+    console.log(this.demandeAppointementForm.value);
+
+    this.demandeAppointmentService.create(this.demandeAppointementForm.value).subscribe({
+      next: () => {
+        console.log(this.demandeAppointementForm.value);
+      },
+      error: error => {
+        this.validationErrors = error
+      } 
+    })
+  }
 }

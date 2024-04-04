@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-5 d-flex justify-content-center align-items-center auth-left-side">
-        <!-- <app-auth-left-carousel></app-auth-left-carousel> -->
+        <app-auth-left-carousel></app-auth-left-carousel>
     </div>
     <div class="col-lg-7 d-flex flex-column ">
         <div class="row">
@@ -60,7 +60,7 @@
 
                 <div class="tab-pane fade" id="third" role="tabpanel" aria-labelledby="third-tab">
                     <div class="row mt-3 container">
-                        <ul class="col-md-11 text-end list-unstyled">
+                        <ul class="col-md-11 text-end custom-list">
                             <li><strong>المختص إلي تحب تقابلو :</strong></li>
                             <li><strong>المجال أو المجالات إلي تحب يعاونك فيهم المختص :</strong></li>
                             <li><strong> الزراعات إلي عندك :</strong></li>
@@ -73,9 +73,15 @@
                         </ul>
                         <div class="row">
                             <div class="col-md-9 mt-4 justify-content-center">
-                                <!-- <button (click)="clickConfirmDemandeForm()" type="button"class="btn btn-success rounded text-center col-md-5">تأكيد</button> -->
+                                <button (click)="SaveDemande()" type="button"class="btn btn-success rounded text-center col-md-5">تأكيد</button>
                             </div>
                         </div>
+                        <!-- <div class="row">
+                            <div class="col-md-12 mt-4 justify-content-end">
+                                <button (click)="clickBackToRegisterForm()" type="button" class="btn btn-success rounded text-center col-md-8">تعديل</button>
+                            </div>                    
+                        </div>    -->
+
                     </div>
 
                 </div>
@@ -117,7 +123,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-check text-center" *ngFor="let periode of periodes">
-                                                        <input class="form-check-input float-end" type="radio" formControlName="periode" [id]="periode.id" [value]="periode.value">
+                                                        <input class="form-check-input float-end" type="radio" formControlName="periode" [id]="periode.id" [value]="periode.value" (change)="updateTimeRange(periode.value)">
                                                         <label class="form-check-label mx-4 float-end" [for]="periode.id">{{ periode.label }}</label>
                                                     </div>                                                
                                                 </div>
@@ -135,6 +141,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-12 text-center mt-5">
+                                    <button type="button" (click)="moveToThirdTab(thirdTabButton)" class="btn btn-success rounded text-center col-md-5">تأكيد</button>
                                 </div>
                             </div>
                         </form>                        
@@ -310,7 +321,7 @@
                                     </ul>
                                   </div>
                                 </div>
-                              </ng-container>
+                            </ng-container>
                             <div class="row justify-content-center">
                                 <div class="col-lg-12 text-center mt-5">
                                     <button type="button" (click)="moveToSecondTab(secondTabButton)" class="btn btn-success rounded text-center col-md-5">تأكيد</button>
