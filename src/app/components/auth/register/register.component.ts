@@ -152,8 +152,8 @@ export class RegisterComponent implements OnInit {
 
   registerEngineerFirstInfos() {
     this.tempRegisterEngineerForm = {
-      firstName: this.registerAgriculteurForm.value.firstName,
-      lastName: this.registerAgriculteurForm.value.lastName,
+      firstName: this.registerEngineerForm1.value.firstName,
+      lastName: this.registerEngineerForm1.value.lastName,
       userName: this.registerEngineerForm1.value.userName,
       email: this.registerEngineerForm1.value.email,
       phoneNumber: this.registerEngineerForm1.value.phoneNumber.internationalNumber,
@@ -205,8 +205,8 @@ export class RegisterComponent implements OnInit {
 
   registerEngineerSecondInfos() {
     this.tempRegisterEngineerForm = {
-      firstName: this.registerAgriculteurForm.value.firstName,
-      lastName: this.registerAgriculteurForm.value.lastName,
+      firstName: this.tempRegisterEngineerForm.firstName,
+      lastName: this.tempRegisterEngineerForm.lastName,
       userName: this.tempRegisterEngineerForm.userName,
       email: this.tempRegisterEngineerForm.email,
       phoneNumber: this.tempRegisterEngineerForm.phoneNumber,
@@ -288,6 +288,7 @@ export class RegisterComponent implements OnInit {
       this.afficherContenuInfor = false;
       this.afficherContenuVerif = false;
       this.afficherContenuConfirm = true;
+      console.log("eng", this.tempRegisterEngineerForm)
       this.accountService.register(this.tempRegisterEngineerForm).subscribe({
         next: () => {
           this.tempRegisterEngineerForm = {
