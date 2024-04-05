@@ -26,7 +26,7 @@
                         role="tab" 
                         aria-controls="third" 
                         aria-selected="true"
-                        [disabled]="isFirstTabDisabled">التثبت.III
+                        [disabled]="isThirdTabDisabled">التثبت.III
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -52,7 +52,7 @@
                         role="tab" 
                         aria-controls="first" 
                         aria-selected="false"
-                        [disabled]="isThirdTabDisabled">الطلب.I
+                        [disabled]="isFirstTabDisabled">الطلب.I
                     </button>
                 </li>
             </ul>
@@ -60,19 +60,19 @@
 
                 <div class="tab-pane fade" id="third" role="tabpanel" aria-labelledby="third-tab">
                     <div class="row mt-3 container">
-                        <ul class="col-md-11 text-end custom-list">
-                            <li><strong>المختص إلي تحب تقابلو :</strong></li>
-                            <li><strong>المجال أو المجالات إلي تحب يعاونك فيهم المختص :</strong></li>
-                            <li><strong> الزراعات إلي عندك :</strong></li>
-                            <li><strong>نوعية الفلاحة متاعك :</strong></li>
-                            <li><strong> الأرض موضوع الطلب :</strong></li>
-                            <li><strong>السؤال يهم الموضوع :</strong></li>
-                            <li><strong>سؤالك للمختص :</strong></li>
-                            <li><strong>كيفاش تحب تقابل المختص :</strong></li>
-                            <li><strong>تاريخ وتوقيت الموعد :</strong></li>
+                        <ul class="col-md-12 text-end custom-list">
+                            <li><strong>المختص إلي تحب تقابلو :</strong> {{demandeAppointementForm.value.specialite}}</li>
+                            <li><strong>المجال أو المجالات إلي تحب يعاونك فيهم المختص :</strong> {{demandeAppointementForm.value.domaine}}</li>
+                            <li><strong>الزراعات إلي عندك :</strong> {{demandeAppointementForm.value.typeCultures}}</li>
+                            <li><strong>نوعية الفلاحة متاعك :</strong> {{demandeAppointementForm.value.typeAgriculture}}</li>
+                            <li><strong>الأرض موضوع الطلب :</strong> {{selectedTerrainLabel}}</li>
+                            <li><strong>السؤال يهم الموضوع :</strong> {{demandeAppointementForm.value.sujetAgriculture}}</li>
+                            <li><strong>سؤالك للمختص :</strong> {{demandeAppointementForm.value.question}}</li>
+                            <li><strong>كيفاش تحب تقابل المختص :</strong> {{demandeAppointementForm.value.methodeRevoir}}</li>
+                            <li><strong>تاريخ وتوقيت الموعد :</strong> {{demandeAppointementForm.value.datepicker| date: 'dd/MM/yyyy'}} {{demandeAppointementForm.value.timepicker| date: 'HH:mm'}}</li>
                         </ul>
-                        <div class="row">
-                            <div class="col-md-9 mt-4 justify-content-center">
+                        <div class="row justify-content-center">
+                            <div class="col-md-9 mt-4 text-center">
                                 <button (click)="SaveDemande()" type="button"class="btn btn-success rounded text-center col-md-5">تأكيد</button>
                             </div>
                         </div>
@@ -118,7 +118,7 @@
                                             <div class="row justify-content-center mb-3">
                                                 <div class="col-lg-6">
                                                     <div class="text-center">
-                                                        <timepicker formControlName="timepickerControl" [showMeridian]="isMeridian" [min]="minTime" [max]="maxTime"></timepicker>
+                                                        <timepicker formControlName="timepicker" [showMeridian]="isMeridian" [min]="minTime" [max]="maxTime"></timepicker>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -132,8 +132,8 @@
                                                 <div class="col-6">
                                                     <div class="pr-3 pb-3 pe-3 w-auto text-center">
                                                         <bs-datepicker-inline 
-                                                            [bsValue]="demandeAppointementForm.get('datepickerControl').value" 
-                                                            (bsValueChange)="demandeAppointementForm.get('datepickerControl').setValue($event)"    
+                                                            [bsValue]="demandeAppointementForm.get('datepicker').value" 
+                                                            (bsValueChange)="demandeAppointementForm.get('datepicker').setValue($event)"    
                                                             [bsConfig]="{minDate: minDate, daysDisabled: [6,0]}">
                                                         </bs-datepicker-inline>
                                                     </div>                                                  
@@ -143,6 +143,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <ng-container *ngIf="showError && validationErrors.length > 0">
+                                <div class="row justify-content-center mt-3">
+                                  <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                      <li *ngFor="let error of validationErrors">{{ error }}</li>
+                                    </ul>
+                                  </div>
+                                </div>
+                            </ng-container>
                             <div class="row justify-content-center">
                                 <div class="col-lg-12 text-center mt-5">
                                     <button type="button" (click)="moveToThirdTab(thirdTabButton)" class="btn btn-success rounded text-center col-md-5">تأكيد</button>
@@ -280,7 +289,8 @@
                                             [multiple]="false" 
                                             placeholder="اختر أرضك"
                                             clearAllText="Clear" 
-                                            formControlName="terrain">
+                                            formControlName="terrainId"
+                                            (change)="onTerrainSelection($event)">
                                         </ng-select>
                                     </div>
                                 </div>
@@ -294,13 +304,13 @@
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-lg-6">
-                                    <div class="row mt-5">
+                                    <!-- <div class="row mt-5">
                                         <div class="col-lg-12 text-end">
                                             <button type="button" class="btn btn-primary">
                                                 <i class="fas fa-upload"></i> اضغط لإضافة ملف
                                             </button>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>    
                                 <div class="col-lg-6">
                                     <div class="row mt-4 text-end">

@@ -387,3 +387,13 @@ export const TYPEAGRICULTURE = [
   { id: 'agricultureRefuge', value: 'فلاحة مستدامة', label: 'فلاحة مستدامة' },
   { id: 'agricultureAquatique', value: 'زراعات مائية', label: 'زراعات مائية' }
 ];
+
+export const PERIODES =[
+  { id: 'matin', label: 'الفترة الصباحية', value: 'الفترة الصباحية', checked: true },
+  { id: 'soir', label: 'الفترة المسائية', value: 'الفترة المسائية', checked: false },
+];
+
+export const REVOIROPTIONS = [
+  { id: 'visite', label: 'زيارة ميدانية', value: 'زيارة ميدانية' },
+  { id: 'aDistance', label: 'مقابلة عبر الإنترنت', value: 'مقابلة عبر الإنترنت' }
+];

@@ -12,11 +12,9 @@ export class DemandeAppointmentService {
   baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
   create(model: any) {
-    return this.http.post<DemandeAppointment>(this.baseUrl + 'demandeAppointment/create', model).pipe(
+    return this.http.post(`${this.baseUrl}DemandeAppointment/create`, model).pipe(
       map(response => {
-        console.log("api", this.baseUrl + 'demande/create', model)
-        console.log("res", response)
-        const Demande = response;
+
       })
     )
   }

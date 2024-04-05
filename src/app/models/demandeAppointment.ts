@@ -1,14 +1,14 @@
 export interface DemandeAppointment{
     specialite: string;
     domaine: string;
-    typeCulturesArray: string[];
+    typeCultures: string;
     typeAgriculture: string;
     sujetAgriculture: string;
-    terrain: string[];
+    terrainId: string;
     question: string;
     file: string;
     methodeRevoir : string;
-    timepickerControl: Date;
-    periode: string, // Add validators as needed
-    datepickerControl: Date;
+    timepicker: Date;
+    periode: string,
+    datepicker: Date;
 }
