@@ -1,0 +1,62 @@
+.auth-left-side {
+    background-image: url('src/assets/images/rectangle.png');
+    background-size: cover;
+  }
+  h2 {
+    font-size: 35px; 
+    color: #FFFFFF; 
+    font-weight: 1500px;
+}
+
+h4 {
+    font-size: 30px;
+    color: darkgreen;
+    font-weight: 900px;
+}
+
+.img2
+ {
+    display: block;
+    align-content: center;
+    width: 100%;
+}
+label
+{
+    color: #084F4B;
+    font-size: large;
+    font-weight: 700;
+}
+
+.form-check-input[type="checkbox"] {
+    display: none;
+}
+
+/* Style the label to look like a radio button */
+.form-check-input[type="checkbox"] + .form-check-label:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #999;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.form-check-input:checked + .form-check-label {
+    color: black;
+    font-weight: 800;
+  }
+  /* Styles pour les labels associés aux radios non cochés */
+  .form-check-input:not(:checked) + .form-check-label {
+    color: gray;
+    font-weight: 800;
+  }
+/* Show a check mark when checkbox is checked */
+.form-check-input[type="checkbox"]:checked + .form-check-label:before {
+    background-color: #84BC26;
+}
+
+/* Optionally style label text */
+.form-check-label {
+    cursor: pointer;
+}

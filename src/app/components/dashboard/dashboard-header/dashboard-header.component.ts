@@ -45,6 +45,12 @@ export class DashboardHeaderComponent implements OnInit {
       this.showAdmin = true;
       this.showAgriculteur = false;
     }
+    else if(this.role == "Ingenieur")
+    {
+      this.showAdmin = false;
+      this.showAgriculteur = false;
+      
+    }
     else
     {this.showAdmin = false;
       this.showAgriculteur = true;}

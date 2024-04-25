@@ -51,6 +51,7 @@ import { DemandePackComponent } from './components/subscriptions-packages/demand
 import { AddAbonnementsComponent } from './components/subscriptions-packages/add-abonnements/add-abonnements.component';
 import { RapportsInformationsComponent } from './components/rapports-informations/rapports-informations.component';
 import { DemandeListComponent } from './components/demande-list/demande-list.component';
+import { DemandePartenariatComponent } from './components/auth/demande-partenariat/demande-partenariat.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,6 +88,7 @@ import { DemandeListComponent } from './components/demande-list/demande-list.com
     AddAbonnementsComponent,
     RapportsInformationsComponent,
     DemandeListComponent,
+    DemandePartenariatComponent,
   ],
   imports: [
     BrowserAnimationsModule,

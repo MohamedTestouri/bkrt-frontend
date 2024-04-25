@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EMAIL_REGEX, GOVERNORATES, GOVERNORATESWITHDELEGATIONS, PASSWORD_REGEX, YEAROFGRADUATION_REGEX } from 'src/app/models/constants/constants';
+import { EMAIL_REGEX, FACULTES, GOVERNORATES, GOVERNORATESWITHDELEGATIONS, PASSWORD_REGEX, SPECIALITES, YEAROFGRADUATION_REGEX } from 'src/app/models/constants/constants';
 import { Register } from 'src/app/models/registerAgriculteur';
 import { RegisterBakourat } from 'src/app/models/registerBakourat';
 import { RegisterEngineer } from 'src/app/models/registerEngineer';
@@ -41,8 +41,10 @@ export class RegisterComponent implements OnInit {
   governoratesWithDelegations = GOVERNORATESWITHDELEGATIONS;
   governorates: string[] = GOVERNORATES;
   delegations: string[] = [];
+  facultes = FACULTES;
   universities: string[] = ['univ1', 'univ2'];
-  specialties: string[] = ['spec1', 'spec2']; 
+  specialtieswithFaculte = SPECIALITES; 
+  specialties : string[] = [];
   
   constructor(public accountService: AccountService, private router: Router, private fb: FormBuilder) { }
 
@@ -57,6 +59,10 @@ export class RegisterComponent implements OnInit {
       this.initializeBakouratForm();
     }
   }
+
+  // onChangeFaculte(faculteIndex: number) {
+  //   this.specialties = this.facultes[faculteIndex].specialites;
+  // }
 
   initializeAgriculteurForm() {
     this.registerAgriculteurForm = this.fb.group({
@@ -303,6 +309,7 @@ export class RegisterComponent implements OnInit {
             address: '',
             password: '',
             confirmPassword: '',
+            
             chosenProfile: '',
             university: '',
             specialty: '',
@@ -365,6 +372,15 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  onFaculteChange()
+  {
+    console.log('facultes', this.facultes)
+    const faculte = this.registerEngineerForm2.get('university').value;
+    console.log('faculte', faculte)
+    const faculteObj = this.specialtieswithFaculte.find(item => item.faculte === faculte);
+    this.specialties = faculteObj ? faculteObj.specialites : [];
+    console.log('specialties', this.specialties)
+  }
   ReturnToLogin(){
     this.returnLogin.emit(true);
   }
