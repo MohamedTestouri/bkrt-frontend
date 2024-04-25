@@ -1,0 +1,533 @@
+<div class="row">
+    <div class="col-lg-8 d-flex flex-column">
+        <div class="row">
+            <div class="col-lg-10 text-start">
+                <img src="assets/images/logo.png">
+            </div>
+
+            <div class="button-container col-lg">
+                <button class="btn btn-md" type="button" (click)="BackTo()">
+                    <img src="assets/images/logout.png" width="" /><span style="margin-left: 10px; color: #09504A;"
+                        class="fw-bold">Retour</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <h4 class="fw-bold fs-1" style="color: #84BC26;">Demande de partenariat pour bureau de conseil agricole</h4>
+        </div>
+        <div *ngIf="ShowFirstPage">
+            <div class="row mb-4">
+                <h5 class="fw-bold fs-3" style="color: #084F4B;">Bienvenue à la première plateforme d'accompagnement
+                    scientifique
+                    agricole en Tunisie</h5>
+            </div>
+
+            <div class="row">
+                <p class="fw-bold fs-5 mb-3 col-lg-10">
+                    En réponse à la conjoncture actuelle du secteur agricole, travailler dans le cadre d'un seul réseau
+                    n'est plus une option aujourd'hui pour les accompagnateurs et les bureaux d'études agricoles.
+                    En quoi ceci peut vous être utile?
+                </p>
+            </div>
+
+            <div class="row">
+                <ul class="fw-bold fs-5 col-lg-10">
+                    <li class="mb-3">
+                        <p>
+                            Vous n'aurez plus à vous soucier de la recherche de marché, du marketing
+                            et de la communication. Vous n'aurez plus à perdre du temps pour ca ou bien à alourdir vos
+                            charges en recrutant une ressource dédiée à ce travail. Vous êtes un homme de terrain, vous
+                            maitrisez bien le volet technique, alors libérez votre temps pour faire votre travail
+                            principal
+                            et laissez une autre structure dédiée, faire le reste pour vous
+                        </p>
+                    </li>
+                    <li class="mb-5">
+                        Travaillez à votre rythme et recevez des demandes ciblées selon des paramètres que vous aurez
+                        défini
+                        vous même: L'agriculture c'est vaste comme domaine. Vous pouvez vous attendre à tout type de
+                        questions de l'agriculteur, des questions qui sortent de votre champ de compétences et peuvent
+                        vous
+                        mettre dans l'embarras! Il n'est plus question de devoir perdre des clients, désormais c'est
+                        vous
+                        qui déterminez à l'avance les domaines de spécialisation sur lesquels vous voulez travailler et
+                        les
+                        gouvernorats que vous voulez couvrir
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <div>
+                    <button type="button" (click)="ConfirmerFirstPage()" class="fw-bold btn btn-lg btn-success col-lg-4"
+                        style="margin-left:27rem ;">
+                        Confirmer
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="ShowSecondPage">
+            <div class="row">
+                <ul class="fw-bold fs-5 col-lg-10">
+                    <li class="mb-3">
+                        <p>
+                            C'est vous qui déterminez à votre convenance : votre calendrier de travail, la nature de vos
+                            prestations et les frais que vous voulez appliquer.
+                        </p>
+                    </li>
+                    <li class="mb-4">
+                        <p>
+                            Le frais d'abonnement annuel est actuellement gratuit pour la première année. Profitez-en!
+                        </p>
+                    </li>
+
+                    <li>
+                        <p>Restez à jour, recevez par mail les opportunités qui peuvent vous intéresser, et bénéficiez
+                            des avantages offerts par tous les partenariats signés par Bakourat</p>
+                    </li>
+                </ul>
+
+                <h4 class="fw-bold col-lg-10 text-start mb-5" style="color: #84BC26;">Si cette présentation vous parle,
+                    vous pouvez commencer par remplir ce formulaire pour exprimer
+                    votre accord préliminaire à faire partie du projet.
+                    Ce formulaire n'est pas un engagement de votre part, vous allez ultérieurement être contacté pour
+                    vous expliquer les termes du partenariat et c'est à ce moment-là que vous pouvez exprimer votre
+                    choix final et signer la convention de partenariat</h4>
+            </div>
+
+            <div class="row">
+                <div>
+                    <button type="button" (click)="ConfirmerSecondPage()"
+                        class="fw-bold btn btn-lg btn-success col-lg-4" style="margin-left:27rem ;">
+                        Confirmer
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="ShowForm1">
+            <form [formGroup]="IngenieurForm1" (ngSubmit)="IngenieurForm1.valid && ConfirmerFirstForm()"
+                autocomplete="off">
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-3">
+                        <label>Adresse e-mail :</label>
+                    </div>
+                    <div class="col-md-4">
+                        <app-text-input [formControl]="$any(IngenieurForm1.controls['adresseEmail'])" [type]="'email'"
+                            [label]="'Adresse e-mail'"></app-text-input>
+                    </div>
+                </div>
+
+                <div class="row col-lg-10">
+                    <div class="col-md-3">
+                        <label>Nom du bureau d'étude :</label>
+                    </div>
+                    <div class="col-md-4">
+                        <app-text-input [formControl]="$any(IngenieurForm1.controls['nomBureauEtude'])"
+                            [label]="'Nom du bureau d étude'"></app-text-input>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-6">
+                        <p>(le bureau doit être une structure juridiquement existante)</p>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-3">
+                        <label>Adresse postale complète :</label>
+                    </div>
+                    <div class="col-md-4">
+                        <app-text-input [formControl]="$any(IngenieurForm1.controls['adressePostale'])"
+                            [label]="'Adresse postale'"></app-text-input>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-3">
+                        <label>Email de contact :</label>
+                    </div>
+                    <div class="col-md-4">
+                        <app-text-input [formControl]="$any(IngenieurForm1.controls['emailContact'])" [type]="'email'"
+                            [label]="'Email de contact'"></app-text-input>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-3">
+                        <label>Numéro de téléphone :</label>
+                    </div>
+                    <div class="col-md-4">
+                        <app-text-input [formControl]="$any(IngenieurForm1.controls['phoneNumber'])" [type]="'phone'"
+                            [label]="'Numéro de téléphone'"></app-text-input>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-3">
+                        <label>Année de début d'activité du bureau :</label>
+                    </div>
+                    <div class="col-md-4">
+                        <app-text-input [formControl]="$any(IngenieurForm1.controls['yearOfActivity'])"
+                            [label]="'Année de début d activité du bureau'"></app-text-input>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div>
+                        <button type="submit" class="fw-bold btn btn-lg btn-success col-lg-4"
+                            style="margin-left:27rem ;">
+                            Confirmer
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div *ngIf="ShowForm2">
+            <form [formGroup]="IngenieurForm2" (ngSubmit)="IngenieurForm2.valid && ConfirmerSecondForm()"
+                autocomplete="off">
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-7">
+                        <label>Nom prénom du Gérant :</label>
+                    </div>
+                    <div class="col-md-4">
+                        <app-text-input [formControl]="$any(IngenieurForm2.controls['nameGerant'])"
+                            [label]="'Name Gerant'"></app-text-input>
+                    </div>
+                </div>
+
+                <div class="row col-lg-10 mb-4">
+                    <div class="col-md-7">
+                        <label>Facultté du diplôme d'ingénieur du gérant :</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select formControlName="university" (change)="onFaculteChange()" class="form-select" aria-label="university">
+                            <option value="" disabled selected>اختر الجامعة إلي تخرجت منها</option>
+                            <option *ngFor="let university of facultes" [value]="university.label">{{ university.label }}</option>
+                        </select>
+                        <div *ngIf="IngenieurForm2.get('university').invalid && (IngenieurForm2.get('university').dirty || IngenieurForm2.get('university').touched)" style="color: red;">
+                            Faculté obligatoire
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row col-lg-10 mb-4">
+                    <div class="col-md-7">
+                        <label>Spécialité du diplôme d'ingénieur du gérant :</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select formControlName="speciality" class="form-select" aria-label="speciality">
+                            <option value="" disabled selected>إختر تخصص الشهادة متاعك</option>
+                            <option *ngFor="let speciality of specialties" [value]="speciality">{{ speciality }}</option>
+                        </select>
+                        <div *ngIf="IngenieurForm2.get('speciality').invalid && (IngenieurForm2.get('speciality').dirty || IngenieurForm2.get('speciality').touched)" style="color: red;">
+                            Spécialité obligatoire
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-7">
+                        <label>Si d'autres ingénieurs agronomes font partie de votre bureau, vous pouvez ajouter leurs
+                            spécialités ici :</label>
+                    </div>
+                    <div class="col-md-3">
+                        <app-text-input [formControl]="$any(IngenieurForm2.controls['othersEngineers'])"
+                            [label]="'autres ingénieurs'"></app-text-input>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-7">
+                        <label>Sur quel(s) gouvernorat(s) vous voulez travailler (SANS facturer de frais de déplacement
+                            en supplément)</label>
+                    </div>
+                    <div class="col-md-3">
+                        <ng-select [items]="governoratsSansFrais" bindLabel="name" bindValue="name" [multiple]="true"
+                            placeholder="اختر الولاية" clearAllText="Clear" formControlName="gouvernoratSansChargesArray">
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="workWithoutCharges"
+                            formControlName="workWithoutCharges">
+                        <label class="form-check-label" for="workWithoutCharges">Je ne travaille pas sans frais de
+                            déplacement</label>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-7">
+                        <label>Sur quels gouvernorats Vous pouvez travailler mais moyennant des FRAIS de déplacement
+                            facturés en supplément</label>
+                    </div>
+                    <div class="col-md-3">
+                        <ng-select [items]="governoratsAvecFrais" bindLabel="name" bindValue="name" [multiple]="true"
+                            placeholder="اختر الولاية" clearAllText="Clear" formControlName="gouvernoratAvecChargesArray">
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="factureChargeAdditionalTravelCharges"
+                            formControlName="factureChargeAdditionalTravelCharges">
+                        <label class="form-check-label" for="factureChargeAdditionalTravelCharges">Je ne facture pas de
+                            frais de
+                            déplacement supplémentaires</label>
+                    </div>
+                </div>
+
+                <div class="row mb-1 col-lg-10">
+                    <div class="form-check col-md-5">
+                        <input class="form-check-input" type="checkbox" id="additionalTravelCharges"
+                            formControlName="additionalTravelCharges">
+                        <label class="form-check-label" for="additionalTravelCharges">frais de déplacement
+                            supplémentaires</label>
+                    </div>
+                    <div class="col-md-2">
+                        <ng-select [items]="prices" bindLabel="name" bindValue="name" [multiple]="false"
+                            placeholder="Prix" clearAllText="Clear" formControlName="price">
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="row mb-1 col-lg-10">
+                    <div class="form-check col-md-5">
+
+                    </div>
+                    <div class="col-md-2">
+                        <ng-select [items]="prices" bindLabel="name" bindValue="name" [multiple]="false"
+                            placeholder="Prix Fixe" clearAllText="Clear" formControlName="fixedPrice">
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="row mb-1 col-lg-10">
+                    <div class="form-check col-md-5">
+
+                    </div>
+                    <div class="col-md-2">
+                        <ng-select [items]="prices" bindLabel="name" bindValue="name" [multiple]="false"
+                            placeholder="Par Kilometre" clearAllText="Clear" formControlName="priceOfKilometer">
+                        </ng-select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div>
+                        <button type="submit" class="fw-bold btn btn-lg btn-success col-lg-4"
+                            style="margin-left:27rem ;">
+                            Confirmer
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div *ngIf="ShowForm3">
+            <form [formGroup]="IngenieurForm3" (ngSubmit)="IngenieurForm3.valid && ConfirmerThirdForm()"
+                autocomplete="off">
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="agricultureBiologique"
+                            formControlName="agricultureBiologique">
+                        <label class="form-check-label" for="agricultureBiologique">Agriculture biologique</label>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="accompagnementCertificationBiologique"
+                            formControlName="accompagnementCertificationBiologique">
+                        <label class="form-check-label" for="accompagnementCertificationBiologique">Accompagnement à la
+                            certification biologique</label>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="permaculture"
+                            formControlName="permaculture">
+                        <label class="form-check-label" for="permaculture">Permaculture</label>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="culturesHorsSol"
+                            formControlName="culturesHorsSol">
+                        <label class="form-check-label" for="culturesHorsSol">Cultures hors-sol</label>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="etudePrecreationProjetAgricole"
+                            formControlName="etudePrecreationProjetAgricole">
+                        <label class="form-check-label" for="etudePrecreationProjetAgricole">Étude de precreation de
+                            projet agricole</label>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="questionsOrdreAdministratif"
+                            formControlName="questionsOrdreAdministratif">
+                        <label class="form-check-label" for="questionsOrdreAdministratif">Questions d'ordre
+                            administratif (procédures d'octroi de prêts et subvensions par exemple)</label>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="aucun" formControlName="aucun">
+                        <label class="form-check-label" for="aucun">Aucun</label>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="form-check">
+                        <input class="form-check-input mb-2" type="checkbox" id="autreBool" formControlName="autreBool">
+                        <label class="form-check-label" for="autreBool">Autre</label>
+
+                        <app-text-input [formControl]="$any(IngenieurForm3.controls['autre'])"
+                            [label]="'Autre'"></app-text-input>
+
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="row mb-4 col-lg-10">
+                        <div class="col-md-7">
+                            <label>Êtes vous spécialiste d'une ou de plusieurs cultures en particulier ? Si oui merci de
+                                les citer ici :</label>
+                        </div>
+                        <div class="col-md-4">
+                            <app-text-input
+                                [formControl]="$any(IngenieurForm3.controls['specialisteCulturesParticulier'])"></app-text-input>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-4">
+                        <label>Avez vous une connexion internet stable?</label>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check col-md-4" *ngFor="let response of ['Oui', 'Non']">
+                            <input class="form-check-input" type="radio" name="connexionInternetStable"
+                                [value]="response" formControlName="connexionInternetStable">
+                            <label class="form-check-label mx-4" [for]="response">
+                                {{ response }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div>
+                        <button type="submit" class="fw-bold btn btn-lg btn-success col-lg-4"
+                            style="margin-left:27rem ;">
+                            Confirmer
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div *ngIf="ShowForm4">
+            <form [formGroup]="IngenieurForm4" (ngSubmit)="IngenieurForm4.valid && Confirmer()" autocomplete="off">
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-6">
+                        <label>Acceptez vous de faire du coaching en ligne?</label>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check col-md-4" *ngFor="let response of ['Oui', 'Non']">
+                            <input class="form-check-input" type="radio" name="coachingEnLigne" [value]="response"
+                                formControlName="coachingEnLigne">
+                            <label class="form-check-label mx-4" [for]="response">
+                                {{ response }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-9">
+                        <label>Cet espace est à vous si vous voulez ajouter des informations sur votre offre. Exemple:
+                            Vous voulez vous spécialiser en oléiculture, vous êtes expert auprès des tribunaux
+                            ...</label>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-7">
+                        <app-text-input [formControl]="$any(IngenieurForm4.controls['otherInformations'])"
+                            [label]="'otherInformations'"></app-text-input>
+                    </div>
+                </div>
+
+                <div class="row mb-4 col-lg-10">
+                    <div class="col-md-6">
+                        <label>Est ce que vous validez la charte d’adhesion?</label>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check col-md-4" *ngFor="let response of ['Oui', 'Non']">
+                            <input class="form-check-input" type="radio" name="valideCharteAdhesion" [value]="response"
+                                formControlName="valideCharteAdhesion">
+                            <label class="form-check-label mx-4" [for]="response">
+                                {{ response }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div>
+                        <button type="submit" class="fw-bold btn btn-lg btn-success col-lg-4"
+                            style="margin-left:27rem ;">
+                            Confirmer
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-lg-4 d-flex justify-content-center align-items-center auth-left-side">
+        <div class="container" style="background-image: darkgreen;">
+
+            <!-- Two Headers -->
+            <div class="row justify-content-center">
+                <div class="col-md-4 mt-4">
+                    <img src="assets/images/accueil.png" alt="Small Image"
+                        style="width: 50px; height: 50px; margin-right: 10px;">
+                </div>
+                <div class="col-md-8 float-start mt-4">
+                    <h2>Bienvenue dans la première plateforme</h2>
+                </div>
+                <div class="row mb-4 mt-4 float-start col-md-8">
+                    <h4>d'accompagnement scientifique agricole</h4>
+                </div>
+            </div>
+
+            <!-- Photo Carousel -->
+            <carousel>
+                <slide>
+                    <img src="assets/images/pexels-thisisengineering-3912372 1.png" alt="first slide">
+                </slide>
+
+            </carousel>
+
+        </div>
+    </div>
+</div>

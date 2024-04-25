@@ -397,3 +397,51 @@ export const REVOIROPTIONS = [
   { id: 'visite', label: 'زيارة ميدانية', value: 'زيارة ميدانية' },
   { id: 'aDistance', label: 'مقابلة عبر الإنترنت', value: 'مقابلة عبر الإنترنت' }
 ];
+export const FACULTES = [
+  { 
+    name: 'INAT', 
+    label: 'Institut National Agronomique de Tunis', 
+    
+  },
+  { 
+    name: 'ESAM', 
+    label: 'École Supérieure d Agriculture de Mograne', 
+  },
+  { 
+    name: 'ISACM', 
+    label: 'Institut Supérieur Agronomique de Chott Mariem', 
+  },
+  { 
+    name: 'ESAK', 
+    label: 'École Supérieure d Agriculture de Kef', 
+  },
+  { 
+    name: 'ESAMB', 
+    label: 'École Supérieure d Agriculture de Medjez El Bab', 
+  },
+  
+];
+
+export const SPECIALITESUNIVERSITY = [
+  {faculte: 'Institut National Agronomique de Tunis',
+  specialites: ['Génie agricole', 'Agronomie', 'Sciences de l environnement', 'Horticulture', 'Zootechnie', 'Protection des cultures']
+  },
+
+   {faculte: 'École Supérieure d Agriculture de Mograne',
+   specialites: ['Génie rural', 'Agriculture biologique', 'Agroalimentaire', 'Aménagement du territoire', 'Économie agricole', 'Systèmes d information géographique appliqués à l agriculture']
+
+  },
+
+  {faculte: 'Institut Supérieur Agronomique de Chott Mariem',
+  specialites: ['Génie agricole', 'Agronomie', 'Sciences de l environnement', 'Horticulture', 'Zootechnie', 'Protection des cultures']
+},
+
+  {faculte: 'École Supérieure d Agriculture de Kef',
+  specialites: ['Génie rural', 'Agriculture biologique', 'Agroalimentaire', 'Aménagement du territoire', 'Économie agricole', 'Systèmes d information géographique appliqués à l agriculture']
+},
+
+  {faculte: 'École Supérieure d Agriculture de Medjez El Bab',
+  specialites: ['Génie rural', 'Agriculture biologique', 'Agroalimentaire', 'Aménagement du territoire', 'Économie agricole', 'Systèmes d information géographique appliqués à l agriculture']
+},
+
+];

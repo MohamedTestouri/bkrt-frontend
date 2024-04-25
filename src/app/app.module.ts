@@ -51,6 +51,7 @@ import { RapportsInformationsComponent } from './components/rapports-information
 import { DemandeListComponent } from './components/demande-list/demande-list.component';
 import { TextAreaComponent } from './components/forms/text-area/text-area.component';
 import { DemandeAppointmentComponent } from './components/dashboard/demande-appointment/demande-appointment.component';
+import { DemandePartenariatComponent } from './components/auth/demande-partenariat/demande-partenariat.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,6 +88,7 @@ import { DemandeAppointmentComponent } from './components/dashboard/demande-appo
     DemandeListComponent,
     TextAreaComponent,
     DemandeAppointmentComponent,
+    DemandePartenariatComponent,
   ],
   imports: [
     BrowserAnimationsModule,

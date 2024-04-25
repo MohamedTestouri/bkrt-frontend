@@ -21,8 +21,8 @@ export class DashboardHeaderComponent implements OnInit {
   resteRendezVous : number = 0;
   resteAnalyses : number = 0;
   // agriculteurStaut : string = "مبتدئ";
-  // agriculteurs : Agriculteurs[];
-  // agriculteursCount: number = 0;
+  agriculteurs : Agriculteurs[];
+  agriculteursCount: number = 0;
 
 
 
@@ -30,7 +30,7 @@ export class DashboardHeaderComponent implements OnInit {
 
   ngOnInit(): void {
     
-    // this.loadAgriculteurs();
+     this.loadAgriculteurs();
     this.accountService.getCurrentUser().subscribe({
       next: user => {
         this.currentUser = user;
@@ -45,6 +45,12 @@ export class DashboardHeaderComponent implements OnInit {
       this.showAdmin = true;
       this.showAgriculteur = false;
     }
+    else if(this.role == "Ingenieur")
+    {
+      this.showAdmin = false;
+      this.showAgriculteur = false;
+      
+    }
     else
     {this.showAdmin = false;
       this.showAgriculteur = true;}
@@ -55,15 +61,15 @@ export class DashboardHeaderComponent implements OnInit {
   {
     this.router.navigateByUrl('accountSettings');
   }
-  // loadAgriculteurs() {
-  //   this.userService.getAgriculteurs().subscribe(
-  //     (data: Agriculteurs[]) => {
-  //       this.agriculteurs = data;
-  //       this.agriculteursCount = this.agriculteurs.length;
-  //     },
-  //     error => {
-  //       console.error('Erreur lors de la récupération des agriculteurs :', error);
-  //     }
-  //   );
-  // }
+  loadAgriculteurs() {
+    this.userService.getAgriculteurs().subscribe(
+      (data: Agriculteurs[]) => {
+        this.agriculteurs = data;
+        this.agriculteursCount = this.agriculteurs.length;
+      },
+      error => {
+        console.error('Erreur lors de la récupération des agriculteurs :', error);
+      }
+    );
+  }
 }

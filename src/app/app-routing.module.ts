@@ -22,6 +22,7 @@ import { DemandePackComponent } from './components/subscriptions-packages/demand
 import { RapportsInformationsComponent } from './components/rapports-informations/rapports-informations.component';
 import { DemandeListComponent } from './components/demande-list/demande-list.component';
 import { DemandeAppointmentComponent } from './components/dashboard/demande-appointment/demande-appointment.component';
+import { DemandePartenariatComponent } from './components/auth/demande-partenariat/demande-partenariat.component';
 
 const routes: Routes = [
   {path: 'login', component: ParentAuthComponent, canActivate: [AlreadyAuthGuard]},
@@ -44,7 +45,7 @@ const routes: Routes = [
       {path: 'demande-list', component: DemandeListComponent},
       {path: 'demande-pack/:imageName', component: DemandePackComponent },
       {path: 'rapports-informations', component: RapportsInformationsComponent},
-
+      {path: 'demande-partenariat', component: DemandePartenariatComponent},
       {path: '**', component: NotFoundComponent, pathMatch: 'full'},
     ]
   },

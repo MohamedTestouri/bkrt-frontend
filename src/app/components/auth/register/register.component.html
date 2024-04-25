@@ -176,9 +176,9 @@
                         <div class="col-md-6">
                         </div>
                         <div class="col-md-6">
-                            <select formControlName="university" class="form-select" aria-label="university">
+                            <select formControlName="university" (change)="onFaculteChange()" class="form-select" aria-label="university">
                                 <option value="" disabled selected>اختر الجامعة إلي تخرجت منها</option>
-                                <option *ngFor="let university of universities" [value]="university">{{ university }}</option>
+                                <option *ngFor="let university of facultes" [value]="university.label">{{ university.label }}</option>
                             </select>
                             <div *ngIf="registerEngineerForm2.get('university').invalid && (registerEngineerForm2.get('university').dirty || registerEngineerForm2.get('university').touched)" style="color: red;">
                                 ينقصك الجامعة 

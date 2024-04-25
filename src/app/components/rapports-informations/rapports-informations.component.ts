@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Agriculteurs } from 'src/app/models/agriculteurs';
+import { Engineer } from 'src/app/models/engineers';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,11 +14,36 @@ export class RapportsInformationsComponent implements OnInit {
 
   constructor(private userService: UserService, private modalService: NgbModal) { }
   agriculteurs : Agriculteurs[];
+  engineers : Engineer[];
+  showListAgriculteurs: boolean = true;
+  showListIngenieurs: boolean = false;
   showModalDeleteAgr: boolean = false;
   modalRef: NgbModalRef;
+  listName : string = "";
+
+  choixList = [
+    { id: 'agriculteurs', label: 'قائمة الفلاحين', value: 'قائمة الفلاحين', checked: true },
+    { id: 'ingénieurs', label: ' قائمة المهندسين ', value: ' قائمة المهندسين ', checked: false },
+  ];
 
   ngOnInit(): void {
     this.loadAgriculteurs();
+  }
+
+  onChoixListChange(event: any)
+  {
+    this.listName = event.label;
+    if(event.id == "agriculteurs")
+    {
+      this.showListAgriculteurs = true;
+      this.showListIngenieurs = false;
+
+    }
+    else
+    {
+      this.showListAgriculteurs = false;
+      this.showListIngenieurs = true;
+    }
   }
 
   loadAgriculteurs() {

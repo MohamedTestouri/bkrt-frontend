@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { EMAIL_REGEX } from 'src/app/models/constants/constants';
+import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -16,9 +17,9 @@ export class LoginComponent implements OnInit {
   @Output() resetPassword = new EventEmitter();
   
   emailRegex = EMAIL_REGEX;
-  
+  currentUser: User;
   loginForm: FormGroup = new FormGroup({});
-
+  role: string = "";
   validationError: string | undefined;
   showError: boolean = false;
 
@@ -38,7 +39,23 @@ export class LoginComponent implements OnInit {
   login() {
     this.accountService.login(this.loginForm.value).subscribe({
       next: _ => {
-        this.router.navigateByUrl('/');
+        this.accountService.getCurrentUser().subscribe({
+          next: user => {
+            this.currentUser = user;
+            this.role = user.roles[0];
+          },
+          error: e => {
+            console.error('Error fetching current user', e);
+          } 
+        })
+        if(this.role == "Ingenieur")
+        {
+          this.router.navigateByUrl('/demande-partenariat');
+        }
+        else
+        {
+          this.router.navigateByUrl('/');
+        }
         this.showError = false;
       },
       error: e => {
