@@ -3,6 +3,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Agriculteurs } from 'src/app/models/agriculteurs';
 import { Engineer } from 'src/app/models/engineers';
 import { User } from 'src/app/models/user';
+import { AccountService } from 'src/app/services/account.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,14 +13,17 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RapportsInformationsComponent implements OnInit {
 
-  constructor(private userService: UserService, private modalService: NgbModal) { }
+  constructor(private userService: UserService, private modalService: NgbModal, public accountService: AccountService) { }
   agriculteurs : Agriculteurs[];
   engineers : Engineer[];
   showListAgriculteurs: boolean = true;
   showListIngenieurs: boolean = false;
   showModalDeleteAgr: boolean = false;
   modalRef: NgbModalRef;
-  listName : string = "";
+  currentUser : User;
+  listName : string = "قائمة الفلاحين";
+  agriculteursCount: number = 0;
+  engineersCount: number = 0;
 
   choixList = [
     { id: 'agriculteurs', label: 'قائمة الفلاحين', value: 'قائمة الفلاحين', checked: true },
@@ -28,6 +32,16 @@ export class RapportsInformationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAgriculteurs();
+    this.loadEngineers();
+
+    this.accountService.getCurrentUser().subscribe({
+      next: user => {
+        this.currentUser = user;
+      },
+      error: e => {
+        console.error('Error fetching current user', e);
+      } 
+    })
   }
 
   onChoixListChange(event: any)
@@ -50,9 +64,22 @@ export class RapportsInformationsComponent implements OnInit {
     this.userService.getAgriculteurs().subscribe(
       (data: Agriculteurs[]) => {
         this.agriculteurs = data;
+        this.agriculteursCount = this.agriculteurs.length;
       },
       error => {
         console.error('Erreur lors de la récupération des agriculteurs :', error);
+      }
+    );
+  }
+
+  loadEngineers() {
+    this.userService.getEngineers().subscribe(
+      (data: Engineer[]) => {
+        this.engineers = data;
+        this.engineersCount = this.engineers.length;
+      },
+      error => {
+        console.error('Erreur lors de la récupération des engineers :', error);
       }
     );
   }

@@ -75,6 +75,10 @@
   font-weight: 800;
 }
 
+.disabled {
+  pointer-events: none; /* Désactive les événements de pointeur */
+  color: #999; /* Change la couleur du texte pour indiquer qu'il est désactivé */
+}
 /************************/
 
 .custom-list{

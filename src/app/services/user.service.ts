@@ -6,6 +6,7 @@ import { UpdatePassword } from '../models/updatePassword';
 import { Observable, map } from 'rxjs';
 import { Agriculteurs } from '../models/agriculteurs';
 import { User } from '../models/user';
+import { Engineer } from '../models/engineers';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,9 @@ export class UserService {
 
   getAgriculteurs(): Observable<Agriculteurs[]> {
     return this.http.get<Agriculteurs[]>(this.baseUrl + 'users/getAgriculteurs');
+  }
+
+  getEngineers(): Observable<Engineer[]> {
+    return this.http.get<Engineer[]>(this.baseUrl + 'users/getEngineers');
   }
 }

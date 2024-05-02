@@ -183,7 +183,7 @@
 
                                             <div class="align-items-end row">
                                                 <div class="form-check" *ngFor="let domaine of domaines">
-                                                    <input class="form-check-input float-end" type="radio" formControlName="domaine" [id]="domaine.id" [value]="domaine.value">
+                                                    <input class="form-check-input float-end" type="radio" formControlName="domaine" [id]="domaine.id" [value]="domaine.value" (click)="showAgriculturesTypes(domaine.label)">
                                                     <label class="form-check-label mx-4 float-end" [for]="domaine.id">{{ domaine.label }}</label>
                                                 </div>
                                             </div>
@@ -203,16 +203,16 @@
 
                                             <div class="align-items-end row">
                                                 <div class="form-check" *ngFor="let specialite of specialistes">
-                                                    <input class="form-check-input float-end" type="radio" formControlName="specialite" [id]="specialite.id" [value]="specialite.value">
-                                                    <label class="form-check-label mx-4 float-end" [for]="specialite.id">{{ specialite.label }}</label>
-                                                </div>
+                                                    <input class="form-check-input float-end" type="radio" formControlName="specialite" [ngClass]="{ 'disabled': specialite.disabled }" [id]="specialite.id" [value]="specialite.value" [disabled]="specialite.disabled">
+                                                    <label class="form-check-label mx-4 float-end" [for]="specialite.id" [ngClass]="{ 'disabled': specialite.disabled }">{{ specialite.label }}</label>
+                                                  </div>
                                             </div>
                                             
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row justify-content-center">
+                            <div *ngIf="showAgricultures" class="row justify-content-center">
                                 <div class="col-lg-6">
                                     <div class="row mt-4">
                                         <div class="col-lg-4"></div>
@@ -220,10 +220,11 @@
                                             [items]="typeCultures" 
                                             bindLabel="label"
                                             bindValue="label" 
-                                            [multiple]="true"
+                                            [multiple]="false"
                                             placeholder="اختر نوع الزراعات" 
                                             clearAllText="Clear"
-                                            formControlName="typeCulturesArray">
+                                            formControlName="typeCultures"
+                                            (change)="onTypeCultureChange()" >
                                         </ng-select>
                                     </div>
                                 </div>
@@ -235,6 +236,31 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div *ngIf="showAgricultures" class="row justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="row mt-4">
+                                        <div class="col-lg-4"></div>
+                                        <ng-select class="col-lg-8" 
+                                            [items]="sousCategoriesList" 
+                                            bindLabel="label"
+                                            bindValue="label" 
+                                            [multiple]="false"
+                                            placeholder="الزراعات الفرعية" 
+                                            clearAllText="Clear"
+                                            formControlName="sousCategorie">
+                                        </ng-select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row mt-4">
+                                        <div class="custom-label-color">
+                                            <h4 class="text-end">الزراعات الفرعية</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row justify-content-center">
                                 <div class="col-lg-6">
                                     <div class="row mt-3 text-end">
@@ -319,7 +345,7 @@
                                         </div>
                                     </div>
                                     <div class="form-floating float-end" style="height: 80%; width: 80%;">
-                                        <app-text-area [formControl]="$any(demandeAppointementForm.controls['question'])" [label]="'سؤالك'" [type]="'textArea'"></app-text-area>
+                                        <app-text-area class="text-end" [formControl]="$any(demandeAppointementForm.controls['question'])" [label]="'سؤالك'" [type]="'textArea'"></app-text-area>
                                     </div>
                                 </div>
                             </div>

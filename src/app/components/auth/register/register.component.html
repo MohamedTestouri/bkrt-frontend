@@ -204,7 +204,7 @@
                             <h4 class="text-end">إختار المجال إلي تفهم فيه أكثر</h4>
                             <div class="btn-group-toggle" data-toggle="buttons">
                                 <button type="button" class="btn btn-checkbox mb-3" 
-                                        *ngFor="let option of ['علوم التربة', 'خضروات', 'زراعات محمية', 'بستنة', 'بقوليات', 'زراعات علفية', 'زراعات كبرى', 'أشجار مثمرة']" 
+                                        *ngFor="let option of ['علوم التربة', 'خضروات', 'بستنة', 'بقوليات', 'زراعات علفية', 'زراعات كبرى', 'أشجار مثمرة']" 
                                         [class.active]="fieldsArray.value.includes(option)"
                                         (click)="toggleFieldsCheckbox(option)">
                                     {{ option }}
@@ -217,7 +217,7 @@
                             <h4 class="text-end">إختار المجال إلي تفهم فيه أكثر</h4>
                             <div class="btn-group-toggle" data-toggle="buttons">
                                 <button type="button" class="btn btn-checkbox mb-3" 
-                                        *ngFor="let option of ['ولا واحد منهم' ,'مسائل إدارية و اجرائية تخص بعث مشروع فلاحي' ,'الزراعات المائية' ,'الفلاحة المستدامة' ,'الفلاحة البيولوجية']" 
+                                        *ngFor="let option of ['ولا واحد منهم' ,'مسائل إدارية و اجرائية تخص بعث مشروع فلاحي' ,'الزراعات المائية' , 'زراعات محمية','الفلاحة المستدامة' ,'الفلاحة البيولوجية']" 
                                         [class.active]="helperFieldsArray.value.includes(option)"
                                         (click)="toggleHelperFieldsCheckbox(option)">
                                     {{ option }}

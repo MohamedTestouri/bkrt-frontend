@@ -374,12 +374,9 @@ export class RegisterComponent implements OnInit {
 
   onFaculteChange()
   {
-    console.log('facultes', this.facultes)
     const faculte = this.registerEngineerForm2.get('university').value;
-    console.log('faculte', faculte)
     const faculteObj = this.specialtieswithFaculte.find(item => item.faculte === faculte);
     this.specialties = faculteObj ? faculteObj.specialites : [];
-    console.log('specialties', this.specialties)
   }
   ReturnToLogin(){
     this.returnLogin.emit(true);

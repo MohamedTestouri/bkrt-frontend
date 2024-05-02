@@ -340,14 +340,33 @@ export const TYPEAGRICULTURES = [
 ];
 
 export const TYPECULTURES = [
-  { label: 'Cultures céréalières | الزراعات الحبوبية' },
+  { label: 'Cultures céréalières | الزراعات الحبوبية', sousCategorie: ['قمح صلب ', 'قمح لين ', 'شعير ',
+  'تريتيكال ', 'بقوليات ', 'غيرها '] },
+
   { label: 'Cultures oléagineuses | الزراعات الزيتية' },
-  { label: 'Cultures légumières | الزراعات الخضرية' },
+
+  { label: 'Cultures légumières | الزراعات الخضرية', sousCategorie: ['الفلفل ', 'الطماطم ',
+   'البطاطا ','البصل', 'الثوم', 'السفنارية', 'الفقوس ', 'اللفت', 'البسباس', 'البروكلو والكرنب'
+    ,'القنارية', 'الجلبانة', 'الفول', 'خضر ورقية', 'القرع ', 'الدلاع ', 
+    'البطيخ ', 'الفراولة ' ,'أنواع أخرى']},
+
   { label: 'Cucurbitacées | البقوليات' },
-  { label: 'Légumes feuilles | الخضر الورقية' },
-  { label: 'Culture maraîchère | زراعة الخضر للسوق' },
-  { label: 'Plantes aromatiques | النباتات العطرية' },
-  { label: 'Cultures fourragères | الزراعات العلفية' },
+
+  { label: 'Légumes feuilles | الخضر الورقية', sousCategorie: ['الخص والسلاطة ',
+   'المعدنوس', 'الكلافس',
+  'السلق', 'السبناخ', 'غيرها '] },
+
+  { label: 'Les moucherons | قوارص', sousCategorie: ['برتقال ',
+   'قارص', 'غيرها '] },
+
+  { label: 'Plantes aromatiques | النباتات العطرية', sousCategorie: ['نعناع',
+  'إكليل', 'زعتر', 'عطرشاء ', 'زعفران ', 'نباتات زينة', 'غيرها '] },
+
+  { label: 'Cultures fourragères | الزراعات العلفية', sousCategorie: ['قرط ', 'سيلاج ', 'اعلاف خضراء ',
+  'غيرها ']},
+
+  { label: 'Arbres fruitiers | الأشجار المثمرة', sousCategorie: ['زيتون', 'لوز', 'فستق ',
+  'قوارص', 'كروم ', 'تمور', 'مشمش',  'خوخ', 'تفاح', 'اجاص', 'رمان',  'تين', 'تين شوكي', 'غلال اخرى']},
 
   {
     name: 'Industrial Crops',
@@ -359,11 +378,48 @@ export const TYPECULTURES = [
   },
 ];
 
+export const SOUSCATEGORIESTYPES = [
+  { typeCulture: 'Cultures céréalières | الزراعات الحبوبية', sousCategorie: ['قمح صلب ', 'قمح لين ', 'شعير ',
+  'تريتيكال ', 'بقوليات ', 'غيرها '] },
+
+  { typeCulture: 'Cultures oléagineuses | الزراعات الزيتية' },
+
+  { typeCulture: 'Cultures légumières | الزراعات الخضرية', sousCategorie: ['الفلفل ', 'الطماطم ',
+   'البطاطا ','البصل', 'الثوم', 'السفنارية', 'الفقوس ', 'اللفت', 'البسباس', 'البروكلو والكرنب'
+    ,'القنارية', 'الجلبانة', 'الفول', 'خضر ورقية', 'القرع ', 'الدلاع ', 
+    'البطيخ ', 'الفراولة ' ,'أنواع أخرى']},
+
+  { typeCulture: 'Cucurbitacées | البقوليات' },
+
+  { typeCulture: 'Légumes feuilles | الخضر الورقية', sousCategorie: ['الخص والسلاطة ',
+   'المعدنوس', 'الكلافس',
+  'السلق', 'السبناخ', 'غيرها '] },
+
+  { typeCulture: 'Les moucherons | قوارص', sousCategorie: ['برتقال ',
+   'قارص', 'غيرها '] },
+
+  { typeCulture: 'Plantes aromatiques | النباتات العطرية', sousCategorie: ['نعناع',
+  'إكليل', 'زعتر', 'عطرشاء ', 'زعفران ', 'نباتات زينة', 'غيرها '] },
+
+  { typeCulture: 'Cultures fourragères | الزراعات العلفية', sousCategorie: ['قرط ', 'سيلاج ', 'اعلاف خضراء ',
+  'غيرها ']},
+
+  { typeCulture: 'Arbres fruitiers | الأشجار المثمرة', sousCategorie: ['زيتون', 'لوز', 'فستق ',
+  'قوارص', 'كروم ', 'تمور', 'مشمش',  'خوخ', 'تفاح', 'اجاص', 'رمان',  'تين', 'تين شوكي', 'غلال اخرى']},
+
+  {
+    typeCulture: 'Cultures industrielles | الزراعة الصناعية',
+  },
+  {
+    typeCulture: 'Cultures horticoles | الزراعة البستانية',
+  },
+];
+
 export const SPECIALITES = [
-  { id: 'ingenieur', value: 'مهندس فلاحي', label: 'مهندس فلاحي' },
-  { id: 'veterinaire', value: 'طبيب بيطري', label: 'طبيب بيطري' },
-  { id: 'technicienMontage', value: 'فني مختص في التركيب', label: 'فني مختص في التركيب' },
-  { id: 'technicien2', value: 'فني مختص في الزبيرة', label: 'فني مختص في الزبيرة' }
+  { id: 'ingenieur', value: 'مهندس فلاحي', label: 'مهندس فلاحي', disabled: false },
+  { id: 'veterinaire', value: 'طبيب بيطري', label: 'طبيب بيطري', disabled: true },
+  { id: 'technicienMontage', value: 'فني مختص في التركيب', label: 'فني مختص في التركيب', disabled: true },
+  { id: 'technicien2', value: 'فني مختص في الزبيرة', label: 'فني مختص في الزبيرة', disabled: true }
 ];
 
 export const DOMAINESAGRICULTURE = [
@@ -378,14 +434,15 @@ export const SUJETAGRICULTURE = [
   { id: 'remiseSolFertilisation', value: 'استصلاح تربة و تسميد', label: 'استصلاح تربة و تسميد' },
   { id: 'eauIrrigation', value: 'مياه و ري', label: 'مياه و ري' },
   { id: 'maladiesPlantes', value: 'أمراض النباتات', label: 'أمراض النباتات' },
-  { id: 'autre2', value: 'أخرى', label: 'أخرى' }
+  { id: 'autre', value: 'أخرى', label: 'أخرى' }
 ];
 
 export const TYPEAGRICULTURE = [
   { id: 'agricultureNormale', value: 'فلاحة عادية', label: 'فلاحة عادية' },
   { id: 'agricultureBiologique', value: 'فلاحة بيولوجية', label: 'فلاحة بيولوجية' },
   { id: 'agricultureRefuge', value: 'فلاحة مستدامة', label: 'فلاحة مستدامة' },
-  { id: 'agricultureAquatique', value: 'زراعات مائية', label: 'زراعات مائية' }
+  { id: 'agricultureAquatique', value: 'زراعات مائية', label: 'زراعات مائية' },
+  { id: 'autre', value: 'أخرى', label: 'أخرى' }
 ];
 
 export const PERIODES =[
@@ -424,23 +481,44 @@ export const FACULTES = [
 
 export const SPECIALITESUNIVERSITY = [
   {faculte: 'Institut National Agronomique de Tunis',
-  specialites: ['Génie agricole', 'Agronomie', 'Sciences de l environnement', 'Horticulture', 'Zootechnie', 'Protection des cultures']
+  specialites: ['Sciences de la Production Végétale', 'Phytiatrie',
+   'Arboriculture Fruitière', 'Grandes Cultures',
+    'Cultures Maraichères', 'Sciences du Sol',
+  'Agronomie Générale', 'Biotechnologies Végétales',
+'Production Animale', 'Economie Rurale',
+ 'Forêt et Aménagement du Territoire', 'Génie Halieutique et Environnement', 'Génie Rural Eaux et Forêt',
+'Industries Agroalimentaires', 'Autre']
   },
 
    {faculte: 'École Supérieure d Agriculture de Mograne',
-   specialites: ['Génie rural', 'Agriculture biologique', 'Agroalimentaire', 'Aménagement du territoire', 'Économie agricole', 'Systèmes d information géographique appliqués à l agriculture']
+   specialites: ['Gestion des Entreprises Agricoles (GEA)', 'Développement des Politiques Agricoles (DPA)',
+    'Gestion des Ressources Naturelles', 'Sciences de la Production Végétale',
+     'Autre']
 
   },
 
   {faculte: 'Institut Supérieur Agronomique de Chott Mariem',
-  specialites: ['Génie agricole', 'Agronomie', 'Sciences de l environnement', 'Horticulture', 'Zootechnie', 'Protection des cultures']
+  specialites: ['Génie des Systèmes Horticoles (GSH)', 'Horticulture (Hor)',
+  'Protection des plantes', 'Production Animale (PA)', 'Paysage (Pay)',
+   'Autre']
 },
 
+{faculte: 'Ecole Supérieure d’Agriculture de Mateur',
+  specialites: ['Développement des Productions Animales',
+   'Aménagement des Ressources Fourragères', 'Autre'
+]},
+
   {faculte: 'École Supérieure d Agriculture de Kef',
-  specialites: ['Génie rural', 'Agriculture biologique', 'Agroalimentaire', 'Aménagement du territoire', 'Économie agricole', 'Systèmes d information géographique appliqués à l agriculture']
+  specialites: ['Sciences Agronomiques', 'Grandes Cultures', 
+  'Autre']
 },
 
   {faculte: 'École Supérieure d Agriculture de Medjez El Bab',
+  specialites: ['Hydraulique et aménagements', 
+  'Génie mécanique et industrie agroalimentaires', 'Autre',]
+},
+
+{faculte: 'Autre',
   specialites: ['Génie rural', 'Agriculture biologique', 'Agroalimentaire', 'Aménagement du territoire', 'Économie agricole', 'Systèmes d information géographique appliqués à l agriculture']
 },
 

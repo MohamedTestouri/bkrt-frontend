@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { DOMAINESAGRICULTURE, PERIODES, REVOIROPTIONS, SPECIALITES, SUJETAGRICULTURE, TYPEAGRICULTURE, TYPECULTURES } from 'src/app/models/constants/constants';
+import { DOMAINESAGRICULTURE, PERIODES, REVOIROPTIONS, SOUSCATEGORIESTYPES, SPECIALITES, SUJETAGRICULTURE, TYPEAGRICULTURE, TYPECULTURES } from 'src/app/models/constants/constants';
 import { Terrain } from 'src/app/models/terrain';
 import { DemandeAppointmentService } from 'src/app/services/demande-appointment.service';
 import { TerrainService } from 'src/app/services/terrain.service';
@@ -23,12 +23,13 @@ export class DemandeAppointmentComponent implements OnInit {
   sujetAgricultures = SUJETAGRICULTURE;
   typeAgricultures = TYPEAGRICULTURE;
   typeCultures = TYPECULTURES;
+  sousCategoris= SOUSCATEGORIESTYPES;
   periodes = PERIODES;
   revoirOptions = REVOIROPTIONS;
   errors_dict = {
     "specialite": "الرجاء إختيار المختص",
     "domaine": "الرجاء إختيار المجال",
-    "typeCulturesArray": "الرجاء إختيار الزراعات",
+    "typeCultures": "الرجاء إختيار الزراعات",
     "typeAgriculture": "الرجاء إختيار نوعية الفلاحة",
     "sujetAgriculture": "الرجاء إختيار موضوع السؤال",
     "terrain": "الرجاء إختيار الأرض",
@@ -45,12 +46,16 @@ export class DemandeAppointmentComponent implements OnInit {
   isSecondTabDisabled = true;
   isThirdTabDisabled = false;
 
+  showAgricultures : boolean = false;
   minDate: Date;
   myTime: Date;
   minTime: Date = new Date();
   maxTime: Date = new Date();
   isMeridian = false;
-  
+  selectedTypeCulture: string;
+  selectedSousCategorie: string;
+  sousCategoriesList: string[];
+
   showError = false;
   validationErrors = [];
 
@@ -64,7 +69,6 @@ export class DemandeAppointmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.terrainService.getAgriculteurTerrains().subscribe({
       next: _ => {
         this.terrains = _ ;
@@ -74,10 +78,12 @@ export class DemandeAppointmentComponent implements OnInit {
         this.validationErrors = e.error;
       } 
     })
-
     this.initializeDemandeAppointementForm();
   }
+getTerrains()
+{
 
+}
   initializeDemandeAppointementForm() {
 
     const defaultDate = new Date();
@@ -90,6 +96,7 @@ export class DemandeAppointmentComponent implements OnInit {
       domaine: ['', Validators.required],
       typeCulturesArray: [[], [this.atLeastOneSelectedValidator(1)]],
       typeCultures: [''],
+      sousCategorie: [''],
       typeAgriculture: ['', Validators.required],
       sujetAgriculture: ['', Validators.required],
       terrainId: [[], [this.atLeastOneSelectedValidator(1)]],
@@ -286,5 +293,21 @@ export class DemandeAppointmentComponent implements OnInit {
         } 
       })
     }
+  }
+  showAgriculturesTypes(event: string) {
+    if (event === "زراعات") {
+      this.showAgricultures = true;
+    }
+    else
+    {
+      this.showAgricultures = false;
+    }
+  }
+
+  onTypeCultureChange()
+  {
+    const selectedTypeCulture = this.demandeAppointementForm.get('typeCultures').value;
+    const selectedTypeCultureObj = this.sousCategoris.find(item => item.typeCulture === selectedTypeCulture);
+    this.sousCategoriesList = selectedTypeCultureObj ? selectedTypeCultureObj.sousCategorie : [];
   }
 }

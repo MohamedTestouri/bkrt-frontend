@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Agriculteurs } from 'src/app/models/agriculteurs';
+import { Engineer } from 'src/app/models/engineers';
 import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';
 import { UserService } from 'src/app/services/user.service';
@@ -22,14 +23,16 @@ export class DashboardHeaderComponent implements OnInit {
   resteAnalyses : number = 0;
   // agriculteurStaut : string = "مبتدئ";
   agriculteurs : Agriculteurs[];
+  engineers: Engineer[];
   agriculteursCount: number = 0;
+  engineersCount: number = 0;
 
 
 
   constructor(public accountService: AccountService, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
-    
+    this.loadEngineers();
      this.loadAgriculteurs();
     this.accountService.getCurrentUser().subscribe({
       next: user => {
@@ -69,6 +72,18 @@ export class DashboardHeaderComponent implements OnInit {
       },
       error => {
         console.error('Erreur lors de la récupération des agriculteurs :', error);
+      }
+    );
+  }
+  loadEngineers() {
+    this.userService.getEngineers().subscribe(
+      (data: Engineer[]) => {
+        this.engineers = data;
+        this.engineersCount = this.engineers.length;
+        console.log("engineers", this.engineers.length)
+      },
+      error => {
+        console.error('Erreur lors de la récupération des engineers :', error);
       }
     );
   }
